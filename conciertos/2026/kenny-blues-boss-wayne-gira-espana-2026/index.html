@@ -235,19 +235,18 @@
             margin-bottom: 24px;
         }
         .tour-buy-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            width: 100%;
-            padding: 16px 24px;
+            padding: 12px 24px;
             background: var(--gold);
             color: #000;
             border-radius: 4px;
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: .85rem;
             font-weight: 700;
-            letter-spacing: .06em;
+            letter-spacing: .08em;
             text-transform: uppercase;
             text-decoration: none;
             transition: all .2s;
@@ -323,6 +322,8 @@
             </p>
 
             <!-- City pills -->
+            <div>
+                <div class="tour-active-label" style="margin-bottom: 12px;">Comprar entradas</div>
             <div class="tour-cities" role="tablist" aria-label="Selecciona tu ciudad">
                 <button class="tour-city-btn" data-id="donosti"    role="tab">9 Sep · Donosti</button>
                 <button class="tour-city-btn" data-id="bilbao"     role="tab">10 Sep · Bilbao</button>
@@ -334,6 +335,7 @@
                 <button class="tour-city-btn" data-id="castellon"  role="tab">18 Sep · Castellón</button>
                 <button class="tour-city-btn" data-id="valencia"   role="tab">19 Sep · Valencia</button>
             </div>
+            </div>
 
             <!-- Active city CTA -->
             <div class="tour-active-city" id="tour-active-city">
@@ -341,9 +343,7 @@
                 <div class="tour-active-name" id="tac-city">—</div>
                 <div class="tour-active-date" id="tac-date">—</div>
                 <div class="tour-active-venue" id="tac-venue">—</div>
-                <a href="#" id="tac-btn" class="tour-buy-btn" target="_blank" rel="noopener">
-                    🎟 Comprar Entradas
-                </a>
+                <a href="#" id="tac-btn" class="tour-buy-btn" target="_blank" rel="noopener">🎟 Comprar entradas</a>
             </div>
         </div>
 
@@ -386,7 +386,7 @@
             document.getElementById('tac-venue').textContent = c.venue;
             const btn = document.getElementById('tac-btn');
             btn.href = c.url;
-            btn.textContent = '🎟 Comprar Entradas — ' + c.name;
+            btn.textContent = '🎟 Comprar entradas';
             box.classList.remove('changing');
         }, 150);
 
