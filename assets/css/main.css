@@ -1014,6 +1014,20 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   CONCERT LANDING PAGES — SECTION CONTAINER
+   ============================================= */
+.section {
+  padding: 80px 24px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 24px;
+  }
+}
+
+/* =============================================
    EVENT PAGES (CONCIERTOS)
    ============================================= */
 .event-hero {
@@ -1139,7 +1153,7 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   SPECIFIC CONCERT STYLES (ACANTHA LANG, ETC.)
+   CONCERT LANDING PAGES — HERO & CONTENT
    ============================================= */
 .hero-grid {
     display: grid;
@@ -1150,37 +1164,61 @@ ul { list-style: none; }
     margin: 0 auto;
     padding: 120px 24px 80px;
 }
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 40px;
+        gap: 32px;
+    }
+}
+
+.poster-card {
+    display: flex;
+    justify-content: center;
+}
 
 .poster-card img {
     width: 100%;
     max-width: 450px;
-    border-radius: 8px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(0,0,0,.5);
     display: block;
-    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .poster-card img {
+        max-width: 100%;
+        max-height: 500px;
+    }
+}
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .content-card .eyebrow {
     color: var(--gold);
     text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    font-weight: bold;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    font-weight: 600;
     display: block;
-    margin-bottom: 10px;
 }
 
 .event-title {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     color: var(--gold);
     text-transform: uppercase;
     line-height: 1.1;
+    letter-spacing: -.01em;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .event-desc {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: var(--muted);
     line-height: 1.6;
     margin-bottom: 30px;
@@ -1193,22 +1231,30 @@ ul { list-style: none; }
     margin-bottom: 40px;
     background: var(--bg3);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     border: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
 }
 
 .info-label {
-    font-size: 0.8rem;
+    font-size: .72rem;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: .1em;
+    font-weight: 600;
     margin-bottom: 5px;
 }
 
 .info-value {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--gold);
-    font-weight: bold;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .cta-group {
@@ -1220,9 +1266,9 @@ ul { list-style: none; }
 .video-card {
     max-width: 800px;
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,.5);
 }
 
 .video-frame {
@@ -1244,15 +1290,33 @@ ul { list-style: none; }
     gap: 40px;
     background: var(--bg3);
     padding: 40px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     border: 1px solid var(--border);
+}
+@media (max-width: 768px) {
+    .bio-card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 24px;
+    }
 }
 
 .bio-text h2 {
     color: var(--gold);
     font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: -.01em;
+    line-height: 1.1;
     margin-bottom: 20px;
+}
+
+.bio-text p {
+    color: var(--muted);
+    font-size: .95rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
 }
 
 .bio-tags {
@@ -1263,120 +1327,138 @@ ul { list-style: none; }
 }
 
 .bio-tag {
-    background: rgba(232,196,77,0.1);
+    background: rgba(232,196,77,.1);
     color: var(--gold);
     padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    border-radius: 3px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .08em;
     text-transform: uppercase;
 }
 
 .bio-stats {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
+}
+
+.bio-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .bio-stat-num {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-family: 'Oswald', sans-serif;
+    font-weight: 700;
     color: var(--gold);
     line-height: 1;
 }
 
 .bio-stat-label {
-    font-size: 0.8rem;
+    font-size: .72rem;
     color: var(--muted);
     text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 600;
+}
+
+.cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+@media (max-width: 600px) {
+    .cta-group {
+        flex-direction: column;
+    }
+    .cta-group a {
+        width: 100%;
+    }
 }
 
 .final-cta-wrap {
     text-align: center;
     padding: 80px 20px;
+    background: var(--bg);
+}
+
+.final-box {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 60px 40px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 }
 
 .final-box h2 {
     font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
 }
 
 .final-box p {
     color: var(--muted);
-    margin-bottom: 30px;
+    font-size: .95rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
 }
 
-@media (max-width: 768px) {
-    .hero-grid, .bio-card {
-        grid-template-columns: 1fr;
+@media (max-width: 600px) {
+    .final-box {
+        padding: 40px 24px;
+    }
+    .final-box h2 {
+        margin-bottom: 12px;
     }
 }
 
 /* =============================================
-   BUTTONS & SECTION STYLES FOR INDIVIDUAL CONCERT PAGES
+   CONCERT PAGES — UNIFIED STYLES
    ============================================= */
-.section {
-    padding: 80px 24px;
-    max-width: var(--max);
-    margin: 0 auto;
-}
-
-.section-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5rem;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
 .section-sub {
     color: var(--muted);
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     margin-bottom: 40px;
-}
-
-.btn-primary, .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-}
-
-.btn-primary {
-    background: var(--gold);
-    color: #111;
-}
-.btn-primary:hover {
-    background: #fff;
-    color: #000;
+    line-height: 1.6;
 }
 
 .btn-secondary {
     background: transparent;
-    color: #fff;
-    border: 1px solid #fff;
+    color: var(--text);
+    border: 2px solid var(--border);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
 }
 .btn-secondary:hover {
-    background: #fff;
-    color: #000;
+    border-color: var(--gold);
+    color: var(--gold);
 }
 
 .event-guest {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--muted);
     margin-bottom: 20px;
+    line-height: 1.6;
 }
 .event-guest span {
     color: var(--gold);
-    font-size: 0.9rem;
+    font-size: .9rem;
     text-transform: uppercase;
     display: block;
     margin-bottom: 5px;
