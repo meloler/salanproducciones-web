@@ -144,6 +144,132 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="/assets/css/main.css?v=2">
     <link rel="canonical" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/">
+    <style>
+        /* Tour city selector */
+        .tour-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .tour-poster img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px rgba(0,0,0,.5);
+            display: block;
+        }
+        .tour-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        /* City pill buttons */
+        .tour-cities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tour-city-btn {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 7px 16px;
+            font-size: .78rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+        .tour-city-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .tour-city-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #000;
+            font-weight: 700;
+        }
+        /* Active city CTA box */
+        .tour-active-city {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            transition: opacity .2s;
+        }
+        .tour-active-city.changing { opacity: 0; }
+        .tour-active-label {
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .tour-active-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text);
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+        .tour-active-venue {
+            font-size: .9rem;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+        .tour-active-date {
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .tour-buy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--gold);
+            color: #000;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .2s;
+        }
+        .tour-buy-btn:hover {
+            background: #f0cf60;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(232,196,77,.35);
+        }
+        @media (max-width: 768px) {
+            .tour-grid {
+                grid-template-columns: 1fr;
+                padding: 100px 24px 40px;
+                gap: 28px;
+            }
+            .tour-poster img {
+                max-height: 480px;
+                object-fit: contain;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -175,180 +301,109 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-grid">
+    <div class="tour-grid">
 
         <!-- Poster -->
-        <div class="poster-card">
+        <div class="tour-poster">
             <img src="./poster.webp" alt="Kenny 'Blues Boss' Wayne Band – Gira España Septiembre 2026" loading="eager">
         </div>
 
-        <!-- Info -->
-        <div class="content-card">
-            <span class="eyebrow">Salan Producciones presenta</span>
-
+        <!-- Info + city selector -->
+        <div class="tour-info">
             <div>
-                <h1 class="event-title">Kenny "Blues Boss" Wayne Band</h1>
+                <span class="eyebrow">Salan Producciones presenta</span>
+                <h1 class="event-title" style="margin-top: 10px;">Kenny "Blues Boss" Wayne Band</h1>
                 <p class="event-guest"><span>Gira España</span> Septiembre 2026 · 9 ciudades</p>
             </div>
 
             <p class="event-desc">
-                El pianista más electrizante del boogie-woogie y el blues desembarca en España con su banda completa.
-                Boogie-Woogie Hall of Fame 2017, Mejor Pianista de Blues 2024 y Premio Juno al Álbum de Blues —
-                Kenny Wayne trae a España un show que no deja a nadie indiferente.
+                El pianista más electrizante del boogie-woogie desembarca en España.
+                Boogie-Woogie Hall of Fame 2017 · Mejor Pianista de Blues 2024 · Premio Juno.
+                Selecciona tu ciudad y consigue tus entradas.
             </p>
 
-            <!-- Fechas destacadas -->
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label">Inicio de gira</div>
-                    <div class="info-value">9 Sep · Donosti</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Fin de gira</div>
-                    <div class="info-value">19 Sep · Valencia</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Ciudades</div>
-                    <div class="info-value">9 fechas</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Precio</div>
-                    <div class="info-value">Desde 25€</div>
-                </div>
+            <!-- City pills -->
+            <div class="tour-cities" role="tablist" aria-label="Selecciona tu ciudad">
+                <button class="tour-city-btn" data-id="donosti"    role="tab">9 Sep · Donosti</button>
+                <button class="tour-city-btn" data-id="bilbao"     role="tab">10 Sep · Bilbao</button>
+                <button class="tour-city-btn" data-id="ponferrada" role="tab">11 Sep · Ponferrada</button>
+                <button class="tour-city-btn" data-id="santiago"   role="tab">13 Sep · Santiago</button>
+                <button class="tour-city-btn" data-id="coruna"     role="tab">15 Sep · A Coruña</button>
+                <button class="tour-city-btn" data-id="madrid"     role="tab">16 Sep · Madrid</button>
+                <button class="tour-city-btn" data-id="zaragoza"   role="tab">17 Sep · Zaragoza</button>
+                <button class="tour-city-btn" data-id="castellon"  role="tab">18 Sep · Castellón</button>
+                <button class="tour-city-btn" data-id="valencia"   role="tab">19 Sep · Valencia</button>
             </div>
 
-            <!-- CTAs -->
-            <div class="cta-group">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn-primary" target="_blank" rel="noopener">
+            <!-- Active city CTA -->
+            <div class="tour-active-city" id="tour-active-city">
+                <div class="tour-active-label">Tu fecha</div>
+                <div class="tour-active-name" id="tac-city">—</div>
+                <div class="tour-active-date" id="tac-date">—</div>
+                <div class="tour-active-venue" id="tac-venue">—</div>
+                <a href="#" id="tac-btn" class="tour-buy-btn" target="_blank" rel="noopener">
                     🎟 Comprar Entradas
                 </a>
-                <a href="#fechas" class="btn-secondary">📅 Ver todas las fechas</a>
             </div>
         </div>
 
     </div>
 </section>
 
-<hr class="divider">
+<script>
+(function() {
+    const UTM = '?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026';
+    const TICKETY = 'https://tickety.es/entity/kenny-blues-boss-wayne' + UTM;
+    const SANTIAGO = 'https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol' + UTM;
 
-<!-- FECHAS / CITIES GRID -->
-<div id="fechas" class="section">
-    <h2 class="section-title">Fechas de la gira</h2>
-    <p class="section-sub">Selecciona tu ciudad y consigue tus entradas</p>
+    const cities = {
+        donosti:    { name: 'Donosti',               date: '9 de septiembre · 21:00h',  venue: 'Dabadaba · San Sebastián',      url: TICKETY   },
+        bilbao:     { name: 'Bilbao',                 date: '10 de septiembre · 21:00h', venue: 'Kafé Antzokia · Bilbao',         url: TICKETY   },
+        ponferrada: { name: 'Ponferrada',             date: '11 de septiembre · 21:00h', venue: 'Sala H · Ponferrada',            url: TICKETY   },
+        santiago:   { name: 'Santiago de Compostela', date: '13 de septiembre · 21:00h', venue: 'Sala Capitol · Santiago',        url: SANTIAGO  },
+        coruna:     { name: 'A Coruña',               date: '15 de septiembre · 21:00h', venue: 'Sala Garufa Club · A Coruña',    url: TICKETY   },
+        madrid:     { name: 'Madrid',                 date: '16 de septiembre · 21:00h', venue: 'Sala Babylon · Madrid',          url: TICKETY   },
+        zaragoza:   { name: 'Zaragoza',               date: '17 de septiembre · 21:00h', venue: 'La Casa del Loco · Zaragoza',    url: TICKETY   },
+        castellon:  { name: 'Castellón',              date: '18 de septiembre · 21:00h', venue: 'La Bohemia · Castellón',         url: TICKETY   },
+        valencia:   { name: 'Valencia',               date: '19 de septiembre · 21:00h', venue: '16 Toneladas · Valencia',        url: TICKETY   }
+    };
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 32px;">
+    function activate(id) {
+        const c = cities[id];
+        if (!c) return;
 
-        <div id="donosti" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">9 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Donosti</h3>
-                <div class="concert-card-venue">Dabadaba · San Sebastián</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
+        // Update pills
+        document.querySelectorAll('.tour-city-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.id === id);
+        });
 
-        <div id="bilbao" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">10 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Bilbao</h3>
-                <div class="concert-card-venue">Kafé Antzokia · Bilbao</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
+        // Update CTA box with fade
+        const box = document.getElementById('tour-active-city');
+        box.classList.add('changing');
+        setTimeout(() => {
+            document.getElementById('tac-city').textContent  = c.name;
+            document.getElementById('tac-date').textContent  = c.date;
+            document.getElementById('tac-venue').textContent = c.venue;
+            const btn = document.getElementById('tac-btn');
+            btn.href = c.url;
+            btn.textContent = '🎟 Comprar Entradas — ' + c.name;
+            box.classList.remove('changing');
+        }, 150);
 
-        <div id="ponferrada" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">11 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Ponferrada</h3>
-                <div class="concert-card-venue">Sala H · Ponferrada</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
+        // Update hash without scroll jump
+        history.replaceState(null, '', '#' + id);
+    }
 
-        <div id="santiago" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">13 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Santiago de Compostela</h3>
-                <div class="concert-card-venue">Sala Capitol · Santiago</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
+    // Init from hash or default to first city
+    const hash = window.location.hash.replace('#', '');
+    activate(cities[hash] ? hash : 'donosti');
 
-        <div id="coruna" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">15 de septiembre de 2026</div>
-                <h3 class="concert-card-title">A Coruña</h3>
-                <div class="concert-card-venue">Sala Garufa Club · A Coruña</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
-
-        <div id="madrid" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">16 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Madrid</h3>
-                <div class="concert-card-venue">Sala Babylon · Madrid</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
-
-        <div id="zaragoza" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">17 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Zaragoza</h3>
-                <div class="concert-card-venue">La Casa del Loco · Zaragoza</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
-
-        <div id="castellon" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">18 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Castellón</h3>
-                <div class="concert-card-venue">La Bohemia · Castellón</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
-
-        <div id="valencia" class="concert-card" style="display:flex; flex-direction:column;">
-            <div class="concert-card-body" style="flex:1;">
-                <div class="concert-card-date">19 de septiembre de 2026</div>
-                <h3 class="concert-card-title">Valencia</h3>
-                <div class="concert-card-venue">16 Toneladas · Valencia</div>
-            </div>
-            <div style="padding: 0 20px 20px;">
-                <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026"
-                   class="btn btn-primary btn-full" target="_blank" rel="noopener">🎟 Entradas</a>
-            </div>
-        </div>
-
-    </div>
-</div>
+    // Pill clicks
+    document.querySelectorAll('.tour-city-btn').forEach(btn => {
+        btn.addEventListener('click', () => activate(btn.dataset.id));
+    });
+})();
+</script>
 
 <hr class="divider">
 
