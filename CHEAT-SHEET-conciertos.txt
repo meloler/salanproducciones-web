@@ -1,0 +1,195 @@
+================================================================================
+SALAN PRODUCCIONES - CHEAT SHEET: AÑADIR NUEVO CONCIERTO
+================================================================================
+
+FLUJO RÁPIDO (5 minutos):
+────────────────────────────────────────────────────────────────────────────
+
+1. PREPARAR DATOS
+   • Fecha: DD/MM/YYYY (ej: 15/06/2026)
+   • Nombre evento: "Juan Acela & The Violets"
+   • Artistas: "Juan Acela, Miguel Santana, The Violets"
+   • Aforo: "450 personas"
+   • Precio: "25€"
+   • URL entradas: (Eventbrite, etc.)
+   • Poster: JPG/PNG sin espacios en nombre
+
+2. CONVERTIR IMAGEN → WebP
+   PowerShell:
+   $ cwebp -q 85 poster.jpg -o poster.webp
+
+3. COPIAR PLANTILLA
+   Abre: /conciertos/PLANTILLA-evento.html
+   Guarda como: /conciertos/2026/NOMBRE-FECHA/index.html
+   
+4. RELLENAR PLANTILLA
+   Busca y reemplaza:
+   [NOMBRE EVENTO] → "Juan Acela & The Violets"
+   [YYYY-MM-DD] → "2026-06-15"
+   [DÍA] → 15
+   [MES] → junio
+   [AÑO] → 2026
+   [ARTISTA 1], [ARTISTA 2]... → Artistas
+   [AFORO] → "450 personas"
+   [PRECIO] → "25€"
+   [DESCRIPCIÓN CORTA] → Texto
+   [ENLACE-ENTRADAS] → URL
+
+5. SUBIR AL SERVIDOR (WinSCP)
+   → /conciertos/2026/nombre-evento/
+   └─ index.html
+   └─ poster.webp
+
+6. ACTUALIZAR /index.html (próximos conciertos)
+   Busca: <section class="upcoming-concerts">
+   Añade:
+   <div class="concert-card" data-date="2026-06-15">
+       <a href="/conciertos/2026/juan-acela-26-06-2026/">
+           <img src="/assets/images/conciertos/poster.webp" alt="Juan Acela">
+           <h3>Juan Acela & The Violets</h3>
+           <p class="date">15 de junio 2026</p>
+       </a>
+   </div>
+
+================================================================================
+ESTRUCTURA DE CARPETAS
+================================================================================
+
+/conciertos/
+├── 2026/
+│   ├── juan-acela-15-06-2026/
+│   │   ├── index.html        ← Página del evento
+│   │   └── poster.webp       ← Imagen (85% calidad)
+│   └── otro-artista-30-07-2026/
+│
+├── 2025/
+│   └── ...
+│
+└── PLANTILLA-evento.html     ← Copiar esto
+
+
+REGLA DE NOMBRES:
+• Minúsculas: juan-acela (no JUAN-ACELA)
+• Sin espacios: juan-acela (no juan acela)
+• Fecha al final: juan-acela-15-06-2026
+• Sin caracteres especiales
+
+================================================================================
+COMPONENTES CLAVE
+================================================================================
+
+Archivo index.html:
+• <div class="concert-card" data-date="2026-06-15">
+  └─ El atributo data-date es CRÍTICO: debe estar en YYYY-MM-DD
+
+Archivo PLANTILLA-evento.html:
+• <time datetime="[YYYY-MM-DD]"> ← Formato fecha máquina
+• <img src="./poster.webp" /> ← Siempre WebP, siempre relativa
+
+Archivos necesarios:
+✓ /index.html (actualizar)
+✓ /conciertos/YYYY/nombre/index.html (nuevo)
+✓ /conciertos/YYYY/nombre/poster.webp (nuevo)
+
+================================================================================
+AUTOMATIZACIÓN DESPUÉS DE LA FECHA
+================================================================================
+
+JavaScript detecta automáticamente si un concierto pasó:
+• Si today > data-date: Muestra banner "Este evento ya pasó"
+• Cada página de evento tiene script que lo verifica
+
+Próximos → Anteriores (manual):
+1. Concierto pasa su fecha
+2. Tú lo copias a /conciertos-anteriores/index.html (abajo, en el año)
+3. Lo quitas de /index.html (próximos conciertos)
+4. Listo.
+
+No es automático porque podrías querer mantenerlo destacado una semana.
+
+================================================================================
+CHECKLIST ANTES DE SUBIR
+================================================================================
+
+□ Fecha en formato correcto (YYYY-MM-DD)
+□ Artistas separados por comas
+□ Poster convertido a WebP (85% calidad)
+□ Nombre de carpeta sin espacios, minúsculas
+□ index.html rellenado completamente
+□ Sin [PLACEHOLDERS] sin rellenar
+□ Carpeta creada en /conciertos/2026/
+□ Archivos subidos via SFTP: index.html + poster.webp
+□ Línea añadida en /index.html (próximos conciertos)
+□ URL válida en btn-event
+
+================================================================================
+IMÁGENES: RENDIMIENTO
+================================================================================
+
+JPG/PNG → WebP ahorra 80-90% de tamaño:
+• 500KB JPG = 60KB WebP
+• Google Lighthouse: ↑ de 95 a 100
+
+Comando:
+$ cwebp -q 85 archivo.jpg -o archivo.webp
+
+Alternativa online:
+cloudconvert.com (busca WebP)
+
+================================================================================
+SFTP: SUBIR ARCHIVOS (WinSCP)
+================================================================================
+
+1. Abre WinSCP
+2. New Site:
+   Host: tu-dominio.es
+   User: tu-usuario-raiola
+   Password: tu-contraseña
+3. Navega a: /public_html/conciertos/2026/juan-acela-15-06-2026/
+4. Arrastra index.html + poster.webp
+5. Listo. URL viva en 1 minuto.
+
+================================================================================
+RENDIMIENTO FINAL
+================================================================================
+
+✓ WebP: 85% reducción
+✓ CSS minificado: 0 bloqueos
+✓ JS asincrónico: sin retrasos
+✓ Imágenes lazy loading: carga bajo demanda
+✓ Fuentes locales: sin llamadas externas
+
+Result: Google Lighthouse 100/100 ✓
+
+================================================================================
+PROBLEMAS COMUNES
+================================================================================
+
+"Concierto no aparece en próximos"
+→ Verifica data-date="YYYY-MM-DD" (no DD/MM/YYYY)
+
+"Imagen no carga"
+→ Asegúrate que src="./poster.webp" (relativa, no absoluta)
+→ Que poster.webp está en la misma carpeta que index.html
+
+"WinSCP no conecta"
+→ Verifica credenciales Raiola
+→ Puerto por defecto es 22 (SFTP)
+
+"Poster se ve pixelado"
+→ Sube original 500x700px mínimo
+→ Calidad WebP a 85% es suficiente
+
+"Concierto muy grande en próximos"
+→ index.html controla width con CSS grid
+→ Verifica que poster.webp no sea 5000x5000px
+
+================================================================================
+CONTACTO RÁPIDO
+================================================================================
+
+Documentación completa: PROTOCOLO-NUEVOS-CONCIERTOS.md
+Plantilla HTML: /conciertos/PLANTILLA-evento.html
+Soporte: Revisa el protocolo, ahí está todo
+
+================================================================================

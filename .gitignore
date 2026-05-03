@@ -1,0 +1,24 @@
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude / herramientas locales
+.claude/
+
+# Archivos pesados / backups que no deben ir al repo
+2019.zip
+*.zip
+
+# Backups antiguos de WordPress (no son parte de la web actual)
+2019/
+Imagenes/
