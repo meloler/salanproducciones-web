@@ -250,10 +250,20 @@
       <p class="newsletter-desc">
         Suscríbete y recibe los próximos conciertos antes de que se anuncien oficialmente.
       </p>
-      <form class="newsletter-form" novalidate>
-        <input type="email" placeholder="Tu email" required aria-label="Correo electrónico">
-        <button type="submit" class="btn btn-primary">Suscribirme</button>
-      </form>
+      <div class="newsletter-form-container">
+        <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/cmb7ofbqv5jgi0y0ipx3q1au0" method="POST">
+          <input class="newsletter-form-input" type="email" name="newsletter-form-input" placeholder="Tu email" required aria-label="Correo electrónico">
+          <button type="submit" class="newsletter-form-button btn btn-primary">Suscribirme</button>
+          <button type="button" class="newsletter-loading-button btn btn-primary" style="display:none;">Enviando…</button>
+        </form>
+        <div class="newsletter-success" style="display:none;">
+          <p class="newsletter-success-message">¡Gracias por suscribirte!</p>
+        </div>
+        <div class="newsletter-error" style="display:none;">
+          <p class="newsletter-error-message">Algo salió mal, inténtalo de nuevo.</p>
+        </div>
+        <button class="newsletter-back-button" type="button" style="display:none;">← Volver</button>
+      </div>
       <p class="newsletter-privacy">
         Sin spam. Puedes darte de baja cuando quieras. <a href="#">Política de privacidad</a>.
       </p>

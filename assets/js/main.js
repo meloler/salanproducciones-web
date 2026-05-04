@@ -59,26 +59,90 @@
     el.innerHTML = el.innerHTML.replace(/\d{4}/, new Date().getFullYear());
   });
 
-  /* --- Newsletter form --- */
-  document.querySelectorAll('.newsletter-form').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const emailInput = form.querySelector('input[type="email"]');
-      const btn = form.querySelector('button[type="submit"]');
+  /* --- Newsletter form (Loops) --- */
+  function loopsSubmitHandler(event) {
+    event.preventDefault();
+    var container = event.target.parentNode;
+    var form = container.querySelector('.newsletter-form');
+    var formInput = container.querySelector('.newsletter-form-input');
+    var success = container.querySelector('.newsletter-success');
+    var errorContainer = container.querySelector('.newsletter-error');
+    var errorMessage = container.querySelector('.newsletter-error-message');
+    var backButton = container.querySelector('.newsletter-back-button');
+    var submitButton = container.querySelector('.newsletter-form-button');
+    var loadingButton = container.querySelector('.newsletter-loading-button');
 
-      if (!emailInput || !emailInput.value.trim()) return;
+    var rateLimit = function() {
+      errorContainer.style.display = 'flex';
+      errorMessage.innerText = 'Demasiados intentos, espera un momento.';
+      submitButton.style.display = 'none';
+      formInput.style.display = 'none';
+      backButton.style.display = 'block';
+    };
 
-      // Disable during "submit"
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = '✓ ¡Apuntado!';
-        btn.style.background = '#2ecc71';
-        btn.style.borderColor = '#2ecc71';
-        btn.style.color = '#fff';
-      }
-      // In a real integration you'd POST to your email service here
-      // e.g. Mailchimp, Brevo, etc.
-    });
+    var time = new Date();
+    var timestamp = time.valueOf();
+    var previousTimestamp = localStorage.getItem('loops-form-timestamp');
+    if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) { rateLimit(); return; }
+    localStorage.setItem('loops-form-timestamp', timestamp);
+
+    submitButton.style.display = 'none';
+    loadingButton.style.display = 'inline-flex';
+
+    var formBody = 'userGroup=&mailingLists=&email=' + encodeURIComponent(formInput.value);
+
+    fetch(event.target.action, {
+      method: 'POST',
+      body: formBody,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+      .then(function(res) { return [res.ok, res.json(), res]; })
+      .then(function(arr) {
+        var ok = arr[0], dataPromise = arr[1], res = arr[2];
+        if (ok) {
+          success.style.display = 'flex';
+          form.reset();
+        } else {
+          dataPromise.then(function(data) {
+            errorContainer.style.display = 'flex';
+            errorMessage.innerText = data.message ? data.message : res.statusText;
+          });
+        }
+      })
+      .catch(function(error) {
+        if (error.message === 'Failed to fetch') { rateLimit(); return; }
+        errorContainer.style.display = 'flex';
+        if (error.message) errorMessage.innerText = error.message;
+        localStorage.setItem('loops-form-timestamp', '');
+      })
+      .finally(function() {
+        formInput.style.display = 'none';
+        loadingButton.style.display = 'none';
+        backButton.style.display = 'block';
+      });
+  }
+
+  function loopsResetHandler(event) {
+    var container = event.target.parentNode;
+    var formInput = container.querySelector('.newsletter-form-input');
+    var success = container.querySelector('.newsletter-success');
+    var errorContainer = container.querySelector('.newsletter-error');
+    var errorMessage = container.querySelector('.newsletter-error-message');
+    var backButton = container.querySelector('.newsletter-back-button');
+    var submitButton = container.querySelector('.newsletter-form-button');
+    success.style.display = 'none';
+    errorContainer.style.display = 'none';
+    errorMessage.innerText = 'Algo salió mal, inténtalo de nuevo.';
+    backButton.style.display = 'none';
+    formInput.style.display = 'flex';
+    submitButton.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.newsletter-form-container').forEach(function(container) {
+    if (container.classList.contains('newsletter-handlers-added')) return;
+    container.querySelector('.newsletter-form').addEventListener('submit', loopsSubmitHandler);
+    container.querySelector('.newsletter-back-button').addEventListener('click', loopsResetHandler);
+    container.classList.add('newsletter-handlers-added');
   });
 
   /* --- Contact form --- */

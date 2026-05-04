@@ -752,6 +752,22 @@ ul { list-style: none; }
   margin-top: 12px;
 }
 .newsletter-privacy a { color: var(--gold); text-decoration: underline; }
+.newsletter-form-container { width: 100%; }
+.newsletter-success, .newsletter-error { display: none; text-align: center; margin-top: 12px; }
+.newsletter-success-message { color: var(--gold); font-size: .9rem; }
+.newsletter-error-message { color: var(--red); font-size: .9rem; }
+.newsletter-back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .8rem;
+  margin-top: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.newsletter-back-button:hover { color: var(--text); text-decoration: underline; }
 
 /* =============================================
    FOOTER
