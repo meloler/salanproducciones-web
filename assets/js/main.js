@@ -54,12 +54,16 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+  /* --- Dynamic copyright year --- */
+  document.querySelectorAll('.footer-copy').forEach(el => {
+    el.innerHTML = el.innerHTML.replace(/\d{4}/, new Date().getFullYear());
+  });
+
   /* --- Newsletter form --- */
   document.querySelectorAll('.newsletter-form').forEach(form => {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       const emailInput = form.querySelector('input[type="email"]');
-      const nameInput = form.querySelector('input[type="text"]');
       const btn = form.querySelector('button[type="submit"]');
 
       if (!emailInput || !emailInput.value.trim()) return;

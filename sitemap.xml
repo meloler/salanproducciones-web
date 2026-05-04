@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.salanproducciones.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Secciones principales -->
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos-anteriores/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/pub-la-calle/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/contacto/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Conciertos 2026 -->
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
