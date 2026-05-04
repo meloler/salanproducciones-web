@@ -444,6 +444,7 @@ ul { list-style: none; }
   border: 2px solid transparent;
   transition: all .2s;
   white-space: nowrap;
+  text-decoration: none;
 }
 .btn-primary {
   background: var(--gold);
