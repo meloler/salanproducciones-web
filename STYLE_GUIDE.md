@@ -73,6 +73,95 @@ Importadas desde Google Fonts en `main.css`
 - **Mobile**: <600px (single column, full width)
 - **Small Mobile**: <400px (optimizations for concert cards)
 
+## Type C Gira — City Selector Component
+
+Used on gira landings (multiple cities, one page). Replaces the old `.cities-grid` pattern.
+
+### Hero layout
+- Replace `.hero-grid` with `.tour-grid` (inline `<style>` block in `<head>`)
+- Two columns desktop (1fr 1fr), single column mobile
+- Left: `.tour-poster` — poster image
+- Right: `.tour-info` — eyebrow → H1 → event-guest → pills header → pills → CTA box → description
+
+### H1 rule for Type C
+Must include the tour name, not just the artist:
+- `Acantha Lang – Gira España Junio 2026`
+- `Kenny "Blues Boss" Wayne Band` (already descriptive enough with gira subtitle)
+
+### City pill buttons
+```html
+<div class="tour-active-label" style="margin-bottom: 12px;">Comprar entradas</div>
+<div class="tour-cities" role="tablist" aria-label="Selecciona tu ciudad">
+  <button class="tour-city-btn" data-id="sevilla" role="tab">4 Jun · Sevilla</button>
+  ...
+</div>
+```
+- Class: `.tour-city-btn[data-id]`
+- Active state: gold background, black text, font-weight 700
+- Pill shape: `border-radius: 100px`
+- With date prefix when dates are known (e.g. `9 Sep · Donosti`), city name only when not
+
+### Active city CTA box
+```html
+<div class="tour-active-city" id="tour-active-city">
+  <div class="tour-active-label">Tu fecha</div>
+  <div class="tour-active-name" id="tac-city">—</div>
+  <div class="tour-active-date" id="tac-date">—</div>
+  <div class="tour-active-venue" id="tac-venue">—</div>
+  <a href="#" id="tac-btn" class="tour-buy-btn" target="_blank" rel="noopener">🎟 Comprar entradas</a>
+</div>
+```
+- `.changing` class triggers `opacity: 0` fade during city switch (150ms timeout)
+
+### JavaScript pattern
+```javascript
+(function() {
+    const cities = {
+        sevilla: { name: 'Sevilla', date: '4 de junio · 20:00h', venue: 'Sala Moon · Sevilla', url: '...' },
+        // ...
+    };
+    function activate(id) {
+        const c = cities[id];
+        if (!c) return;
+        document.querySelectorAll('.tour-city-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.id === id);
+        });
+        const box = document.getElementById('tour-active-city');
+        box.classList.add('changing');
+        setTimeout(() => {
+            document.getElementById('tac-city').textContent  = c.name;
+            document.getElementById('tac-date').textContent  = c.date;
+            document.getElementById('tac-venue').textContent = c.venue;
+            const btn = document.getElementById('tac-btn');
+            btn.href = c.url;
+            btn.textContent = '🎟 Comprar entradas';
+            box.classList.remove('changing');
+        }, 150);
+        history.replaceState(null, '', '#' + id);  // hash without scroll jump
+    }
+    const hash = window.location.hash.replace('#', '');
+    activate(cities[hash] ? hash : 'first-city-id');  // default to first city
+    document.querySelectorAll('.tour-city-btn').forEach(btn => {
+        btn.addEventListener('click', () => activate(btn.dataset.id));
+    });
+})();
+```
+
+### Ad targeting with URL hash
+- Facebook/Instagram ad for Sevilla → `https://salanproducciones.com/conciertos/2026/{slug}/#sevilla`
+- The JS reads `window.location.hash` on load and activates the matching city automatically
+
+### Schema for Type C
+Use an array of MusicEvent objects — one per city:
+```json
+[
+  { "@context": "https://schema.org", "@type": "MusicEvent", "name": "Artist en City", "startDate": "...", "location": {...}, "offers": {...} },
+  ...
+]
+```
+
+---
+
 ## Animations & Transitions
 
 - `.reveal`: Scroll-reveal animation (opacity + translateY)
