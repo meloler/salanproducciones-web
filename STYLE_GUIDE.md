@@ -194,3 +194,94 @@ Example: `clamp(min, preferred, max)`
 - Home page (`index.html`) also respects this system
 - No inline styles except for accessibility or unique overrides
 - All color values use CSS variables for maintainability
+
+---
+
+## SEO Checklist — obligatorio en cada landing nueva
+
+Toda landing generada con `/salan` DEBE incluir estos elementos. No omitir ninguno.
+
+### `<head>` — meta tags obligatorios
+
+```html
+<!-- og:url SIEMPRE absoluto, apuntando al slug de la landing -->
+<meta property="og:url" content="https://www.salanproducciones.com/conciertos/2026/<slug>/">
+
+<!-- og:title, og:description, og:image SIEMPRE presentes -->
+<meta property="og:title" content="...">
+<meta property="og:description" content="...">
+<!-- og:image SIEMPRE URL absoluta — nunca relativa -->
+<meta property="og:image" content="https://www.salanproducciones.com/conciertos/2026/<slug>/poster.webp">
+
+<!-- Twitter Card SIEMPRE presente — los 4 tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="...">         <!-- igual que og:title -->
+<meta name="twitter:description" content="...">   <!-- igual que og:description -->
+<meta name="twitter:image" content="https://www.salanproducciones.com/conciertos/2026/<slug>/poster.webp">
+
+<!-- Canonical SIEMPRE al dominio final, no a vercel.app -->
+<link rel="canonical" href="https://www.salanproducciones.com/conciertos/2026/<slug>/">
+```
+
+### H1 — regla obligatoria
+
+- Tipo A (concierto único): `{Artista} en {Ciudad}` — nunca solo el nombre del artista
+- Tipo B (ciudad separada): `{Artista} en {Ciudad}`
+- Tipo C (gira): `{Artista} – {Nombre de gira o año}`
+
+### Schema.org JSON-LD — reglas obligatorias
+
+```json
+{
+  "@type": "MusicEvent",
+  "startDate": "2026-MM-DDT20:00:00+01:00",
+  "endDate":   "2026-MM-DDT23:00:00+01:00",
+  "image": "https://www.salanproducciones.com/conciertos/2026/<slug>/poster.webp",
+  "organizer": {
+    "@type": "Organization",
+    "name": "Salan Producciones",
+    "url": "https://salanproducciones.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://...",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}
+```
+
+Reglas:
+- `startDate` y `endDate` SIEMPRE con zona horaria `+01:00` y segundos (`:00`)
+- `image` SIEMPRE URL absoluta
+- Si no hay entradas disponibles aún: `"availability": "https://schema.org/PreOrder"` y omitir `price`
+- Si hay precio conocido: incluir `"price": "25"` (string, sin €)
+- No usar `@type: Event` — siempre `MusicEvent`
+
+### Imágenes — reglas obligatorias
+
+- El poster se guarda como `poster.webp` dentro de la carpeta del slug
+- En el `<img>` del poster: `loading="eager"` (es above the fold)
+- Siempre incluir `width` y `height` en el `<img>`
+- No usar URLs de WordPress (`/wp-content/uploads/`)
+
+### BreadcrumbList — obligatorio en cada landing
+
+Añadir un segundo bloque `<script type="application/ld+json">` justo antes del `</head>`:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.salanproducciones.com/" },
+    { "@type": "ListItem", "position": 2, "name": "{nombre del evento}", "item": "https://www.salanproducciones.com/conciertos/2026/<slug>/" }
+  ]
+}
+```
+
+### Después de crear la landing — acciones obligatorias
+
+1. Añadir la card estática en `index.html` dentro de `#upcoming-grid`
+2. Añadir la entrada en `conciertos.json` con la URL local del poster (`/conciertos/2026/<slug>/poster.webp`)
+3. Hacer commit y push a `main`

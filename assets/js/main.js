@@ -64,7 +64,9 @@
     event.preventDefault();
     var container = event.target.parentNode;
     var form = container.querySelector('.newsletter-form');
-    var formInput = container.querySelector('.newsletter-form-input');
+    var emailInput = container.querySelector('input[type="email"]');
+    var nameInput = container.querySelector('input[name="firstName"]');
+    var allInputs = container.querySelectorAll('.newsletter-form-input');
     var success = container.querySelector('.newsletter-success');
     var errorContainer = container.querySelector('.newsletter-error');
     var errorMessage = container.querySelector('.newsletter-error-message');
@@ -72,11 +74,13 @@
     var submitButton = container.querySelector('.newsletter-form-button');
     var loadingButton = container.querySelector('.newsletter-loading-button');
 
+    var hideInputs = function() { allInputs.forEach(function(el) { el.style.display = 'none'; }); };
+
     var rateLimit = function() {
       errorContainer.style.display = 'flex';
       errorMessage.innerText = 'Demasiados intentos, espera un momento.';
       submitButton.style.display = 'none';
-      formInput.style.display = 'none';
+      hideInputs();
       backButton.style.display = 'block';
     };
 
@@ -89,7 +93,8 @@
     submitButton.style.display = 'none';
     loadingButton.style.display = 'inline-flex';
 
-    var formBody = 'userGroup=&mailingLists=&email=' + encodeURIComponent(formInput.value);
+    var firstName = nameInput && nameInput.value.trim() ? '&firstName=' + encodeURIComponent(nameInput.value.trim()) : '';
+    var formBody = 'userGroup=&mailingLists=&email=' + encodeURIComponent(emailInput.value) + firstName;
 
     fetch(event.target.action, {
       method: 'POST',
@@ -116,7 +121,7 @@
         localStorage.setItem('loops-form-timestamp', '');
       })
       .finally(function() {
-        formInput.style.display = 'none';
+        hideInputs();
         loadingButton.style.display = 'none';
         backButton.style.display = 'block';
       });
@@ -124,7 +129,7 @@
 
   function loopsResetHandler(event) {
     var container = event.target.parentNode;
-    var formInput = container.querySelector('.newsletter-form-input');
+    var allInputs = container.querySelectorAll('.newsletter-form-input');
     var success = container.querySelector('.newsletter-success');
     var errorContainer = container.querySelector('.newsletter-error');
     var errorMessage = container.querySelector('.newsletter-error-message');
@@ -134,7 +139,7 @@
     errorContainer.style.display = 'none';
     errorMessage.innerText = 'Algo salió mal, inténtalo de nuevo.';
     backButton.style.display = 'none';
-    formInput.style.display = 'flex';
+    allInputs.forEach(function(el) { el.style.display = 'flex'; });
     submitButton.style.display = 'flex';
   }
 
@@ -171,8 +176,8 @@
       .then(data => {
         const today = new Date().toISOString().split('T')[0];
         
-        // 1. Render Upcoming
-        if (upcomingGrid) {
+        // 1. Render Upcoming — solo si el grid está vacío (sin cards estáticas en el HTML)
+        if (upcomingGrid && upcomingGrid.children.length === 0) {
           const upcoming = data.filter(c => c.dateISO >= today).sort((a, b) => a.dateISO.localeCompare(b.dateISO));
           
           if (upcoming.length === 0) {

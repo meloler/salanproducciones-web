@@ -24,6 +24,21 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://www.salanproducciones.com/privacidad/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/aviso-legal/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/cookies/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
   <!-- Conciertos 2026 -->
   <url>
@@ -40,6 +55,11 @@
     <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/</loc>
