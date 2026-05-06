@@ -173,10 +173,17 @@
       color: var(--gold);
       margin-bottom: 14px;
     }
+    /* Desktop: pills wrap normally, duplicate track hidden */
     .plc-artist-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+    }
+    .plc-artist-pills-track {
+      display: contents; /* invisible in layout — pills render as if direct children */
+    }
+    .plc-artist-pills-track[aria-hidden="true"] {
+      display: none;
     }
     .plc-artist-pill {
       display: inline-block;
@@ -186,10 +193,38 @@
       color: var(--muted);
       font-size: .82rem;
       transition: color .2s, border-color .2s;
+      white-space: nowrap;
     }
     .plc-artist-pill:hover {
       color: var(--text);
       border-color: var(--gold);
+    }
+
+    /* Mobile: horizontal scroll carousel */
+    @media (max-width: 768px) {
+      .plc-artist-pills {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        gap: 0;
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      }
+      .plc-artist-pills-track {
+        display: flex;
+        flex-shrink: 0;
+        gap: 8px;
+        padding-right: 8px;
+        animation: pill-scroll 25s linear infinite;
+        will-change: transform;
+      }
+      .plc-artist-pills-track[aria-hidden="true"] {
+        display: flex;
+        animation-delay: 0s;
+      }
+      @keyframes pill-scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
     }
 
     /* Memory CTA */
@@ -252,7 +287,7 @@
       .plc-story + * { margin-top: 0; }
       section.section { padding-bottom: 12px; }
       .plc-artists-section { padding: 24px 0 16px; }
-      .plc-artists-group:last-child { margin-bottom: 0; }
+      .plc-artists-group:last-child { margin-bottom: 16px; }
       .plc-artists-section + section.section { padding-top: 20px; }
       .plc-story p:last-child { margin-bottom: 0; }
     }
@@ -386,47 +421,90 @@
     <div class="reveal">
       <div class="plc-artists-group">
         <div class="plc-artists-group-title">🇪🇸 Nacionales</div>
-        <div class="plc-artist-pills">
-          <span class="plc-artist-pill">Extremoduro</span>
-          <span class="plc-artist-pill">Los Rodríguez</span>
-          <span class="plc-artist-pill">Siniestro Total</span>
-          <span class="plc-artist-pill">Los Suaves</span>
-          <span class="plc-artist-pill">Obús</span>
-          <span class="plc-artist-pill">Dover</span>
-          <span class="plc-artist-pill">M-Clan</span>
-          <span class="plc-artist-pill">Los Enemigos</span>
-          <span class="plc-artist-pill">Del Tonos</span>
-          <span class="plc-artist-pill">Marañones</span>
-          <span class="plc-artist-pill">El Inquilino Comunista</span>
-          <span class="plc-artist-pill">091</span>
-          <span class="plc-artist-pill">Barón Rojo</span>
-          <span class="plc-artist-pill">Tahúres Zurdos</span>
-          <span class="plc-artist-pill">Lagartija Nick</span>
-          <span class="plc-artist-pill">Rosendo</span>
-          <span class="plc-artist-pill">Australian Blonde</span>
-          <span class="plc-artist-pill">Def Con Dos</span>
-          <span class="plc-artist-pill">Los Coquillos</span>
-          <span class="plc-artist-pill">Sexy Sadie</span>
-          <span class="plc-artist-pill">Vancouvers</span>
+        <div class="plc-artist-pills" aria-label="Artistas nacionales">
+          <div class="plc-artist-pills-track" aria-hidden="false">
+            <span class="plc-artist-pill">Extremoduro</span>
+            <span class="plc-artist-pill">Los Rodríguez</span>
+            <span class="plc-artist-pill">Siniestro Total</span>
+            <span class="plc-artist-pill">Los Suaves</span>
+            <span class="plc-artist-pill">Obús</span>
+            <span class="plc-artist-pill">Dover</span>
+            <span class="plc-artist-pill">M-Clan</span>
+            <span class="plc-artist-pill">Los Enemigos</span>
+            <span class="plc-artist-pill">Del Tonos</span>
+            <span class="plc-artist-pill">Marañones</span>
+            <span class="plc-artist-pill">El Inquilino Comunista</span>
+            <span class="plc-artist-pill">091</span>
+            <span class="plc-artist-pill">Barón Rojo</span>
+            <span class="plc-artist-pill">Tahúres Zurdos</span>
+            <span class="plc-artist-pill">Lagartija Nick</span>
+            <span class="plc-artist-pill">Rosendo</span>
+            <span class="plc-artist-pill">Australian Blonde</span>
+            <span class="plc-artist-pill">Def Con Dos</span>
+            <span class="plc-artist-pill">Los Coquillos</span>
+            <span class="plc-artist-pill">Sexy Sadie</span>
+            <span class="plc-artist-pill">Vancouvers</span>
+          </div>
+          <div class="plc-artist-pills-track" aria-hidden="true">
+            <span class="plc-artist-pill">Extremoduro</span>
+            <span class="plc-artist-pill">Los Rodríguez</span>
+            <span class="plc-artist-pill">Siniestro Total</span>
+            <span class="plc-artist-pill">Los Suaves</span>
+            <span class="plc-artist-pill">Obús</span>
+            <span class="plc-artist-pill">Dover</span>
+            <span class="plc-artist-pill">M-Clan</span>
+            <span class="plc-artist-pill">Los Enemigos</span>
+            <span class="plc-artist-pill">Del Tonos</span>
+            <span class="plc-artist-pill">Marañones</span>
+            <span class="plc-artist-pill">El Inquilino Comunista</span>
+            <span class="plc-artist-pill">091</span>
+            <span class="plc-artist-pill">Barón Rojo</span>
+            <span class="plc-artist-pill">Tahúres Zurdos</span>
+            <span class="plc-artist-pill">Lagartija Nick</span>
+            <span class="plc-artist-pill">Rosendo</span>
+            <span class="plc-artist-pill">Australian Blonde</span>
+            <span class="plc-artist-pill">Def Con Dos</span>
+            <span class="plc-artist-pill">Los Coquillos</span>
+            <span class="plc-artist-pill">Sexy Sadie</span>
+            <span class="plc-artist-pill">Vancouvers</span>
+          </div>
         </div>
       </div>
       <div class="plc-artists-group">
         <div class="plc-artists-group-title">🌍 Internacionales</div>
-        <div class="plc-artist-pills">
-          <span class="plc-artist-pill">The Godfathers</span>
-          <span class="plc-artist-pill">Robyn Hitchcock</span>
-          <span class="plc-artist-pill">The Long Ryders</span>
-          <span class="plc-artist-pill">The Yardbirds</span>
-          <span class="plc-artist-pill">Wilko Johnson</span>
-          <span class="plc-artist-pill">Nada Surf</span>
-          <span class="plc-artist-pill">The Meteors</span>
-          <span class="plc-artist-pill">Elliot Murphy</span>
-          <span class="plc-artist-pill">Barrence Whitfield</span>
-          <span class="plc-artist-pill">The Barracudas</span>
-          <span class="plc-artist-pill">Bad Manners</span>
-          <span class="plc-artist-pill">Skeeter Brandon</span>
-          <span class="plc-artist-pill">Inmaculate Fools</span>
-          <span class="plc-artist-pill">Steve Wynn</span>
+        <div class="plc-artist-pills" aria-label="Artistas internacionales">
+          <div class="plc-artist-pills-track" aria-hidden="false">
+            <span class="plc-artist-pill">The Godfathers</span>
+            <span class="plc-artist-pill">Robyn Hitchcock</span>
+            <span class="plc-artist-pill">The Long Ryders</span>
+            <span class="plc-artist-pill">The Yardbirds</span>
+            <span class="plc-artist-pill">Wilko Johnson</span>
+            <span class="plc-artist-pill">Nada Surf</span>
+            <span class="plc-artist-pill">The Meteors</span>
+            <span class="plc-artist-pill">Elliot Murphy</span>
+            <span class="plc-artist-pill">Barrence Whitfield</span>
+            <span class="plc-artist-pill">The Barracudas</span>
+            <span class="plc-artist-pill">Bad Manners</span>
+            <span class="plc-artist-pill">Skeeter Brandon</span>
+            <span class="plc-artist-pill">Inmaculate Fools</span>
+            <span class="plc-artist-pill">Steve Wynn</span>
+          </div>
+          <div class="plc-artist-pills-track" aria-hidden="true">
+            <span class="plc-artist-pill">The Godfathers</span>
+            <span class="plc-artist-pill">Robyn Hitchcock</span>
+            <span class="plc-artist-pill">The Long Ryders</span>
+            <span class="plc-artist-pill">The Yardbirds</span>
+            <span class="plc-artist-pill">Wilko Johnson</span>
+            <span class="plc-artist-pill">Nada Surf</span>
+            <span class="plc-artist-pill">The Meteors</span>
+            <span class="plc-artist-pill">Elliot Murphy</span>
+            <span class="plc-artist-pill">Barrence Whitfield</span>
+            <span class="plc-artist-pill">The Barracudas</span>
+            <span class="plc-artist-pill">Bad Manners</span>
+            <span class="plc-artist-pill">Skeeter Brandon</span>
+            <span class="plc-artist-pill">Inmaculate Fools</span>
+            <span class="plc-artist-pill">Steve Wynn</span>
+          </div>
         </div>
       </div>
     </div>
@@ -434,7 +512,7 @@
 </section>
 
 <!-- VIDEOS HISTÓRICOS -->
-<section class="section" aria-labelledby="plc-videos-title" style="background:var(--bg2)">
+<section class="section" aria-labelledby="plc-videos-title">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label">Archivo audiovisual</span>
@@ -445,10 +523,8 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-top:40px">
 
       <!-- Los Rodríguez 1991 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="WmBzIk9IHzs" title="Los Rodríguez — Pub La Calle 1991"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="WmBzIk9IHzs" title="Los Rodríguez — Pub La Calle 1991"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Los Rodríguez</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1991</p>
@@ -456,10 +532,8 @@
       </div>
 
       <!-- Skeeter Brandon -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="L_KJUB3J0f8" title="Skeeter Brandon — Pub La Calle"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="L_KJUB3J0f8" title="Skeeter Brandon — Pub La Calle"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Skeeter Brandon & HWY61</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle</p>
@@ -467,10 +541,8 @@
       </div>
 
       <!-- Vargas Blues Band 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="alZDh06i7Ys" title="Vargas Blues Band — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="alZDh06i7Ys" title="Vargas Blues Band — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Vargas Blues Band</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
@@ -478,10 +550,8 @@
       </div>
 
       <!-- Robyn Hitchcock 1995 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="byKA3ur18_o" title="Robyn Hitchcock — Pub La Calle 1995"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="byKA3ur18_o" title="Robyn Hitchcock — Pub La Calle 1995"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Robyn Hitchcock</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1995</p>
@@ -489,10 +559,8 @@
       </div>
 
       <!-- Los Ramones 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="44FXGkBhP30" title="Los Ramones — Las Palmas de Gran Canaria 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="44FXGkBhP30" title="Los Ramones — Las Palmas de Gran Canaria 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Los Ramones</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Las Palmas de Gran Canaria · 1993</p>
@@ -500,10 +568,8 @@
       </div>
 
       <!-- Los DelTonos 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="Iv362MoKxhw" title="Los DelTonos — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="Iv362MoKxhw" title="Los DelTonos — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Los DelTonos</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
@@ -511,10 +577,8 @@
       </div>
 
       <!-- Barracudas 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="i-46InHtBzU" title="Barracudas — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="i-46InHtBzU" title="Barracudas — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Barracudas</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
@@ -522,10 +586,8 @@
       </div>
 
       <!-- Vancouvers -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="jz4bSgpzVo0" title="Vancouvers — Pub La Calle"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="jz4bSgpzVo0" title="Vancouvers — Pub La Calle"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Vancouvers</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle</p>
@@ -533,10 +595,8 @@
       </div>
 
       <!-- Los Marañones 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="X5yI7M2tRl0" title="Los Marañones — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="X5yI7M2tRl0" title="Los Marañones — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Los Marañones</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
@@ -544,10 +604,8 @@
       </div>
 
       <!-- Sexy Sadie -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="MMGqgJ9mSHc" title="Sexy Sadie — Pub La Calle"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="MMGqgJ9mSHc" title="Sexy Sadie — Pub La Calle"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Sexy Sadie</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle</p>
@@ -555,10 +613,8 @@
       </div>
 
       <!-- Alain Giroux 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="dENC_jKEzGA" title="Alain Giroux & Jean Luis Mahjun — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="dENC_jKEzGA" title="Alain Giroux & Jean Luis Mahjun — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Alain Giroux & Jean Luis Mahjun</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
@@ -566,10 +622,8 @@
       </div>
 
       <!-- Bill Thomas Blues -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="dIQ2iMO3eHI" title="Bill Thomas Blues — Pub La Calle"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="dIQ2iMO3eHI" title="Bill Thomas Blues — Pub La Calle"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">Bill Thomas Blues</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle</p>
@@ -577,10 +631,8 @@
       </div>
 
       <!-- More Experience 1993 -->
-      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="position:relative;padding-top:56.25%">
-          <lite-youtube videoid="cCrTkJvPsKQ" title="More Experience — Pub La Calle 1993"></lite-youtube>
-        </div>
+      <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <lite-youtube videoid="cCrTkJvPsKQ" title="More Experience — Pub La Calle 1993"></lite-youtube>
         <div style="padding:12px 16px">
           <p style="font-family:'Oswald',sans-serif;color:var(--text);font-size:1rem;margin:0">More Experience</p>
           <p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Pub La Calle · 1993</p>
