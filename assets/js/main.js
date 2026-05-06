@@ -58,7 +58,7 @@
   function responsivePosterAttrs(src, sizes) {
     if (!src || !src.includes('/conciertos/2026/') || !src.endsWith('/poster.webp')) return '';
     const base = src.replace('/poster.webp', '/poster');
-    return `srcset="${base}-320.webp 320w, ${base}-480.webp 480w, ${base}-768.webp 768w, ${base}-1024.webp 1024w" sizes="${sizes}" decoding="async"`;
+    return `srcset="${base}-320.webp 320w, ${base}-480.webp 480w, ${base}-768.webp 768w" sizes="${sizes}" decoding="async"`;
   }
 
   /* --- Dynamic copyright year --- */
@@ -270,10 +270,13 @@
               [...grouped[year]].reverse().forEach(c => {
                 const shortDate = new Date(c.dateISO).toLocaleString('es-ES', { month: 'short', year: 'numeric' }).replace('.', '');
                 
-                // Avoid duplicates (checking if link or title already exists in the grid)
-                // Simple heuristic: if the grid already has an image with the same src, skip it
-                const existingImgs = Array.from(gridContainer.querySelectorAll('img')).map(img => img.src);
-                const isDuplicate = existingImgs.some(src => src.includes(c.image.split('/').pop()));
+                // Avoid duplicates from the static timeline. Responsive images may use
+                // poster-480.webp/poster-768.webp, so comparing only the filename is not enough.
+                const normalize = value => (value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+                const existingText = normalize(gridContainer.innerText);
+                const imageDir = c.image.split('/poster.webp')[0];
+                const existingImgs = Array.from(gridContainer.querySelectorAll('img')).map(img => img.currentSrc || img.src);
+                const isDuplicate = existingImgs.some(src => src.includes(imageDir)) || (existingText.includes(normalize(c.title)) && existingText.includes(normalize(c.venue)));
                 
                 if (!isDuplicate) {
                   const card = document.createElement('div');

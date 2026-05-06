@@ -1069,6 +1069,8 @@ ul { list-style: none; }
 .poster-card img {
     width: 100%;
     height: auto;
+    aspect-ratio: 5 / 7;
+    object-fit: contain;
     max-width: 450px;
     border-radius: var(--radius);
     box-shadow: 0 8px 32px rgba(0,0,0,.5);
