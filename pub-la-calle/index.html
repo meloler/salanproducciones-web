@@ -12,6 +12,7 @@
   <meta name="description" content="Pub La Calle fue la única sala de rock en directo de Canarias entre 1988 y 2000. Extremoduro, Los Rodríguez, Ramones, Dover, Wilko Johnson y más de 100 artistas pasaron por su escenario en Las Palmas de Gran Canaria.">
   <meta name="keywords" content="Pub La Calle Las Palmas, sala de conciertos Gran Canaria, rock en directo Canarias, historia rock Canarias, Juan Salán, conciertos históricos Las Palmas, música en vivo Gran Canaria 1988 2000, Extremoduro Canarias, Los Rodriguez Canarias">
   <link rel="canonical" href="https://www.salanproducciones.com/pub-la-calle/">
+  <link rel="preload" as="image" href="/assets/images/pub-la-calle-interior-768.webp" imagesrcset="/assets/images/pub-la-calle-interior-480.webp 480w, /assets/images/pub-la-calle-interior-768.webp 768w, /assets/images/pub-la-calle-interior-1024.webp 1024w" imagesizes="100vw" fetchpriority="high">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -42,7 +43,7 @@
     .plc-hero-photo {
       position: absolute;
       inset: 0;
-      background-image: url('/assets/images/pub-la-calle-interior.webp');
+      background-image: image-set(url('/assets/images/pub-la-calle-interior-768.webp') 1x, url('/assets/images/pub-la-calle-interior-1024.webp') 2x);
       background-size: cover;
       background-position: center;
       opacity: .18;

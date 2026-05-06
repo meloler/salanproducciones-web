@@ -54,6 +54,13 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+
+  function responsivePosterAttrs(src, sizes) {
+    if (!src || !src.includes('/conciertos/2026/') || !src.endsWith('/poster.webp')) return '';
+    const base = src.replace('/poster.webp', '/poster');
+    return `srcset="${base}-320.webp 320w, ${base}-480.webp 480w, ${base}-768.webp 768w, ${base}-1024.webp 1024w" sizes="${sizes}" decoding="async"`;
+  }
+
   /* --- Dynamic copyright year --- */
   document.querySelectorAll('.footer-copy').forEach(el => {
     el.innerHTML = el.innerHTML.replace(/\d{4}/, new Date().getFullYear());
@@ -192,7 +199,7 @@
               html += `
                 <article class="concert-card reveal">
                   <div class="concert-card-img">
-                    <img src="${c.image}" alt="Cartel ${c.title} — ${c.dateDisplay}" loading="lazy" width="400" height="533">
+                    <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="Cartel ${c.title} — ${c.dateDisplay}" loading="lazy" width="400" height="533">
                     <span class="concert-card-badge">${c.badge}</span>
                   </div>
                   <div class="concert-card-body">
@@ -272,7 +279,7 @@
                   const card = document.createElement('div');
                   card.className = 'timeline-card';
                   card.innerHTML = `
-                    <div class="timeline-card-img"><img src="${c.image}" alt="${c.title}" loading="lazy"></div>
+                    <div class="timeline-card-img"><img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 44vw, (max-width: 1100px) 30vw, 240px')} alt="${c.title}" loading="lazy" width="400" height="560"></div>
                     <div class="timeline-card-date">${shortDate}</div>
                     <div class="timeline-card-name">${c.title}</div>
                     <div class="timeline-card-venue">${c.venue}</div>
