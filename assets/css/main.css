@@ -1305,12 +1305,46 @@ ul { list-style: none; }
     margin-bottom: 32px;
 }
 
+.final-box .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 100%;
+    min-height: 48px;
+    padding: 13px 28px;
+    background: var(--gold);
+    color: #000;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition: all .2s;
+}
+
+.final-box .btn-primary:hover {
+    background: #f0cf60;
+    border-color: #f0cf60;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(232,196,77,.35);
+}
+
 @media (max-width: 600px) {
     .final-box {
         padding: 40px 24px;
     }
     .final-box h2 {
         margin-bottom: 12px;
+    }
+    .final-box .btn-primary {
+        width: 100%;
     }
 }
 
