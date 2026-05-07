@@ -250,6 +250,9 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            width: fit-content;
+            max-width: 100%;
+            box-sizing: border-box;
             padding: 12px 24px;
             background: var(--gold);
             color: #000;
@@ -258,8 +261,12 @@
             font-size: .85rem;
             font-weight: 700;
             letter-spacing: .08em;
+            line-height: 1.15;
+            text-align: center;
             text-transform: uppercase;
             text-decoration: none;
+            white-space: normal;
+            overflow-wrap: anywhere;
             transition: all .2s;
         }
         .tour-buy-btn:hover {
@@ -277,6 +284,13 @@
                 max-height: 480px;
                 object-fit: contain;
                 margin: 0 auto;
+            }
+            .tour-active-city {
+                padding: 24px 20px;
+            }
+            .tour-buy-btn {
+                width: 100%;
+                min-height: 48px;
             }
         }
     </style>

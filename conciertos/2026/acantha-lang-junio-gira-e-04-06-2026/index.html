@@ -179,6 +179,9 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            width: fit-content;
+            max-width: 100%;
+            box-sizing: border-box;
             padding: 12px 24px;
             background: var(--gold);
             color: #000;
@@ -187,8 +190,12 @@
             font-size: .85rem;
             font-weight: 700;
             letter-spacing: .08em;
+            line-height: 1.15;
+            text-align: center;
             text-transform: uppercase;
             text-decoration: none;
+            white-space: normal;
+            overflow-wrap: anywhere;
             transition: all .2s;
         }
         .tour-buy-btn:hover {
@@ -206,6 +213,13 @@
                 max-height: 480px;
                 object-fit: contain;
                 margin: 0 auto;
+            }
+            .tour-active-city {
+                padding: 24px 20px;
+            }
+            .tour-buy-btn {
+                width: 100%;
+                min-height: 48px;
             }
         }
     </style>
@@ -432,7 +446,7 @@
             Conciertos de soul en España — Acantha Lang Gira Junio 2026
         </h2>
         <p style="color: var(--muted); font-size: .9rem; line-height: 1.9; margin-bottom: 12px;">
-            Salan Producciones lleva más de una década trayendo música en directo de artistas internacionales a España.
+            Salan Producciones lleva más de una década trayendo música en directo de artistas de referencia a España.
             De la mano de <strong style="color: var(--text)">Juan Salán</strong>, productor y promotor de referencia,
             cada concierto es una experiencia cuidada desde la selección del artista hasta el último detalle del escenario.
             Acantha Lang es exactamente el tipo de artista que define nuestra programación: una vocalista excepcional,
@@ -442,14 +456,14 @@
             Si buscas <strong style="color: var(--text)">conciertos de soul en España</strong>,
             <strong style="color: var(--text)">música soul en directo</strong>,
             <strong style="color: var(--text)">artistas nominadas al Grammy</strong> o simplemente
-            una noche diferente con vocalistas internacionales de clase mundial, estás en el sitio correcto.
+            una noche diferente con vocalistas de primer nivel, estás en el sitio correcto.
             Salan Producciones programa regularmente conciertos de soul, gospel, R&B y música en vivo
             en los mejores espacios de España y Canarias.
         </p>
         <p style="color: var(--muted); font-size: .9rem; line-height: 1.9;">
             Síguenos en <a href="https://salanproducciones.com" style="color: var(--gold); text-decoration: none;">salanproducciones.com</a>
             para estar al tanto de todos los próximos conciertos, o contáctanos directamente si quieres
-            saber más sobre nuestra programación de soul, conciertos en España y giras internacionales.
+            saber más sobre nuestra programación de soul, conciertos en España y giras.
         </p>
     </div>
 </div>

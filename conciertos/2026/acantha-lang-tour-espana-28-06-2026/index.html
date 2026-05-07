@@ -8,14 +8,14 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Acantha Lang – Tour España 2026 (Toledo, Madrid, Zaragoza, Valladolid) – Salan Producciones</title>
-    <meta name="description" content="Acantha Lang Tour España 2026. Toledo, Madrid, Zaragoza y Valladolid. La nueva reina del soul nominada al Grammy. Entradas desde 25€. Gira Beautiful Dreams.">
+  <title>Acantha Lang – Tour España 2026 (Madrid, Valladolid, Toledo, Zaragoza) – Salan Producciones</title>
+    <meta name="description" content="Acantha Lang Tour España 2026. Madrid, Valladolid, Toledo y Zaragoza. La nueva reina del soul nominada al Grammy. Entradas desde 25€. Gira Beautiful Dreams.">
     <meta property="og:url" content="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/">
-    <meta property="og:title" content="Acantha Lang – Tour España 2026 · Toledo · Madrid · Zaragoza · Valladolid">
+    <meta property="og:title" content="Acantha Lang – Tour España 2026 · Madrid · Valladolid · Toledo · Zaragoza">
     <meta property="og:description" content="Gira 2026 · Soul nominada al Grammy · Beautiful Dreams Tour · Entradas desde 25€">
     <meta property="og:image" content="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster.webp">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Acantha Lang – Tour España 2026 · Toledo · Madrid · Zaragoza · Valladolid">
+    <meta name="twitter:title" content="Acantha Lang – Tour España 2026 · Madrid · Valladolid · Toledo · Zaragoza">
     <meta name="twitter:description" content="Gira 2026 · Soul nominada al Grammy · Beautiful Dreams Tour · Entradas desde 25€">
     <meta name="twitter:image" content="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster.webp">    <link rel="canonical" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/">
 
@@ -45,7 +45,7 @@
             "image": "https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster.webp",
             "organizer": { "@type": "Organization", "name": "Salan Producciones", "url": "https://salanproducciones.com" },
             "performer": { "@type": "MusicGroup", "name": "Acantha Lang" },
-            "offers": { "@type": "Offer", "url": "https://entradas.babylonmadrid.com/es/babylon-jazz-club/Acantha-Lang/?utm_source=landing&utm_medium=web&utm_campaign=acantha-tour-madrid", "price": "25", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
+            "offers": { "@type": "Offer", "url": "https://entradas.babylonmadrid.com/es/babylon-jazz-club/Acantha-Lang/", "price": "25", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
         },
         {
             "@context": "https://schema.org",
@@ -174,6 +174,9 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            width: fit-content;
+            max-width: 100%;
+            box-sizing: border-box;
             padding: 12px 24px;
             background: var(--gold);
             color: #000;
@@ -182,8 +185,12 @@
             font-size: .85rem;
             font-weight: 700;
             letter-spacing: .08em;
+            line-height: 1.15;
+            text-align: center;
             text-transform: uppercase;
             text-decoration: none;
+            white-space: normal;
+            overflow-wrap: anywhere;
             transition: all .2s;
         }
         .tour-buy-btn:hover {
@@ -201,6 +208,13 @@
                 max-height: 480px;
                 object-fit: contain;
                 margin: 0 auto;
+            }
+            .tour-active-city {
+                padding: 24px 20px;
+            }
+            .tour-buy-btn {
+                width: 100%;
+                min-height: 48px;
             }
         }
     </style>
@@ -260,7 +274,7 @@
 
         <!-- Poster -->
         <div class="tour-poster">
-            <img src="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster.webp" alt="Acantha Lang Tour España 2026 – Toledo, Madrid, Zaragoza, Valladolid" loading="eager" width="900" height="1260">
+            <img src="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster.webp" alt="Acantha Lang Tour España 2026 – Madrid, Valladolid, Toledo, Zaragoza" loading="eager" width="900" height="1260">
         </div>
 
         <!-- Info + city selector -->
@@ -304,7 +318,7 @@
 <script>
 (function() {
     const cities = {
-        madrid:     { name: 'Madrid',     date: '24 de junio · 20:00h', venue: 'Babylon Jazz Club · Madrid',           url: 'https://entradas.babylonmadrid.com/es/babylon-jazz-club/Acantha-Lang/?utm_source=landing&utm_medium=web&utm_campaign=acantha-tour-madrid'      },
+        madrid:     { name: 'Madrid',     date: '24 de junio · 20:00h', venue: 'Babylon Jazz Club · Madrid',           url: 'https://entradas.babylonmadrid.com/es/babylon-jazz-club/Acantha-Lang/'      },
         valladolid: { name: 'Valladolid', date: '25 de junio · 20:00h', venue: 'Sala Porta Caeli · Valladolid',        url: 'https://tickety.es/event/acantha-lang-en-concierto-sala-porta-caeli-valladolid?utm_source=landing&utm_medium=web&utm_campaign=acantha-tour-valladolid' },
         toledo:     { name: 'Toledo',     date: '26 de junio · 20:00h', venue: 'Círculo de Arte · Toledo',             url: 'https://tickety.es/event/acantha-lang-en-concierto-circulo-de-arte-toledo?utm_source=landing&utm_medium=web&utm_campaign=acantha-tour-toledo'      },
         zaragoza:   { name: 'Zaragoza',   date: '27 de junio · 20:00h', venue: 'La Lata de Bombillas · Zaragoza',      url: 'https://tickety.es/event/acantha-lang-en-concierto-la-lata-de-bombillas-zaragoza?utm_source=landing&utm_medium=web&utm_campaign=acantha-tour-zaragoza'   }
@@ -369,8 +383,8 @@
                 de la escena soul mundial actual.
             </p>
             <p>
-                El Beautiful Dreams Tour 2026 lleva a Acantha por el corazón de la meseta española: Toledo, Madrid,
-                Zaragoza y Valladolid. Cuatro ciudades, cuatro noches con el álbum que la está convirtiendo en nombre
+                El Beautiful Dreams Tour 2026 lleva a Acantha por Madrid, Valladolid,
+                Toledo y Zaragoza. Cuatro ciudades, cuatro noches con el álbum que la está convirtiendo en nombre
                 imprescindible de la nueva escena soul global. Un directo donde cada canción del disco cobra una
                 dimensión nueva, más íntima y más poderosa que en el estudio.
             </p>
@@ -412,8 +426,8 @@
     <div class="final-cta">
         <div class="final-box">
             <h2>Beautiful Dreams Tour</h2>
-            <p>Acantha Lang en Toledo, Madrid, Zaragoza y Valladolid. El soul que esperas en las ciudades que amas.</p>
-            <a href="#toledo"
+            <p>Acantha Lang en Madrid, Valladolid, Toledo y Zaragoza. El soul que esperas en las ciudades que amas.</p>
+            <a href="#madrid"
                class="btn-primary">
                 🎟 Ver Ciudades y Comprar
             </a>
@@ -438,13 +452,13 @@
             Si buscas <strong style="color: var(--text)">conciertos de soul en Madrid</strong>,
             <strong style="color: var(--text)">música soul en directo en España</strong>,
             <strong style="color: var(--text)">artistas nominadas al Grammy</strong> o simplemente
-            una experiencia musical de primer nivel en Toledo, Zaragoza o Valladolid, aquí encontrarás lo que esperas.
+            una experiencia musical de primer nivel en Madrid, Valladolid, Toledo o Zaragoza, aquí encontrarás lo que esperas.
             Salan Producciones programa regularmente conciertos de soul, gospel, R&B y música en directo
             en los mejores espacios de España y Canarias.
         </p>
         <p style="color: var(--muted); font-size: .9rem; line-height: 1.9;">
             Síguenos en <a href="https://salanproducciones.com" style="color: var(--gold); text-decoration: none;">salanproducciones.com</a>
-            para estar al tanto de todos los próximos conciertos y giras internacionales. El equipo de Salan Producciones,
+            para estar al tanto de todos los próximos conciertos y giras. El equipo de Salan Producciones,
             liderado por Juan Salán, se dedica a traer lo mejor de la escena soul, jazz, blues y música en vivo
             desde Nueva Orleans y todo el mundo a los escenarios españoles.
         </p>
