@@ -68,7 +68,7 @@
   /* ── Carrusel Mobile ── */
   .mobile-carousel-section {
     display: none;
-    padding: 0 0 8px;
+    padding: 0 0 4px;
     background: var(--bg);
   }
   @media (max-width: 768px) {
@@ -77,12 +77,12 @@
   .carousel-outer {
     overflow: hidden;
     cursor: grab;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
   }
   .carousel-outer.is-dragging { cursor: grabbing; }
   .carousel-track {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     padding: 0 12px;
     width: max-content;
     will-change: transform;
@@ -103,33 +103,38 @@
   .carousel-item:active { opacity: .8; }
   .carousel-item img {
     width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
+    height: 150px;
+    object-fit: contain;
+    background: #050505;
+    padding: 4px;
     display: block;
   }
   .carousel-item-info {
-    padding: 8px 10px 10px;
+    padding: 6px 8px 8px;
   }
   .carousel-item-date {
-    font-size: .62rem;
+    font-size: .58rem;
     font-weight: 600;
-    letter-spacing: .1em;
+    letter-spacing: .08em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
   .carousel-item-title {
     font-family: 'Oswald', sans-serif;
-    font-size: .88rem;
+    font-size: .8rem;
     font-weight: 600;
     color: var(--text);
     line-height: 1.2;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .carousel-item-venue {
-    font-size: .67rem;
+    font-size: .62rem;
     color: var(--muted);
-    line-height: 1.4;
+    line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -138,7 +143,7 @@
     display: flex;
     justify-content: center;
     gap: 6px;
-    margin-top: 12px;
+    margin-top: 8px;
     padding-bottom: 4px;
   }
   .carousel-dot {
