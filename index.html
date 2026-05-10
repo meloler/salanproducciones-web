@@ -63,6 +63,100 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=optional" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=optional"></noscript>
     <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <style>
+  /* ── Carrusel Mobile ── */
+  .mobile-carousel-section {
+    display: none;
+    padding: 0 0 8px;
+    background: var(--bg);
+  }
+  @media (max-width: 768px) {
+    .mobile-carousel-section { display: block; }
+  }
+  .carousel-outer {
+    overflow: hidden;
+    cursor: grab;
+    padding-bottom: 4px;
+  }
+  .carousel-outer.is-dragging { cursor: grabbing; }
+  .carousel-track {
+    display: flex;
+    gap: 12px;
+    padding: 0 12px;
+    width: max-content;
+    will-change: transform;
+  }
+  .carousel-item {
+    display: block;
+    flex-shrink: 0;
+    width: 30vw;
+    max-width: 124px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity .15s;
+  }
+  .carousel-item:active { opacity: .8; }
+  .carousel-item img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .carousel-item-info {
+    padding: 8px 10px 10px;
+  }
+  .carousel-item-date {
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .carousel-item-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 3px;
+  }
+  .carousel-item-venue {
+    font-size: .67rem;
+    color: var(--muted);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-bottom: 4px;
+  }
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background .25s, width .25s;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .carousel-dot.active {
+    background: var(--gold);
+    width: 18px;
+    border-radius: 3px;
+  }
+  </style>
 </head>
 <body>
 
@@ -102,7 +196,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Salán Producciones — Canarias · Desde 1987</p>
       <h1 class="hero-title">
-        Conciertos en directo<br>en <em>Canarias</em><br>desde 1987
+        Conciertos en directo<br>en <em>España</em><br>desde 1987
       </h1>
       <p class="hero-subtitle">
         Promotor musical de referencia en Gran Canaria y Tenerife. Rock, blues, soul y música alternativa en directo en las Islas Canarias.
@@ -122,6 +216,88 @@
       <img src="/assets/home-banner-1280.webp" srcset="/assets/home-banner-768.webp 768w, /assets/home-banner-1280.webp 1280w, /assets/home-banner-1920.webp 1920w" sizes="(max-width: 900px) 92vw, 48vw" fetchpriority="high" decoding="async" alt="Firma de Salán Producciones" loading="eager" width="6372" height="1135">
     </div>
   </div>
+</section>
+
+<!-- ===================== CARRUSEL MOBILE ===================== -->
+<section class="mobile-carousel-section" aria-label="Próximos conciertos — vista rápida">
+  <div class="carousel-outer" id="carousel-outer">
+    <div class="carousel-track" id="carousel-track">
+
+      <a href="/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" class="carousel-item" aria-label="Acantha Lang — Gira España Junio 2026">
+        <img src="/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/poster-320.webp" alt="Acantha Lang gira España junio 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">4–7 Jun 2026</div>
+          <div class="carousel-item-title">Acantha Lang</div>
+          <div class="carousel-item-venue">Sevilla · Jerez · Estepona · Valencia</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/poseidon-rock-fest-13-06-2026/" class="carousel-item" aria-label="Poseidón Rock Fest — 13 Junio 2026">
+        <img src="/conciertos/2026/poseidon-rock-fest-13-06-2026/poster-320.webp" alt="Poseidón Rock Fest 13 junio 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">13 Jun 2026</div>
+          <div class="carousel-item-title">Poseidón Rock Fest</div>
+          <div class="carousel-item-venue">Auditorio Parque San Juan · Telde</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/bywater-call-16-06-2026/" class="carousel-item" aria-label="Bywater Call — 16 Junio Tenerife">
+        <img src="/conciertos/2026/bywater-call-16-06-2026/poster-320.webp" alt="Bywater Call 16 junio Teatro Leal" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">16 Jun 2026</div>
+          <div class="carousel-item-title">Bywater Call</div>
+          <div class="carousel-item-venue">Teatro Leal · La Laguna, Tenerife</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/bywater-call-17-06-2026/" class="carousel-item" aria-label="Bywater Call — 17 Junio Gran Canaria">
+        <img src="/conciertos/2026/bywater-call-17-06-2026/poster-320.webp" alt="Bywater Call 17 junio Teatro Guiniguada" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">17 Jun 2026</div>
+          <div class="carousel-item-title">Bywater Call</div>
+          <div class="carousel-item-venue">Teatro Guiniguada · Las Palmas</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" class="carousel-item" aria-label="Acantha Lang Tour España — 24–27 Junio">
+        <img src="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-320.webp" alt="Acantha Lang Tour España 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">24–27 Jun 2026</div>
+          <div class="carousel-item-title">Acantha Lang</div>
+          <div class="carousel-item-venue">Madrid · Valladolid · Toledo · Zaragoza</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" class="carousel-item" aria-label="Kenny Blues Boss Wayne — Gira España Sep 2026">
+        <img src="/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-320.webp" alt="Kenny Blues Boss Wayne Band gira España 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">9–19 Sep 2026</div>
+          <div class="carousel-item-title">Kenny "Blues Boss" Wayne</div>
+          <div class="carousel-item-venue">Donosti · Bilbao · Madrid · Valencia…</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" class="carousel-item" aria-label="Clearwater Creedence Revival — 13 Nov Tenerife">
+        <img src="/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-320.webp" alt="Clearwater Creedence Revival El Sauzal noviembre 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">13 Nov 2026</div>
+          <div class="carousel-item-title">Clearwater Creedence Revival</div>
+          <div class="carousel-item-venue">Teatro El Sauzal · Tenerife</div>
+        </div>
+      </a>
+
+      <a href="/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" class="carousel-item" aria-label="Clearwater Creedence Revival — 14 Nov Gran Canaria">
+        <img src="/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-320.webp" alt="Clearwater Creedence Revival Telde noviembre 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">14 Nov 2026</div>
+          <div class="carousel-item-title">Clearwater Creedence Revival</div>
+          <div class="carousel-item-venue">Teatro J. R. Jiménez · Telde</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <div class="carousel-dots" id="carousel-dots" aria-hidden="true"></div>
 </section>
 
 <!-- ===================== PRÓXIMOS CONCIERTOS ===================== -->
@@ -473,5 +649,132 @@
 
 <script src="/assets/js/cookies.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
+<script>
+(function() {
+  var outer = document.getElementById('carousel-outer');
+  var track = document.getElementById('carousel-track');
+  var dotsEl = document.getElementById('carousel-dots');
+  if (!outer || !track || !dotsEl) return;
+
+  var items = Array.prototype.slice.call(track.querySelectorAll('.carousel-item'));
+  var total = items.length;
+  var paused = false;
+  var offset = 0;
+  var rafId = null;
+  var halfWidth = 0;
+  var speed = 0.45; // px por frame — ajusta aquí la velocidad
+
+  // Duplicar items para loop infinito
+  items.forEach(function(item) {
+    var clone = item.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('tabindex', '-1');
+    track.appendChild(clone);
+  });
+
+  // Dots
+  var dotEls = [];
+  items.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Concierto ' + (i + 1) + ' de ' + total);
+    dot.addEventListener('click', function() { jumpTo(i); });
+    dotsEl.appendChild(dot);
+    dotEls.push(dot);
+  });
+
+  function updateDots() {
+    // Calcula qué item está más centrado en pantalla
+    var center = offset + outer.offsetWidth / 2;
+    var nearIdx = 0, minDist = Infinity;
+    items.forEach(function(item, i) {
+      var c = item.offsetLeft + item.offsetWidth / 2;
+      var d = Math.abs(c - center);
+      if (d < minDist) { minDist = d; nearIdx = i; }
+    });
+    dotEls.forEach(function(d, i) { d.classList.toggle('active', i === nearIdx); });
+  }
+
+  function jumpTo(idx) {
+    var item = items[idx];
+    var padLeft = parseInt(getComputedStyle(track).paddingLeft) || 12;
+    offset = item.offsetLeft - padLeft - (outer.offsetWidth - item.offsetWidth) / 2;
+    if (offset < 0) offset = 0;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  }
+
+  function loop() {
+    if (!paused) {
+      offset += speed;
+      // Reset silencioso cuando llega a la mitad (items duplicados)
+      if (offset >= halfWidth) offset -= halfWidth;
+      track.style.transform = 'translateX(' + (-offset) + 'px)';
+      updateDots();
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function init() {
+    // halfWidth = ancho de los items originales (mitad del track total duplicado)
+    halfWidth = track.scrollWidth / 2;
+    offset = 0;
+    loop();
+  }
+
+  // Touch: pausar al tocar, reanudar al soltar
+  outer.addEventListener('touchstart', function() { paused = true; }, { passive: true });
+  outer.addEventListener('touchend', function() {
+    setTimeout(function() { paused = false; }, 600);
+  }, { passive: true });
+
+  // Mouse drag
+  var dragX = 0, dragOffset = 0, dragging = false;
+  outer.addEventListener('mousedown', function(e) {
+    dragging = true;
+    dragX = e.clientX;
+    dragOffset = offset;
+    paused = true;
+    outer.classList.add('is-dragging');
+  });
+  document.addEventListener('mousemove', function(e) {
+    if (!dragging) return;
+    var delta = dragX - e.clientX;
+    offset = dragOffset + delta;
+    if (offset < 0) offset = 0;
+    if (halfWidth > 0 && offset >= halfWidth) offset -= halfWidth;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  });
+  document.addEventListener('mouseup', function() {
+    if (!dragging) return;
+    dragging = false;
+    outer.classList.remove('is-dragging');
+    setTimeout(function() { paused = false; }, 400);
+  });
+
+  // Swipe táctil manual
+  var touchStartX = 0, touchOffset = 0;
+  outer.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchOffset = offset;
+  }, { passive: true });
+  outer.addEventListener('touchmove', function(e) {
+    var delta = touchStartX - e.touches[0].clientX;
+    offset = touchOffset + delta;
+    if (offset < 0) offset = 0;
+    if (halfWidth > 0 && offset >= halfWidth) offset -= halfWidth;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  }, { passive: true });
+
+  // Esperar al layout para medir
+  if (document.readyState === 'complete') {
+    init();
+  } else {
+    window.addEventListener('load', init);
+  }
+})();
+</script>
 </body>
 </html>
