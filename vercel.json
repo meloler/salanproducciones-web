@@ -94,12 +94,6 @@
       "permanent": true
     },
     {
-      "source": "/proximos-conciertos",
-      "destination": "/#proximos",
-      "permanent": true
-    },
-
-    {
       "source": "/sitemap_index.xml",
       "destination": "/sitemap.xml",
       "permanent": true
