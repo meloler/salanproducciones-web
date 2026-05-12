@@ -27,72 +27,88 @@
     },
 
     {
-      "source": "/poseidon-rock-fest",
+      "source": "/poseidon-rock-fest{/}?",
       "destination": "/conciertos/2026/poseidon-rock-fest-13-06-2026/",
       "permanent": true
     },
     {
-      "source": "/acantha-lang-junio-gira-e",
+      "source": "/acantha-lang-junio-gira-e{/}?",
       "destination": "/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/",
       "permanent": true
     },
     {
-      "source": "/acantha-lang-tour-espana-2026",
+      "source": "/acantha-lang-tour-espana-2026{/}?",
       "destination": "/conciertos/2026/acantha-lang-tour-espana-28-06-2026/",
       "permanent": true
     },
     {
-      "source": "/kenny-blues-boss-wayne-band",
+      "source": "/kenny-blues-boss-wayne-band{/}?",
       "destination": "/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/",
       "permanent": true
     },
     {
-      "source": "/kenny-blue-boss-wayne",
+      "source": "/kenny-blue-boss-wayne{/}?",
       "destination": "/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/",
       "permanent": true
     },
     {
-      "source": "/bywater-call",
+      "source": "/bywater-call{/}?",
       "destination": "/conciertos/2026/bywater-call-16-06-2026/",
       "permanent": true
     },
     {
-      "source": "/bywater-call-2",
+      "source": "/bywater-call-2{/}?",
       "destination": "/conciertos/2026/bywater-call-17-06-2026/",
       "permanent": true
     },
     {
-      "source": "/alvaro-suite-tenerife",
+      "source": "/alvaro-suite-tenerife{/}?",
       "destination": "/conciertos/2026/alvaro-suite-tenerife-30-04-2026/",
       "permanent": true
     },
     {
-      "source": "/ana-curra",
+      "source": "/ana-curra{/}?",
       "destination": "/conciertos/2026/ana-curra-11-04-2026/",
       "permanent": true
     },
+    {
+      "source": "/clearwater-creedence-revival-telde{/}?",
+      "destination": "/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/clearwater-creedence-revival-el-sauzal{/}?",
+      "destination": "/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/clearwater-creedence-revival{/}?",
+      "destination": "/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/",
+      "permanent": true
+    },
 
     {
-      "source": "/the-doors-in-concert-gira-espanola",
+      "source": "/the-doors-in-concert-gira-espanola{/}?",
       "destination": "/conciertos-anteriores/",
       "permanent": true
     },
     {
-      "source": "/michaels-legacy",
+      "source": "/michaels-legacy{/}?",
       "destination": "/conciertos-anteriores/",
       "permanent": true
     },
     {
-      "source": "/the-next-movement",
+      "source": "/the-next-movement{/}?",
       "destination": "/conciertos-anteriores/",
       "permanent": true
     },
 
     {
-      "source": "/contactar",
+      "source": "/contactar{/}?",
       "destination": "/contacto/",
       "permanent": true
     },
+
     {
       "source": "/sitemap_index.xml",
       "destination": "/sitemap.xml",
