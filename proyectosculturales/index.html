@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/assets/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Proyectos Culturales – Salán Producciones</title>
+  <meta name="description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <link rel="canonical" href="https://www.salanproducciones.com/proyectosculturales/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.salanproducciones.com/proyectosculturales/">
+  <meta property="og:title" content="Proyectos Culturales – Salán Producciones">
+  <meta property="og:description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <meta property="og:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Salán Producciones">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proyectos Culturales – Salán Producciones">
+  <meta name="twitter:description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <meta name="twitter:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Proyectos Culturales – Salán Producciones",
+    "description": "Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.",
+    "url": "https://www.salanproducciones.com/proyectosculturales/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Salán Producciones",
+      "url": "https://salanproducciones.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://www.salanproducciones.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Proyectos culturales",
+        "item": "https://www.salanproducciones.com/proyectosculturales/"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+
+  <style>
+    .proyectos-hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .proyectos-hero .eyebrow {
+      display: block;
+      margin-bottom: 16px;
+    }
+    .proyectos-hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--white, #fff);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .proyectos-hero .lead {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      color: var(--muted, #888);
+      line-height: 1.75;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .proyectos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .proyecto-card {
+      display: block;
+      background: var(--bg3, #1a1a1a);
+      border: 1px solid var(--border, #2a2a2a);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .25s, transform .25s;
+    }
+    .proyecto-card:hover {
+      border-color: var(--gold, #e8c44d);
+      transform: translateY(-2px);
+    }
+    .proyecto-card-logo {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .proyecto-card-logo img {
+      max-height: 80px;
+      max-width: 180px;
+      width: auto;
+      object-fit: contain;
+    }
+    .proyecto-card-logo .logo-fallback {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold, #e8c44d);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .proyecto-card h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white, #fff);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 12px;
+    }
+    .proyecto-card .tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      color: var(--muted, #888);
+      line-height: 1.6;
+    }
+    .proyecto-card .card-arrow {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: .8rem;
+      color: var(--gold, #e8c44d);
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .proyecto-card:hover .card-arrow {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site-header" role="banner">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Salán Producciones — inicio">
+      <img src="/assets/images/logo-salan.png" alt="Salán Producciones" height="36" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/#proximos">Próximos conciertos</a>
+      <a href="/conciertos-anteriores/">Anteriores</a>
+      <a href="/pub-la-calle/">Pub La Calle</a>
+      <a href="/proyectosculturales/" aria-current="page">Proyectos culturales</a>
+      <a href="/contacto/">Contacto</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" aria-label="Menú móvil">
+    <a href="/">Inicio</a>
+    <a href="/#proximos">Próximos conciertos</a>
+    <a href="/conciertos-anteriores/">Anteriores</a>
+    <a href="/pub-la-calle/">Pub La Calle</a>
+    <a href="/proyectosculturales/" aria-current="page">Proyectos culturales</a>
+    <a href="/contacto/">Contacto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="proyectos-hero">
+  <span class="eyebrow">Salán Producciones</span>
+  <h1>Más proyectos culturales</h1>
+  <p class="lead">Más allá de los conciertos, Salán Producciones impulsa la cultura musical en Canarias con proyectos propios que conectan artistas, público e industria.</p>
+</div>
+
+<!-- CARDS GRID -->
+<div class="proyectos-grid">
+
+  <a href="/proyectosculturales/festivalsonora/" class="proyecto-card">
+    <div class="proyecto-card-logo">
+      <img src="./festivalsonora/logo.webp" alt="Festival Sonora – logo" loading="lazy"
+           onerror="this.parentNode.innerHTML='<span class=\'logo-fallback\'>Festival Sonora</span>'">
+    </div>
+    <h2>Festival Sonora</h2>
+    <p class="tagline">El concurso de bandas emergentes más veterano de Canarias</p>
+    <span class="card-arrow">Ver proyecto →</span>
+  </a>
+
+  <a href="/proyectosculturales/womex/" class="proyecto-card">
+    <div class="proyecto-card-logo">
+      <img src="./womex/logo.webp" alt="WOMEX 2026 – logo" loading="lazy"
+           onerror="this.parentNode.innerHTML='<span class=\'logo-fallback\'>WOMEX 2026</span>'">
+    </div>
+    <h2>WOMEX 2026</h2>
+    <p class="tagline">La mayor feria profesional de músicas del mundo, 22-26 oct · Las Palmas</p>
+    <span class="card-arrow">Ver proyecto →</span>
+  </a>
+
+  <a href="/proyectosculturales/cinezin/" class="proyecto-card">
+    <div class="proyecto-card-logo">
+      <img src="./cinezin/logo.webp" alt="Cinezín – logo" loading="lazy"
+           onerror="this.parentNode.innerHTML='<span class=\'logo-fallback\'>Cinezín</span>'">
+    </div>
+    <h2>Cinezín</h2>
+    <p class="tagline">Ciclo de documentales musicales</p>
+    <span class="card-arrow">Ver proyecto →</span>
+  </a>
+
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div>
+        <div class="footer-brand-name">Salán <span>Producciones</span></div>
+        <p class="footer-brand-desc">
+          Más de 35 años produciendo y promoviendo música en directo en las Islas Canarias y España. Un proyecto de Juan Salán.
+        </p>
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="https://www.facebook.com/salanproducciones" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/salanjuan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
+          <a href="https://www.youtube.com/@juansalan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Secciones</div>
+        <ul class="footer-links">
+          <li><a href="/#proximos">Próximos conciertos</a></li>
+          <li><a href="/conciertos-anteriores/">Conciertos anteriores</a></li>
+          <li><a href="/pub-la-calle/">Pub La Calle</a></li>
+          <li><a href="/proyectosculturales/">Proyectos culturales</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:+34637138073">637 138 073</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>📧</span>
+          <a href="/contacto/">Formulario de contacto</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Islas Canarias, España</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Salán Producciones SL. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/cookies/" onclick="window.salanCookiesOpen && window.salanCookiesOpen(); return false;">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111111;border-top:1px solid #2a2a2a;padding:18px 24px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <p style="margin:0;font-size:.85rem;color:#888;max-width:680px;line-height:1.5">
+    Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.
+    <a href="/cookies/" style="color:#e8c44d;text-decoration:underline">Más información</a>
+  </p>
+  <div style="display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap">
+    <button id="ck-accept-necessary" style="padding:10px 20px;background:transparent;color:#888;border:1px solid #2a2a2a;border-radius:4px;cursor:pointer;font-size:.85rem;font-family:inherit;white-space:nowrap">Solo necesarias</button>
+    <button id="ck-accept-all" style="padding:10px 20px;background:#e8c44d;color:#000;border:none;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:inherit;white-space:nowrap">Aceptar todo</button>
+  </div>
+</div>
+
+<script src="/assets/js/cookies.js" defer></script>
+</body>
+</html>
