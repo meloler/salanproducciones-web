@@ -89,25 +89,26 @@
   <link rel="stylesheet" href="/assets/css/main.css?v=3">
 
   <style>
-    .proyecto-hero { padding: 0 0 0; }
+    /* ─── HERO ─────────────────────────────────────────── */
+    .proyecto-hero { padding: 0; }
     .proyecto-hero .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 120px 24px 80px;
       align-items: center;
     }
     @media (max-width: 768px) {
-      .proyecto-hero .hero-grid { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+      .proyecto-hero .hero-grid { grid-template-columns: 1fr; gap: 32px; padding: 100px 24px 48px; }
     }
     .proyecto-logo-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 48px 32px;
       min-height: 260px;
@@ -122,96 +123,108 @@
       font-family: 'Oswald', sans-serif;
       font-size: 2rem;
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       text-align: center;
       text-transform: uppercase;
     }
     .proyecto-info h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 700;
-      color: var(--white, #fff);
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .02em;
+      letter-spacing: -.01em;
       line-height: 1.1;
       margin-bottom: 12px;
     }
     .proyecto-info .subtitulo {
       font-family: 'Inter', sans-serif;
-      font-size: 1.05rem;
-      color: var(--muted, #888);
-      line-height: 1.6;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--muted);
+      line-height: 1.7;
       margin-bottom: 28px;
     }
+
+    /* ─── SECCIONES ─────────────────────────────────────── */
     .proyecto-section {
       max-width: 860px;
       margin: 0 auto;
-      padding: 0 24px 60px;
+      padding: 80px 24px;
+    }
+    @media (max-width: 768px) {
+      .proyecto-section { padding: 48px 24px; }
     }
     .proyecto-section h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--white, #fff);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .03em;
-      margin-bottom: 20px;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin-bottom: 24px;
     }
     .proyecto-section p {
       font-family: 'Inter', sans-serif;
       font-size: .97rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.85;
       margin-bottom: 16px;
     }
+
+    /* ─── STATS ─────────────────────────────────────────── */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 16px;
-      margin: 28px 0;
+      margin: 32px 0;
     }
     .stat-box {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 20px 16px;
       text-align: center;
     }
     .stat-box .stat-num {
       font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       display: block;
       line-height: 1;
       margin-bottom: 6px;
     }
     .stat-box .stat-label {
       font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      color: var(--muted, #888);
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
       line-height: 1.4;
     }
+
+    /* ─── NOTICIAS ──────────────────────────────────────── */
     .noticias-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     .noticia-card {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 24px;
       text-decoration: none;
       display: block;
       transition: border-color .2s;
     }
-    .noticia-card:hover { border-color: var(--gold, #e8c44d); }
+    .noticia-card:hover { border-color: var(--gold); }
     .noticia-fuente {
       font-family: 'Inter', sans-serif;
-      font-size: .75rem;
-      color: var(--gold, #e8c44d);
+      font-size: .72rem;
+      color: var(--gold);
       text-transform: uppercase;
       letter-spacing: .08em;
       margin-bottom: 8px;
@@ -220,43 +233,52 @@
     .noticia-titulo {
       font-family: 'Inter', sans-serif;
       font-size: .92rem;
-      color: var(--text, #e8e8e8);
+      color: var(--text);
       line-height: 1.5;
     }
+
+    /* ─── CTAs ──────────────────────────────────────────── */
     .cta-group-proyecto {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    @media (max-width: 600px) {
+      .cta-group-proyecto { flex-direction: column; }
+      .cta-group-proyecto .btn { width: 100%; }
     }
     .btn-back {
       font-family: 'Inter', sans-serif;
       font-size: .85rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-decoration: none;
       padding: 10px 0;
       transition: color .2s;
+      align-self: center;
     }
-    .btn-back:hover { color: var(--gold, #e8c44d); }
+    .btn-back:hover { color: var(--gold); }
+
+    /* ─── FASES ─────────────────────────────────────────── */
     .fases-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     @media (max-width: 600px) { .fases-grid { grid-template-columns: 1fr; } }
     .fase-card {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 24px;
     }
     .fase-card .fase-label {
       font-family: 'Oswald', sans-serif;
-      font-size: .8rem;
+      font-size: .72rem;
       text-transform: uppercase;
       letter-spacing: .1em;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       margin-bottom: 8px;
       display: block;
     }
@@ -264,41 +286,68 @@
       font-family: 'Oswald', sans-serif;
       font-size: 1.15rem;
       font-weight: 600;
-      color: var(--white, #fff);
+      color: var(--text);
       margin-bottom: 8px;
     }
     .fase-card p {
       font-family: 'Inter', sans-serif;
       font-size: .88rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.6;
       margin: 0;
     }
-    .ganadores-seccion { max-width: 1000px; margin: 0 auto; padding: 0 24px 60px; }
-    .ganadores-seccion h2 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--white,#fff); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 8px; }
-    .ganadores-seccion .ganadores-intro { font-family: 'Inter', sans-serif; font-size: .97rem; color: var(--muted,#888); line-height: 1.85; margin-bottom: 32px; }
+
+    /* ─── GANADORES ─────────────────────────────────────── */
+    .ganadores-seccion {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    @media (max-width: 768px) {
+      .ganadores-seccion { padding: 48px 24px; }
+    }
+    .ganadores-seccion h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .ganadores-seccion .ganadores-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: .97rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
     .ganadores-oro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
     @media (max-width: 600px) { .ganadores-oro-grid { grid-template-columns: 1fr; } }
-    .ganador-card { background: var(--bg3,#1a1a1a); border-radius: 12px; overflow: hidden; position: relative; }
-    .ganador-card.oro { border: 2px solid #e8c44d; }
+    .ganador-card { background: var(--bg3); border-radius: 12px; overflow: hidden; position: relative; transition: transform .2s; }
+    .ganador-card:hover { transform: translateY(-3px); }
+    .ganador-card.oro { border: 2px solid var(--gold); }
     .ganador-card.plata { border: 1px solid #9e9e9e; }
     .ganador-card.bronce { border: 1px solid #cd7f32; }
     .ganador-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
     .ganador-card-body { padding: 20px 24px; }
-    .ganador-medal { font-family: 'Oswald', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; display: block; }
-    .ganador-card.oro .ganador-medal { color: #e8c44d; }
+    .ganador-medal { font-family: 'Oswald', sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; display: block; }
+    .ganador-card.oro .ganador-medal { color: var(--gold); }
     .ganador-card.plata .ganador-medal { color: #9e9e9e; }
     .ganador-card.bronce .ganador-medal { color: #cd7f32; }
-    .ganador-nombre { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white,#fff); margin-bottom: 4px; line-height: 1.1; }
-    .ganador-origen { font-family: 'Inter', sans-serif; font-size: .82rem; color: var(--muted,#888); margin-bottom: 10px; }
-    .ganador-premio { font-family: 'Inter', sans-serif; font-size: .88rem; color: var(--text,#e8e8e8); line-height: 1.5; }
+    .ganador-nombre { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.1; }
+    .ganador-origen { font-family: 'Inter', sans-serif; font-size: .82rem; color: var(--muted); margin-bottom: 10px; }
+    .ganador-premio { font-family: 'Inter', sans-serif; font-size: .88rem; color: var(--text); line-height: 1.5; }
     .ganadores-fila-secundaria { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
     @media (max-width: 768px) { .ganadores-fila-secundaria { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .ganadores-fila-secundaria { grid-template-columns: 1fr; } }
-    .galeria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-top: 20px; }
+
+    /* ─── GALERÍA ───────────────────────────────────────── */
+    .galeria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-top: 24px; }
     .galeria-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; display: block; transition: opacity .2s; }
     .galeria-grid img:hover { opacity: .85; }
-    .galeria-caption { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted,#888); text-align: center; margin-top: 4px; }
+    .galeria-caption { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); text-align: center; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -314,7 +363,7 @@
       <a href="/#proximos">Próximos conciertos</a>
       <a href="/conciertos-anteriores/">Anteriores</a>
       <a href="/pub-la-calle/">Pub La Calle</a>
-      <a href="/proyectosculturales/">Proyectos culturales</a>
+      <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
       <a href="/contacto/">Contacto</a>
     </nav>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -326,7 +375,7 @@
     <a href="/#proximos">Próximos conciertos</a>
     <a href="/conciertos-anteriores/">Anteriores</a>
     <a href="/pub-la-calle/">Pub La Calle</a>
-    <a href="/proyectosculturales/">Proyectos culturales</a>
+    <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
     <a href="/contacto/">Contacto</a>
   </nav>
 </header>
@@ -384,13 +433,13 @@
 <hr class="divider">
 
 <!-- SOBRE EL FESTIVAL -->
-<div class="proyecto-section">
+<div class="proyecto-section reveal">
   <h2>Sobre el Festival</h2>
   <p>
     Festival Sonora es el certamen de bandas y artistas emergentes más longevo de las Islas Canarias. Nacido de la visión de Juan Salán e impulsado por Juan Salán y su socio Santiago Gutiérrez a través de Salán Producciones, el festival abre sus puertas cada año a músicos de todos los géneros: rock, pop, urban, blues, folk, jazz y world music. No hay barreras de estilo; hay un único criterio: talento y directo.
   </p>
   <p>
-    El premio es más que un trofeo. Los ganadores se llevan hasta <strong style="color:var(--white,#fff)">6.000 euros en metálico</strong> y el codiciado <strong style="color:var(--white,#fff)">Pasaporte Sonora</strong>, que abre las puertas de festivales nacionales e internacionales con los que Festival Sonora mantiene acuerdos de colaboración. Año tras año, el escenario de la Sala Jerónimo Saavedra del Auditorio Alfredo Kraus ha sido el trampolín de artistas que hoy forman parte de la escena musical española.
+    El premio es más que un trofeo. Los ganadores se llevan hasta <strong style="color:var(--text)">6.000 euros en metálico</strong> y el codiciado <strong style="color:var(--text)">Pasaporte Sonora</strong>, que abre las puertas de festivales nacionales e internacionales con los que Festival Sonora mantiene acuerdos de colaboración. Año tras año, el escenario de la Sala Jerónimo Saavedra del Auditorio Alfredo Kraus ha sido el trampolín de artistas que hoy forman parte de la escena musical española.
   </p>
 
   <div class="stats-grid">
@@ -416,10 +465,10 @@
 <hr class="divider">
 
 <!-- GANADORES 2026 -->
-<div class="ganadores-seccion" id="ganadores">
+<div class="ganadores-seccion reveal" id="ganadores">
   <h2>Ganadores Sonora 2026</h2>
   <p class="ganadores-intro">
-    La final celebrada los días 17 y 18 de abril de 2026 en la <strong style="color:var(--white,#fff)">Sala Jerónimo Saavedra del Auditorio Alfredo Kraus</strong> arrojó un resultado histórico: el jurado declaró dos ganadores absolutos, reconociendo el nivel excepcional de la edición. <a href="https://diariodeavisos.elespanol.com/2026/04/las-bandas-los-blody-y-good-franco-ganadoras-absolutas-del-sonora-2026/" target="_blank" rel="noopener" style="color:var(--gold,#e8c44d)">Diario de Avisos</a>
+    La final celebrada los días 17 y 18 de abril de 2026 en la <strong style="color:var(--text)">Sala Jerónimo Saavedra del Auditorio Alfredo Kraus</strong> arrojó un resultado histórico: el jurado declaró dos ganadores absolutos, reconociendo el nivel excepcional de la edición. <a href="https://diariodeavisos.elespanol.com/2026/04/las-bandas-los-blody-y-good-franco-ganadoras-absolutas-del-sonora-2026/" target="_blank" rel="noopener" style="color:var(--gold)">Diario de Avisos</a>
   </p>
 
   <!-- ORO x2 -->
@@ -476,10 +525,10 @@
 <hr class="divider">
 
 <!-- EDICIÓN 2026 -->
-<div class="proyecto-section">
+<div class="proyecto-section reveal">
   <h2>Edición 2026</h2>
   <p>
-    La edición 2026 ha batido el récord de participación con <strong style="color:var(--white,#fff)">195 inscritos</strong>. El proceso se divide en dos grandes fases: las rondas eliminatorias dan paso a las finales de primavera, y los mejores actúan en el gran festival de octubre ante el público del Auditorio Alfredo Kraus.
+    La edición 2026 ha batido el récord de participación con <strong style="color:var(--text)">195 inscritos</strong>. El proceso se divide en dos grandes fases: las rondas eliminatorias dan paso a las finales de primavera, y los mejores actúan en el gran festival de octubre ante el público del Auditorio Alfredo Kraus.
   </p>
 
   <div class="fases-grid">
@@ -503,35 +552,35 @@
   <h2>Galería Sonora 2026</h2>
   <p>Los 10 finalistas de la edición 2026 y momentos del certamen.</p>
   <div class="galeria-grid">
-    <figure style="margin:0;">
+    <figure>
       <img src="./foto-final-2025.jpg" alt="Final Festival Sonora – Auditorio Alfredo Kraus" loading="lazy">
       <figcaption class="galeria-caption">Final en el Auditorio Alfredo Kraus</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./foto-jurado-2026.jpg" alt="Jurado preselección Festival Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Jurado preselección 2026</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./foto-ganadores-2026.jpg" alt="Ganadores Festival Sonora 2026 – Los Blody y Good Franco" loading="lazy">
       <figcaption class="galeria-caption">Los ganadores Sonora 2026</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./finalista-bifidos.webp" alt="Bífidos – finalista Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Bífidos</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./finalista-casablanca.webp" alt="Casablanca III – finalista Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Casablanca III</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./finalista-xerach.webp" alt="Xerach – finalista Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Xerach</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./finalista-eric-boelle.webp" alt="Eric Böelle – finalista Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Eric Böelle</figcaption>
     </figure>
-    <figure style="margin:0;">
+    <figure>
       <img src="./finalista-pokzipol.webp" alt="Pokzipol Poops – finalista Sonora 2026" loading="lazy">
       <figcaption class="galeria-caption">Pokzipol Poops</figcaption>
     </figure>

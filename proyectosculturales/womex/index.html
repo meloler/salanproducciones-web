@@ -89,6 +89,7 @@
   <link rel="stylesheet" href="/assets/css/main.css?v=3">
 
   <style>
+    /* ─── HERO ─────────────────────────────────────────── */
     .proyecto-hero { padding: 0; }
     .proyecto-hero .hero-grid {
       display: grid;
@@ -96,18 +97,18 @@
       gap: 48px;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 120px 24px 80px;
       align-items: center;
     }
     @media (max-width: 768px) {
-      .proyecto-hero .hero-grid { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+      .proyecto-hero .hero-grid { grid-template-columns: 1fr; gap: 32px; padding: 100px 24px 48px; }
     }
     .proyecto-logo-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 48px 32px;
       min-height: 260px;
@@ -122,96 +123,108 @@
       font-family: 'Oswald', sans-serif;
       font-size: 2rem;
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       text-align: center;
       text-transform: uppercase;
     }
     .proyecto-info h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 700;
-      color: var(--white, #fff);
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .02em;
+      letter-spacing: -.01em;
       line-height: 1.1;
       margin-bottom: 12px;
     }
     .proyecto-info .subtitulo {
       font-family: 'Inter', sans-serif;
-      font-size: 1.05rem;
-      color: var(--muted, #888);
-      line-height: 1.6;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--muted);
+      line-height: 1.7;
       margin-bottom: 28px;
     }
+
+    /* ─── SECCIONES ─────────────────────────────────────── */
     .proyecto-section {
       max-width: 860px;
       margin: 0 auto;
-      padding: 0 24px 60px;
+      padding: 80px 24px;
+    }
+    @media (max-width: 768px) {
+      .proyecto-section { padding: 48px 24px; }
     }
     .proyecto-section h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--white, #fff);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .03em;
-      margin-bottom: 20px;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin-bottom: 24px;
     }
     .proyecto-section p {
       font-family: 'Inter', sans-serif;
       font-size: .97rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.85;
       margin-bottom: 16px;
     }
+
+    /* ─── STATS ─────────────────────────────────────────── */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 16px;
-      margin: 28px 0;
+      margin: 32px 0;
     }
     .stat-box {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 20px 16px;
       text-align: center;
     }
     .stat-box .stat-num {
       font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       display: block;
       line-height: 1;
       margin-bottom: 6px;
     }
     .stat-box .stat-label {
       font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      color: var(--muted, #888);
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
       line-height: 1.4;
     }
+
+    /* ─── NOTICIAS ──────────────────────────────────────── */
     .noticias-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     .noticia-card {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 24px;
       text-decoration: none;
       display: block;
       transition: border-color .2s;
     }
-    .noticia-card:hover { border-color: var(--gold, #e8c44d); }
+    .noticia-card:hover { border-color: var(--gold); }
     .noticia-fuente {
       font-family: 'Inter', sans-serif;
-      font-size: .75rem;
-      color: var(--gold, #e8c44d);
+      font-size: .72rem;
+      color: var(--gold);
       text-transform: uppercase;
       letter-spacing: .08em;
       margin-bottom: 8px;
@@ -220,43 +233,51 @@
     .noticia-titulo {
       font-family: 'Inter', sans-serif;
       font-size: .92rem;
-      color: var(--text, #e8e8e8);
+      color: var(--text);
       line-height: 1.5;
     }
+
+    /* ─── CTAs ──────────────────────────────────────────── */
     .cta-group-proyecto {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    @media (max-width: 600px) {
+      .cta-group-proyecto { flex-direction: column; }
+      .cta-group-proyecto .btn { width: 100%; }
     }
     .btn-back {
       font-family: 'Inter', sans-serif;
       font-size: .85rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-decoration: none;
       padding: 10px 0;
       transition: color .2s;
+      align-self: center;
     }
-    .btn-back:hover { color: var(--gold, #e8c44d); }
+    .btn-back:hover { color: var(--gold); }
+
+    /* ─── TIMELINE ──────────────────────────────────────── */
     .timeline {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     @media (max-width: 600px) { .timeline { grid-template-columns: 1fr; } }
     .timeline-item {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 24px;
-      position: relative;
     }
     .timeline-item .year {
       font-family: 'Oswald', sans-serif;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 2.5rem);
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       line-height: 1;
       margin-bottom: 8px;
       display: block;
@@ -265,13 +286,13 @@
       font-family: 'Oswald', sans-serif;
       font-size: 1rem;
       font-weight: 600;
-      color: var(--white, #fff);
+      color: var(--text);
       margin-bottom: 8px;
     }
     .timeline-item p {
       font-family: 'Inter', sans-serif;
       font-size: .85rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.6;
       margin: 0;
     }
@@ -290,7 +311,7 @@
       <a href="/#proximos">Próximos conciertos</a>
       <a href="/conciertos-anteriores/">Anteriores</a>
       <a href="/pub-la-calle/">Pub La Calle</a>
-      <a href="/proyectosculturales/">Proyectos culturales</a>
+      <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
       <a href="/contacto/">Contacto</a>
     </nav>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -302,7 +323,7 @@
     <a href="/#proximos">Próximos conciertos</a>
     <a href="/conciertos-anteriores/">Anteriores</a>
     <a href="/pub-la-calle/">Pub La Calle</a>
-    <a href="/proyectosculturales/">Proyectos culturales</a>
+    <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
     <a href="/contacto/">Contacto</a>
   </nav>
 </header>
@@ -356,13 +377,13 @@
 <hr class="divider">
 
 <!-- QUÉ ES WOMEX -->
-<div class="proyecto-section" id="que-es">
+<div class="proyecto-section reveal" id="que-es">
   <h2>Qué es WOMEX</h2>
   <p>
-    El <strong style="color:var(--white,#fff)">World Music Expo</strong> es la feria profesional más importante del mundo para músicas del mundo y folk. Cada año reúne a más de <strong style="color:var(--white,#fff)">2.300 profesionales de 90 países</strong>: promotores, sellos, managers, festivales, agencias de booking, periodistas y artistas que toman decisiones que mueven la industria global.
+    El <strong style="color:var(--text)">World Music Expo</strong> es la feria profesional más importante del mundo para músicas del mundo y folk. Cada año reúne a más de <strong style="color:var(--text)">2.300 profesionales de 90 países</strong>: promotores, sellos, managers, festivales, agencias de booking, periodistas y artistas que toman decisiones que mueven la industria global.
   </p>
   <p>
-    El programa combina showcases en vivo de <strong style="color:var(--white,#fff)">350 artistas</strong>, un mercado profesional, conferencias, paneles, networking y la entrega de los WOMEX Awards — el reconocimiento más prestigioso del sector de las músicas del mundo. Más de <strong style="color:var(--white,#fff)">250 periodistas</strong> especializados cubren el evento desde todos los rincones del planeta.
+    El programa combina showcases en vivo de <strong style="color:var(--text)">350 artistas</strong>, un mercado profesional, conferencias, paneles, networking y la entrega de los WOMEX Awards — el reconocimiento más prestigioso del sector de las músicas del mundo. Más de <strong style="color:var(--text)">250 periodistas</strong> especializados cubren el evento desde todos los rincones del planeta.
   </p>
 
   <div class="stats-grid">
@@ -388,13 +409,13 @@
 <hr class="divider">
 
 <!-- SALAN Y WOMEX -->
-<div class="proyecto-section" id="salan-womex">
+<div class="proyecto-section reveal" id="salan-womex">
   <h2>Salán Producciones y WOMEX</h2>
   <p>
     Traer WOMEX a Las Palmas de Gran Canaria en 2026 no es casualidad — es el resultado de años de trabajo, relaciones y apuesta por la isla como referente de la industria musical. Juan Salán y Santiago Gutiérrez pusieron todo su empeño en conseguir que el evento más importante del sector de las músicas del mundo eligiera de nuevo Gran Canaria como sede.
   </p>
   <p>
-    El impacto económico estimado supera los <strong style="color:var(--white,#fff)">3 millones de euros</strong> en consumo de visitantes, con miles de noches de hotel, vuelos y actividad en la ciudad durante la semana del evento. Pero más allá del impacto económico, WOMEX sitúa a Las Palmas de Gran Canaria y a Canarias en el mapa de la industria cultural internacional, con 2.300 profesionales del mundo entero conociendo el destino de primera mano.
+    El impacto económico estimado supera los <strong style="color:var(--text)">3 millones de euros</strong> en consumo de visitantes, con miles de noches de hotel, vuelos y actividad en la ciudad durante la semana del evento. Pero más allá del impacto económico, WOMEX sitúa a Las Palmas de Gran Canaria y a Canarias en el mapa de la industria cultural internacional, con 2.300 profesionales del mundo entero conociendo el destino de primera mano.
   </p>
   <p>
     Para Salán Producciones, impulsar proyectos como este es parte de una misión más amplia: no solo traer conciertos, sino construir un ecosistema cultural en las islas que conecte a los artistas locales con el mundo.
@@ -404,7 +425,7 @@
 <hr class="divider">
 
 <!-- TIMELINE 2018 → 2026 -->
-<div class="proyecto-section" id="historia">
+<div class="proyecto-section reveal" id="historia">
   <h2>WOMEX en Las Palmas: 2018 → 2026</h2>
   <div class="timeline">
     <div class="timeline-item">
@@ -423,7 +444,7 @@
 <hr class="divider">
 
 <!-- EN LOS MEDIOS -->
-<div class="proyecto-section" id="prensa">
+<div class="proyecto-section reveal" id="prensa">
   <h2>En los medios</h2>
   <div class="noticias-grid">
     <a href="https://www.laspalmasgc.es/es/ayuntamiento/prensa-y-comunicacion/notas-de-prensa/nota-de-prensa/Las-Palmas-de-Gran-Canaria-se-consolida-como-referente-cultural-internacional-con-la-celebracion-de-WOMEX-2026/" class="noticia-card" target="_blank" rel="noopener noreferrer">
