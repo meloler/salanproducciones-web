@@ -58,12 +58,15 @@
     .cz-hero {
       max-width: 900px;
       margin: 0 auto;
-      padding: 56px 20px 48px;
+      padding: 80px 24px 64px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .cz-hero { padding: 72px 24px 48px; }
     }
     .cz-hero img {
       max-width: min(280px, 72vw);
@@ -72,70 +75,76 @@
     }
     .cz-hero h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: clamp(2rem, 6vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .03em;
+      letter-spacing: -.01em;
+      line-height: 1.1;
       margin: 0;
     }
     .cz-hero p {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(.9rem, 2.5vw, 1rem);
-      color: var(--muted, #888);
+      font-size: clamp(.95rem, 2.5vw, 1.1rem);
+      color: var(--muted);
       line-height: 1.7;
       max-width: 520px;
       margin: 0;
     }
     .cz-stats {
       display: flex;
-      gap: 32px;
+      gap: 40px;
       justify-content: center;
       flex-wrap: wrap;
     }
     .cz-stat-num {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.8rem;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       display: block;
       line-height: 1;
     }
     .cz-stat-lbl {
       font-family: 'Inter', sans-serif;
       font-size: .72rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: .08em;
+      margin-top: 4px;
     }
     .cz-back {
       font-family: 'Inter', sans-serif;
       font-size: .85rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-decoration: none;
       transition: color .2s;
     }
-    .cz-back:hover { color: var(--gold, #e8c44d); }
+    .cz-back:hover { color: var(--gold); }
 
     /* ─── SECCIÓN GENÉRICA ──────────────────────────────── */
     .cz-section {
       max-width: 760px;
       margin: 0 auto;
-      padding: 0 20px 52px;
+      padding: 80px 24px;
+    }
+    @media (max-width: 768px) {
+      .cz-section { padding: 48px 24px; }
     }
     .cz-section h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #fff;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .06em;
-      margin: 0 0 16px;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin: 0 0 20px;
     }
     .cz-section p {
       font-family: 'Inter', sans-serif;
       font-size: .95rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.8;
       margin: 0 0 14px;
     }
@@ -144,26 +153,33 @@
     .cz-ediciones {
       max-width: 760px;
       margin: 0 auto;
-      padding: 0 20px 52px;
+      padding: 80px 24px;
+    }
+    @media (max-width: 768px) {
+      .cz-ediciones { padding: 48px 24px; }
     }
     .cz-ediciones > h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #fff;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .06em;
-      margin: 0 0 28px;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin: 0 0 32px;
     }
 
     /* Cada edición */
     .cz-ed {
-      border: 1px solid var(--border, #2a2a2a);
+      border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
       margin-bottom: 24px;
+      transition: border-color .2s, box-shadow .2s;
     }
-    .cz-ed.activa { border-color: #e8c44d55; }
+    .cz-ed:hover { border-color: #444; }
+    .cz-ed.activa { border-color: rgba(232,196,77,.35); }
+    .cz-ed.activa:hover { border-color: rgba(232,196,77,.6); box-shadow: 0 4px 24px rgba(232,196,77,.08); }
 
     /* Imagen de portada */
     .cz-ed-img {
@@ -175,7 +191,7 @@
     .cz-ed-img-placeholder {
       width: 100%;
       aspect-ratio: 16 / 7;
-      background: var(--bg3, #1a1a1a);
+      background: var(--bg3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -200,7 +216,7 @@
       font-family: 'Oswald', sans-serif;
       font-size: 2.2rem;
       font-weight: 700;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       line-height: 1;
       opacity: .35;
     }
@@ -210,7 +226,7 @@
       font-family: 'Inter', sans-serif;
       font-size: .7rem;
       font-weight: 600;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       text-transform: uppercase;
       letter-spacing: .1em;
       display: block;
@@ -220,14 +236,14 @@
       font-family: 'Oswald', sans-serif;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       line-height: 1.15;
     }
     .cz-badge {
       font-family: 'Inter', sans-serif;
       font-size: .68rem;
       font-weight: 700;
-      background: var(--gold, #e8c44d);
+      background: var(--gold);
       color: #000;
       border-radius: 20px;
       padding: 3px 10px;
@@ -239,7 +255,7 @@
     .cz-ed-where {
       font-family: 'Inter', sans-serif;
       font-size: .82rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       margin-bottom: 14px;
       display: flex;
       flex-wrap: wrap;
@@ -249,11 +265,11 @@
     /* Pills de películas */
     .cz-films-label {
       font-family: 'Inter', sans-serif;
-      font-size: .68rem;
+      font-size: .72rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: .1em;
-      color: var(--muted, #888);
+      color: var(--muted);
       margin-bottom: 8px;
     }
     .cz-films {
@@ -265,28 +281,28 @@
     .cz-film-pill {
       font-family: 'Inter', sans-serif;
       font-size: .8rem;
-      color: var(--text, #e8e8e8);
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      color: var(--text);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 4px;
       padding: 4px 10px;
       line-height: 1.3;
     }
     .cz-film-pill em {
       font-style: italic;
-      color: var(--muted, #888);
+      color: var(--muted);
       font-size: .74rem;
     }
 
     /* Acordeón: detalles */
     .cz-detalles {
-      border-top: 1px solid var(--border, #2a2a2a);
+      border-top: 1px solid var(--border);
     }
     .cz-detalles summary {
       font-family: 'Inter', sans-serif;
       font-size: .82rem;
       font-weight: 500;
-      color: var(--muted, #888);
+      color: var(--muted);
       cursor: pointer;
       padding: 12px 20px;
       list-style: none;
@@ -305,14 +321,14 @@
       flex-shrink: 0;
     }
     .cz-detalles[open] summary::before { transform: rotate(90deg); }
-    .cz-detalles summary:hover { color: var(--gold, #e8c44d); }
+    .cz-detalles summary:hover { color: var(--gold); }
     .cz-detalles-inner {
       padding: 4px 20px 16px;
     }
     .cz-detalles-inner p {
       font-family: 'Inter', sans-serif;
       font-size: .88rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.8;
       margin: 0 0 12px;
     }
@@ -324,8 +340,8 @@
       margin-bottom: 14px;
     }
     .cz-film-card {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
     }
@@ -338,7 +354,7 @@
     .cz-film-card-noimg {
       width: 100%;
       aspect-ratio: 4 / 3;
-      background: linear-gradient(135deg, #181818, #222);
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -348,7 +364,7 @@
       font-family: 'Oswald', sans-serif;
       font-size: .88rem;
       font-weight: 600;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       text-align: center;
       line-height: 1.25;
     }
@@ -359,14 +375,14 @@
       font-family: 'Oswald', sans-serif;
       font-size: .88rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--text);
       line-height: 1.2;
       margin-bottom: 2px;
     }
     .cz-film-card-dir {
       font-family: 'Inter', sans-serif;
       font-size: .72rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       line-height: 1.3;
     }
     .cz-film-card-badge {
@@ -374,7 +390,7 @@
       font-family: 'Inter', sans-serif;
       font-size: .65rem;
       font-weight: 700;
-      background: var(--gold, #e8c44d);
+      background: var(--gold);
       color: #000;
       border-radius: 3px;
       padding: 1px 5px;
@@ -391,9 +407,9 @@
     }
     .cz-prensa-label {
       font-family: 'Inter', sans-serif;
-      font-size: .7rem;
+      font-size: .72rem;
       font-weight: 600;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: .08em;
       flex-basis: 100%;
@@ -402,36 +418,39 @@
     .cz-prensa a {
       font-family: 'Inter', sans-serif;
       font-size: .78rem;
-      color: var(--muted, #888);
+      color: var(--muted);
       text-decoration: none;
-      border: 1px solid var(--border, #2a2a2a);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 4px 12px;
       transition: color .2s, border-color .2s;
     }
-    .cz-prensa a:hover { color: var(--gold, #e8c44d); border-color: var(--gold, #e8c44d); }
+    .cz-prensa a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* CTA de edición activa */
+    .cz-ed-cta { padding-bottom: 20px; }
 
     /* ─── NOTICIAS ──────────────────────────────────────── */
     .cz-noticias {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 14px;
-      margin-top: 16px;
+      margin-top: 20px;
     }
     .cz-noticia {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
+      background: var(--bg3);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 18px 20px;
       text-decoration: none;
       display: block;
       transition: border-color .2s;
     }
-    .cz-noticia:hover { border-color: var(--gold, #e8c44d); }
+    .cz-noticia:hover { border-color: var(--gold); }
     .cz-noticia-fuente {
       font-family: 'Inter', sans-serif;
       font-size: .7rem;
-      color: var(--gold, #e8c44d);
+      color: var(--gold);
       text-transform: uppercase;
       letter-spacing: .08em;
       margin-bottom: 6px;
@@ -440,24 +459,8 @@
     .cz-noticia-titulo {
       font-family: 'Inter', sans-serif;
       font-size: .88rem;
-      color: var(--text, #e8e8e8);
+      color: var(--text);
       line-height: 1.45;
-    }
-
-    /* ─── PRÓXIMAS ──────────────────────────────────────── */
-    .cz-proximas-box {
-      background: var(--bg3, #1a1a1a);
-      border: 1px solid var(--border, #2a2a2a);
-      border-radius: 8px;
-      padding: 24px;
-      margin-top: 14px;
-    }
-    .cz-proximas-box p {
-      font-family: 'Inter', sans-serif;
-      font-size: .92rem;
-      color: var(--muted, #888);
-      line-height: 1.75;
-      margin: 0;
     }
   </style>
 </head>
@@ -474,7 +477,7 @@
       <a href="/#proximos">Próximos conciertos</a>
       <a href="/conciertos-anteriores/">Anteriores</a>
       <a href="/pub-la-calle/">Pub La Calle</a>
-      <a href="/proyectosculturales/" aria-current="page">Proyectos culturales</a>
+      <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
       <a href="/contacto/">Contacto</a>
     </nav>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -486,7 +489,7 @@
     <a href="/#proximos">Próximos conciertos</a>
     <a href="/conciertos-anteriores/">Anteriores</a>
     <a href="/pub-la-calle/">Pub La Calle</a>
-    <a href="/proyectosculturales/" aria-current="page">Proyectos culturales</a>
+    <a href="/proyectosculturales/" class="active">Proyectos culturales</a>
     <a href="/contacto/">Contacto</a>
   </nav>
 </header>
@@ -517,17 +520,17 @@
 <hr class="divider">
 
 <!-- ── SOBRE ─────────────────────────────────────────────── -->
-<div class="cz-section" id="sobre">
+<div class="cz-section reveal" id="sobre">
   <h2>Sobre Cinezín</h2>
   <p>
-    Cinezín nació en 2022 como un espacio diferente: proyecciones de documentales musicales que no encontrarás fácilmente en las plataformas, seguidas de <strong style="color:#fff">debates en directo</strong> con músicos, periodistas y especialistas. Rock, soul, música electrónica, cantautores… y siempre con entrada libre o gratuita.
+    Cinezín nació en 2022 como un espacio diferente: proyecciones de documentales musicales que no encontrarás fácilmente en las plataformas, seguidas de <strong style="color:var(--text)">debates en directo</strong> con músicos, periodistas y especialistas. Rock, soul, música electrónica, cantautores… y siempre con entrada libre o gratuita.
   </p>
 </div>
 
 <hr class="divider">
 
 <!-- ── EDICIONES ─────────────────────────────────────────── -->
-<div class="cz-ediciones" id="ediciones">
+<div class="cz-ediciones reveal" id="ediciones">
   <h2>Ediciones</h2>
 
   <!-- ────── EDICIÓN I · 2022 ────── -->
@@ -673,8 +676,8 @@
         <span>📍 Club Provincia, Las Palmas</span>
         <span>📅 Mayo 2026</span>
       </div>
-      <div style="padding-bottom:20px;">
-        <a href="/contacto/" class="btn btn-secondary" style="font-size:.85rem;padding:10px 20px;">Contactar para más información →</a>
+      <div class="cz-ed-cta">
+        <a href="/contacto/" class="btn btn-secondary">Contactar para más información →</a>
       </div>
     </div>
     <details class="cz-detalles">
@@ -694,7 +697,7 @@
 <hr class="divider">
 
 <!-- ── EN LOS MEDIOS ────────────────────────────────────── -->
-<div class="cz-section" id="prensa">
+<div class="cz-section reveal" id="prensa">
   <h2>En los medios</h2>
   <div class="cz-noticias">
     <a href="https://www.canarias7.es/cultura/festival-cinezin-cine-20220228130300-nt.html" class="cz-noticia" target="_blank" rel="noopener">
