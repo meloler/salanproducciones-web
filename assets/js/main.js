@@ -150,6 +150,89 @@
     submitButton.style.display = 'flex';
   }
 
+  /* --- Newsletter popup --- */
+  (function () {
+    var DISMISSED_KEY = 'nl-dismissed';
+    var SUBSCRIBED_KEY = 'nl-subscribed';
+    var LOOPS_ACTION = 'https://app.loops.so/api/newsletter-form/cmb7ofbqv5jgi0y0ipx3q1au0';
+    var GRACE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+    function shouldShow() {
+      if (localStorage.getItem(SUBSCRIBED_KEY)) return false;
+      var dismissed = localStorage.getItem(DISMISSED_KEY);
+      if (dismissed && (Date.now() - Number(dismissed)) < GRACE_MS) return false;
+      return true;
+    }
+
+    function dismiss() {
+      localStorage.setItem(DISMISSED_KEY, Date.now());
+      var popup = document.getElementById('nl-popup');
+      if (popup) popup.remove();
+    }
+
+    function injectPopup() {
+      if (!shouldShow()) return;
+      if (document.getElementById('nl-popup')) return;
+
+      var popup = document.createElement('div');
+      popup.id = 'nl-popup';
+      popup.setAttribute('role', 'dialog');
+      popup.setAttribute('aria-label', 'Suscríbete a la newsletter');
+      popup.innerHTML =
+        '<button class="nl-close" aria-label="Cerrar">&times;</button>' +
+        '<p class="nl-eyebrow">Newsletter</p>' +
+        '<h3 class="nl-title">Conciertos antes que nadie</h3>' +
+        '<p class="nl-desc">Entérate primero de los próximos shows, preventa exclusiva y noticias de Salán Producciones.</p>' +
+        '<div class="newsletter-form-container">' +
+          '<form action="' + LOOPS_ACTION + '" method="post" class="newsletter-form">' +
+            '<div class="newsletter-form-input" style="display:flex">' +
+              '<input type="email" name="email" placeholder="tu@email.com" required class="form-input" style="flex:1;min-width:0">' +
+            '</div>' +
+            '<div class="newsletter-form-input" style="display:flex">' +
+              '<input type="text" name="firstName" placeholder="Tu nombre (opcional)" class="form-input" style="flex:1;min-width:0">' +
+            '</div>' +
+            '<button type="submit" class="btn btn-primary newsletter-form-button" style="width:100%;margin-top:8px">Suscribirme</button>' +
+            '<button type="button" class="btn btn-outline newsletter-loading-button" style="width:100%;margin-top:8px;display:none" disabled>Enviando…</button>' +
+          '</form>' +
+          '<div class="newsletter-success" style="display:none;flex-direction:column;align-items:center;gap:8px;padding:16px 0">' +
+            '<span style="font-size:2rem">🎸</span>' +
+            '<p style="margin:0;font-weight:600;color:var(--text)">¡Ya estás dentro!</p>' +
+            '<p style="margin:0;font-size:.85rem;color:var(--muted)">Te avisaremos antes que nadie.</p>' +
+          '</div>' +
+          '<div class="newsletter-error" style="display:none;flex-direction:column;gap:6px">' +
+            '<p class="newsletter-error-message" style="margin:0;font-size:.85rem;color:#e05c5c">Algo salió mal, inténtalo de nuevo.</p>' +
+          '</div>' +
+          '<button type="button" class="newsletter-back-button" style="display:none;background:none;border:none;color:var(--muted);font-size:.8rem;cursor:pointer;padding:4px 0;text-decoration:underline">Volver</button>' +
+        '</div>';
+
+      document.body.appendChild(popup);
+
+      // Close button
+      popup.querySelector('.nl-close').addEventListener('click', dismiss);
+
+      // Wire up Loops handlers
+      var container = popup.querySelector('.newsletter-form-container');
+      container.querySelector('.newsletter-form').addEventListener('submit', loopsSubmitHandler);
+      container.querySelector('.newsletter-back-button').addEventListener('click', loopsResetHandler);
+      container.classList.add('newsletter-handlers-added');
+
+      // Watch for success → mark subscribed and auto-close
+      var successEl = container.querySelector('.newsletter-success');
+      var observer = new MutationObserver(function () {
+        if (successEl.style.display !== 'none') {
+          localStorage.setItem(SUBSCRIBED_KEY, '1');
+          setTimeout(function () {
+            var p = document.getElementById('nl-popup');
+            if (p) p.remove();
+          }, 3000);
+        }
+      });
+      observer.observe(successEl, { attributes: true, attributeFilter: ['style'] });
+    }
+
+    setTimeout(injectPopup, 10000);
+  })();
+
   document.querySelectorAll('.newsletter-form-container').forEach(function(container) {
     if (container.classList.contains('newsletter-handlers-added')) return;
     container.querySelector('.newsletter-form').addEventListener('submit', loopsSubmitHandler);
