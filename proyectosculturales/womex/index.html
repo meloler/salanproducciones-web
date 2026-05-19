@@ -259,6 +259,26 @@
     }
     .btn-back:hover { color: var(--gold); }
 
+    /* ─── GALERÍA ───────────────────────────────────────── */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .galeria-grid img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      transition: opacity .2s;
+    }
+    .galeria-grid img:hover { opacity: .85; }
+    @media (max-width: 600px) {
+      .galeria-grid { grid-template-columns: 1fr 1fr; }
+    }
+
     /* ─── TIMELINE ──────────────────────────────────────── */
     .timeline {
       display: grid;
@@ -420,6 +440,10 @@
   <p>
     Para Salán Producciones, impulsar proyectos como este es parte de una misión más amplia: no solo traer conciertos, sino construir un ecosistema cultural en las islas que conecte a los artistas locales con el mundo.
   </p>
+  <img src="./foto-institucional.webp"
+       alt="Juan Salán y Santiago Gutiérrez en la presentación de WOMEX 2026 en Las Palmas de Gran Canaria"
+       loading="lazy"
+       style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-top:28px;border:1px solid var(--border);">
 </div>
 
 <hr class="divider">
@@ -438,6 +462,20 @@
       <h3>El regreso</h3>
       <p>Tras el éxito de 2018, Juan Salán y Santiago Gutiérrez trabajan para traerlo de nuevo. Las Palmas se convierte en sede por segunda vez, consolidando su posición como referente cultural internacional.</p>
     </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- GALERÍA 2018 -->
+<div class="proyecto-section reveal" id="galeria">
+  <h2>WOMEX 2018 en Las Palmas</h2>
+  <p>Imágenes de la primera edición de WOMEX en Gran Canaria, que demostró la capacidad de la isla para albergar uno de los eventos culturales más exigentes del mundo.</p>
+  <div class="galeria-grid">
+    <img src="./womex2018-1.webp" alt="WOMEX 2018 Las Palmas de Gran Canaria – showcases en el Auditorio Alfredo Kraus" loading="lazy">
+    <img src="./womex2018-2.webp" alt="WOMEX 2018 Las Palmas – mercado profesional de músicas del mundo" loading="lazy">
+    <img src="./womex2018-3.webp" alt="WOMEX 2018 Gran Canaria – artistas internacionales en escena" loading="lazy">
+    <img src="./womex2018-4.webp" alt="WOMEX 2018 Las Palmas – networking y profesionales de la industria musical" loading="lazy">
   </div>
 </div>
 
