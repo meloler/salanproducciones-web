@@ -29,8 +29,28 @@
     "@context": "https://schema.org",
     "@type": "EventSeries",
     "name": "Cinezín – Ciclo de Cine y Música",
-    "description": "Ciclo de proyecciones de documentales musicales impulsado por Juan Salán en Las Palmas de Gran Canaria. Tres ediciones desde 2022.",
+    "description": "Ciclo de proyecciones de documentales musicales impulsado por Juan Salán en Las Palmas de Gran Canaria. Tres ediciones desde 2022: Castillo de Mata (2022, 2023) y Club La Provincia (2026). Proyecciones + debate en directo con músicos y directores.",
     "startDate": "2022-03-10",
+    "subEvent": [
+      {
+        "@type": "ScreeningEvent",
+        "name": "Cinezín III – Supersubmarina. Cien Maneras de volver",
+        "startDate": "2026-05-07T19:00:00+01:00",
+        "location": { "@type": "Place", "name": "Club La Provincia", "address": { "@type": "PostalAddress", "streetAddress": "León y Castillo, 39", "addressLocality": "Las Palmas de Gran Canaria", "addressCountry": "ES" } }
+      },
+      {
+        "@type": "ScreeningEvent",
+        "name": "Cinezín III – M Clan. Las calles siguen ardiendo",
+        "startDate": "2026-05-13T19:00:00+01:00",
+        "location": { "@type": "Place", "name": "Club La Provincia", "address": { "@type": "PostalAddress", "streetAddress": "León y Castillo, 39", "addressLocality": "Las Palmas de Gran Canaria", "addressCountry": "ES" } }
+      },
+      {
+        "@type": "ScreeningEvent",
+        "name": "Cinezín III – Ilegales 82",
+        "startDate": "2026-05-22T19:00:00+01:00",
+        "location": { "@type": "Place", "name": "Club La Provincia", "address": { "@type": "PostalAddress", "streetAddress": "León y Castillo, 39", "addressLocality": "Las Palmas de Gran Canaria", "addressCountry": "ES" } }
+      }
+    ],
     "location": { "@type": "Place", "name": "Las Palmas de Gran Canaria", "address": { "@type": "PostalAddress", "addressLocality": "Las Palmas de Gran Canaria", "addressCountry": "ES" } },
     "organizer": { "@type": "Organization", "name": "Salan Producciones", "url": "https://salanproducciones.com" },
     "url": "https://www.salanproducciones.com/proyectosculturales/cinezin/"
@@ -660,30 +680,57 @@
 
   <!-- ────── EDICIÓN III · 2026 ────── -->
   <article class="cz-ed activa" id="ed2026">
-    <div class="cz-ed-img-placeholder">
-      <img src="./logo.webp" alt="Cinezín 3ª edición 2026" loading="lazy">
-    </div>
+    <img src="./ed3-cartel.webp" class="cz-ed-img"
+         alt="Cinezín III – Secuencias de Acordes, mayo 2026, Club La Provincia, Las Palmas"
+         loading="lazy">
     <div class="cz-ed-body">
       <div class="cz-ed-top">
         <span class="cz-ed-num">III</span>
         <div class="cz-ed-meta-top">
           <span class="cz-ed-label">3ª Edición · Mayo 2026</span>
-          <div class="cz-ed-titulo">Ciclo de mayo 2026</div>
+          <div class="cz-ed-titulo">Secuencias de Acordes</div>
         </div>
         <span class="cz-badge">En curso</span>
       </div>
       <div class="cz-ed-where">
-        <span>📍 Club Provincia, Las Palmas</span>
-        <span>📅 Mayo 2026</span>
+        <span>📍 Club La Provincia, Las Palmas</span>
+        <span>📅 7 · 13 · 22 mayo 2026</span>
+        <span>🕖 19:00h · Entrada libre</span>
       </div>
-      <div class="cz-ed-cta">
-        <a href="/contacto/" class="btn btn-secondary">Contactar para más información →</a>
+      <p class="cz-films-label">Películas</p>
+      <div class="cz-films">
+        <span class="cz-film-pill">Supersubmarina. Cien Maneras de volver <em>Fernando Navarro</em></span>
+        <span class="cz-film-pill">M Clan. Las calles siguen ardiendo <em>Carlos Tarque</em></span>
+        <span class="cz-film-pill">Ilegales 82 <em>Juan Moya, dir.</em></span>
       </div>
     </div>
     <details class="cz-detalles">
       <summary>Más información</summary>
       <div class="cz-detalles-inner">
-        <p>La tercera edición regresa a un espacio íntimo — Club Provincia — que favorece el debate y el encuentro. El programa completo se publicará próximamente.</p>
+        <p>La tercera edición de Cinezín regresa al Club La Provincia (León y Castillo, 39) con tres sesiones de proyecciones + debate en directo. Rock español de tres décadas distintas con sus protagonistas en sala. Moderado por Diego Hernández y Xavier Valiño.</p>
+        <div class="cz-film-cards">
+          <div class="cz-film-card">
+            <div class="cz-film-card-noimg"><span>7 MAY</span></div>
+            <div class="cz-film-card-body">
+              <div class="cz-film-card-titulo">Supersubmarina</div>
+              <div class="cz-film-card-dir">Cien Maneras de volver<br>Invitado: Fernando Navarro</div>
+            </div>
+          </div>
+          <div class="cz-film-card">
+            <div class="cz-film-card-noimg"><span>13 MAY</span></div>
+            <div class="cz-film-card-body">
+              <div class="cz-film-card-titulo">M Clan</div>
+              <div class="cz-film-card-dir">Las calles siguen ardiendo<br>Invitado: Carlos Tarque</div>
+            </div>
+          </div>
+          <div class="cz-film-card">
+            <div class="cz-film-card-noimg"><span>22 MAY</span></div>
+            <div class="cz-film-card-body">
+              <div class="cz-film-card-titulo">Ilegales 82</div>
+              <div class="cz-film-card-dir">Invitado: Juan Moya, Director</div>
+            </div>
+          </div>
+        </div>
         <div class="cz-prensa">
           <span class="cz-prensa-label">Prensa</span>
           <a href="https://www.laprovincia.es/gran-canaria/2026/04/29/club-provincia-acoge-mayo-ciclo-dv-129655777.html" target="_blank" rel="noopener">La Provincia</a>
