@@ -61,6 +61,31 @@
     return `srcset="${base}-320.webp 320w, ${base}-480.webp 480w, ${base}-768.webp 768w" sizes="${sizes}" decoding="async"`;
   }
 
+  function localISODate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  function concertEndDate(concert) {
+    return concert.endDateISO || concert.dateISO;
+  }
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[char]));
+  }
+
+  function stripHtml(value) {
+    return String(value || '').replace(/<[^>]*>/g, '');
+  }
+
   /* --- Dynamic copyright year --- */
   document.querySelectorAll('.footer-copy').forEach(el => {
     el.innerHTML = el.innerHTML.replace(/\d{4}/, new Date().getFullYear());
@@ -258,26 +283,33 @@
 
   /* --- Dynamic Concert Loading (Upcoming) --- */
   const upcomingGrid = document.getElementById('upcoming-grid');
+  const agendaGrid = document.getElementById('agenda-grid');
+  const carouselTrack = document.getElementById('carousel-track');
   const concertsTimeline = document.getElementById('concerts-timeline');
   
-  if (upcomingGrid || concertsTimeline) {
+  if (upcomingGrid || agendaGrid || carouselTrack || concertsTimeline) {
     fetch('/conciertos.json')
       .then(res => res.json())
       .then(data => {
-        const today = new Date().toISOString().split('T')[0];
+        const today = localISODate(new Date());
+        const upcoming = data.filter(c => concertEndDate(c) >= today).sort((a, b) => a.dateISO.localeCompare(b.dateISO));
         
-        // 1. Render Upcoming — solo si el grid está vacío (sin cards estáticas en el HTML)
-        if (upcomingGrid && upcomingGrid.children.length === 0) {
-          const upcoming = data.filter(c => c.dateISO >= today).sort((a, b) => a.dateISO.localeCompare(b.dateISO));
-          
+        // 1. Render Upcoming dynamically from conciertos.json
+        if (upcomingGrid || agendaGrid) {
+          const upcomingContainers = [upcomingGrid, agendaGrid].filter(Boolean);
           if (upcoming.length === 0) {
-            upcomingGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!</p>';
+            upcomingContainers.forEach(container => {
+              container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!</p>';
+            });
           } else {
             let html = '';
             upcoming.forEach(c => {
               const buttonHtml = c.disabled 
                 ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
                 : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+              const titleHtml = c.subtitle
+                ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
+                : c.title;
                 
               html += `
                 <article class="concert-card reveal">
@@ -287,7 +319,7 @@
                   </div>
                   <div class="concert-card-body">
                     <div class="concert-card-date">${c.dateDisplay}</div>
-                    <h3 class="concert-card-title">${c.title}</h3>
+                    <h3 class="concert-card-title">${titleHtml}</h3>
                     <p class="concert-card-venue">${c.venue}</p>
                     <p class="concert-card-price">${c.price || ''}</p>
                     <div style="display:flex;gap:8px;margin-top:8px">
@@ -298,25 +330,56 @@
                 </article>
               `;
             });
-            upcomingGrid.innerHTML = html;
+            upcomingContainers.forEach(container => {
+              container.innerHTML = html;
             
-            setTimeout(() => {
-              const io = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                  if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    io.unobserve(e.target);
-                  }
-                });
-              }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-              upcomingGrid.querySelectorAll('.reveal').forEach(el => io.observe(el));
-            }, 100);
+              setTimeout(() => {
+                const io = new IntersectionObserver((entries) => {
+                  entries.forEach(e => {
+                    if (e.isIntersecting) {
+                      e.target.classList.add('visible');
+                      io.unobserve(e.target);
+                    }
+                  });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                container.querySelectorAll('.reveal').forEach(el => io.observe(el));
+              }, 100);
+            });
+          }
+        }
+
+        if (carouselTrack) {
+          const dots = document.getElementById('carousel-dots');
+          if (dots) dots.innerHTML = '';
+
+          if (upcoming.length === 0) {
+            carouselTrack.innerHTML = '';
+            const section = carouselTrack.closest('.mobile-carousel-section');
+            if (section) section.style.display = 'none';
+          } else {
+            carouselTrack.dataset.carouselReady = 'false';
+            carouselTrack.innerHTML = upcoming.map(c => `
+              <a href="${escapeHtml(c.linkInfo)}" class="carousel-item" aria-label="${escapeHtml(stripHtml(c.title))} - ${escapeHtml(stripHtml(c.dateDisplay))}">
+                <img src="${escapeHtml(c.image.replace('/poster.webp', '/poster-320.webp'))}" alt="${escapeHtml(stripHtml(c.title))}" loading="lazy" width="320" height="427">
+                <div class="carousel-item-info">
+                  <div class="carousel-item-date">${escapeHtml(c.dateDisplay)}</div>
+                  <div class="carousel-item-title">${escapeHtml(c.title)}</div>
+                  <div class="carousel-item-venue">${escapeHtml(c.venue)}</div>
+                </div>
+              </a>
+            `).join('');
+
+            if (typeof window.initSalanCarousel === 'function') {
+              window.initSalanCarousel();
+            } else {
+              window.salanCarouselNeedsInit = true;
+            }
           }
         }
 
         // 2. Render Past (Anteriores) dynamically on top of existing ones
         if (concertsTimeline) {
-          const past = data.filter(c => c.dateISO < today).sort((a, b) => b.dateISO.localeCompare(a.dateISO)); // newest first
+          const past = data.filter(c => concertEndDate(c) < today).sort((a, b) => b.dateISO.localeCompare(a.dateISO)); // newest first
           
           if (past.length > 0) {
             // Group by year
