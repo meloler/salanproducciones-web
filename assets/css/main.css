@@ -551,10 +551,13 @@ ul { list-style: none; }
 }
 .juansalan-quote cite a {
   color: var(--gold);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 .juansalan-quote cite a:hover {
   color: var(--text);
+  text-decoration-thickness: 2px;
 }
 .juansalan-text {
   color: var(--muted);
