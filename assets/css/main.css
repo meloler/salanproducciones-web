@@ -526,14 +526,35 @@ ul { list-style: none; }
 }
 .juansalan-quote {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
   font-weight: 400;
   font-style: italic;
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.45;
   margin-bottom: 28px;
   border-left: 3px solid var(--gold);
   padding-left: 24px;
+}
+.juansalan-quote p {
+  margin: 0;
+}
+.juansalan-quote cite {
+  display: block;
+  margin-top: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.juansalan-quote cite a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.juansalan-quote cite a:hover {
+  color: var(--text);
 }
 .juansalan-text {
   color: var(--muted);
