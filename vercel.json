@@ -88,6 +88,16 @@
     },
 
     {
+      "source": "/rebrote-el-sauzal{/}?",
+      "destination": "/conciertos/2026/rebrote-el-sauzal-03-10-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/rebrote-telde{/}?",
+      "destination": "/conciertos/2026/rebrote-telde-02-10-2026/",
+      "permanent": true
+    },
+    {
       "source": "/the-doors-in-concert-gira-espanola{/}?",
       "destination": "/conciertos-anteriores/",
       "permanent": true

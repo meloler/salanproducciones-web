@@ -156,6 +156,22 @@
     "buttonLabel": "Comprar"
   },
   {
+    "id": "rebrote-el-sauzal-03-10-2026",
+    "status": "scheduled",
+    "dateISO": "2026-10-03",
+    "dateDisplay": "3 Octubre 2026",
+    "title": "Rebrote",
+    "subtitle": "En concierto",
+    "venue": "Teatro El Sauzal · El Sauzal, Tenerife",
+    "badge": "Tenerife",
+    "price": "<strong>27€</strong> G.G incluidos",
+    "image": "/conciertos/2026/rebrote-el-sauzal-03-10-2026/poster.webp",
+    "linkInfo": "/conciertos/2026/rebrote-el-sauzal-03-10-2026/",
+    "linkBuy": "https://tickety.es/event/rebote-en-concierto-en-el-teatro-el-sauzal?utm_source=landing&utm_medium=web&utm_campaign=rebrote-el-sauzal-03-10-2026",
+    "buyAria": "Comprar entradas Rebrote en El Sauzal",
+    "buttonLabel": "Comprar"
+  },
+  {
     "id": "clearwater-creedence-revival-el-sauzal-13-11-2026",
     "status": "coming-soon",
     "dateISO": "2026-11-13",
