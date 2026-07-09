@@ -8,99 +8,668 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Salan Producciones | Concerts and Live Music in Spain</title>
-  <meta name="description" content="Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.">
+  <title>Salán Producciones | Concerts and Live Music in Spain</title>
+  <meta name="description" content="Salán Producciones: más de 38 años organizando conciertos de rock, blues y música live en Gran Canaria, Tenerife y Spain. Juan Salán, promotor musical en Canarias since 1987.">
+  <meta name="keywords" content="conciertos Las Palmas Gran Canaria, música live Canarias, rock en Gran Canaria, conciertos Tenerife, promotor musical Canarias, Juan Salán, Salán Producciones, conciertos rock Canarias, música en vivo Gran Canaria, producción eventos musicales Canarias, blues Canarias, Festival Sonora Las Palmas, WOMEX Gran Canaria">
   <link rel="canonical" href="https://www.salanproducciones.com/en/">
   <link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/">
   <link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/">
   <link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/">
   <link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/">
+  <link rel="preload" as="image" href="/assets/home-banner-1280.webp" imagesrcset="/assets/home-banner-768.webp 768w, /assets/home-banner-1280.webp 1280w, /assets/home-banner-1920.webp 1920w" imagesizes="(max-width: 900px) 92vw, 48vw" fetchpriority="high">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://www.salanproducciones.com/en/">
-  <meta property="og:title" content="Salan Producciones | Concerts and Live Music in Spain">
-  <meta property="og:description" content="Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.">
+  <meta property="og:title" content="Salán Producciones | Concerts and Live Music in Spain">
+  <meta property="og:description" content="La mejor música live y conciertos en Canarias. Más de 38 años de experiencia, pasión por la música y momentos inolvidables. ¡Descubre nuestra agenda!">
   <meta property="og:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
+  <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Salán Producciones">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Salan Producciones | Concerts and Live Music in Spain">
-  <meta name="twitter:description" content="Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.">
-  <meta name="twitter:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
+  <meta name="twitter:title" content="Salán Producciones | Concerts and Live Music in Spain">
+  <meta name="twitter:description" content="La mejor música live y conciertos en Canarias. Más de 38 años de experiencia, pasión por la música y momentos inolvidables. ¡Descubre nuestra agenda!">
+  <meta name="twitter:image" content="https://salanproducciones.vercel.app/assets/images/salan-og.jpg">
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Salán Producciones",
+    "url": "https://www.salanproducciones.com",
+    "logo": "https://www.salanproducciones.com/assets/images/logo-salan.png",
+    "description": "Empresa de producción y promoción de conciertos y música live fundada por Juan Salán en 1987, con más de 38 years of history en Canarias y Spain. Rock, blues, soul y música alternativa live.",
+    "founder": {
+      "@type": "Person",
+      "name": "Juan Salán"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Canarias",
+      "addressCountry": "ES"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+34637138073",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.facebook.com/salanproducciones",
+      "https://www.instagram.com/salanjuan",
+      "https://www.youtube.com/@juansalan"
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+    <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <style>
+  /* ── Carrusel Mobile ── */
+  .mobile-carousel-section {
+    display: none;
+    padding: 0 0 4px;
+    background: var(--bg);
+  }
+  @media (max-width: 768px) {
+    .mobile-carousel-section { display: block; }
+  }
+  .carousel-outer {
+    overflow: hidden;
+    cursor: grab;
+    padding-bottom: 2px;
+  }
+  .carousel-outer.is-dragging { cursor: grabbing; }
+  .carousel-track {
+    display: flex;
+    gap: 10px;
+    padding: 0 12px;
+    width: max-content;
+    will-change: transform;
+  }
+  .carousel-item {
+    display: block;
+    flex-shrink: 0;
+    width: 30vw;
+    max-width: 124px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity .15s;
+  }
+  .carousel-item:active { opacity: .8; }
+  .carousel-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background: #050505;
+    padding: 4px;
+    display: block;
+  }
+  .carousel-item-info {
+    padding: 6px 8px 8px;
+  }
+  .carousel-item-date {
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .carousel-item-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .carousel-item-venue {
+    font-size: .62rem;
+    color: var(--muted);
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding-bottom: 4px;
+  }
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background .25s, width .25s;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .carousel-dot.active {
+    background: var(--gold);
+    width: 18px;
+    border-radius: 3px;
+  }
+  </style>
 </head>
 <body>
+
+<!-- GTM noscript -->
+
+<!-- ===================== HEADER / NAV ===================== -->
 <header class="site-header" role="banner">
   <div class="nav-inner">
-    <a href="/en/" class="nav-logo" aria-label="Salán Producciones">
+    <a href="/en/" class="nav-logo" aria-label="Salán Producciones — inicio">
       <img src="/assets/images/logo-salan.png" alt="Salán Producciones" height="36" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
     </a>
     <nav class="nav-links" aria-label="Main navigation">
       <a href="/en/">Home</a>
-      <a href="/en/upcoming-concerts/">Upcoming concerts</a>
+      <a href="/en/#proximos">Upcoming concerts</a>
       <a href="/en/past-concerts/">Past</a>
       <a href="/en/pub-la-calle/">Pub La Calle</a>
       <a href="/en/cultural-projects/">Cultural projects</a>
       <a href="/en/contact/">Contact</a>
     </nav>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
   <nav class="nav-mobile" aria-label="Mobile menu">
     <a href="/en/">Home</a>
-      <a href="/en/upcoming-concerts/">Upcoming concerts</a>
-      <a href="/en/past-concerts/">Past</a>
-      <a href="/en/pub-la-calle/">Pub La Calle</a>
-      <a href="/en/cultural-projects/">Cultural projects</a>
-      <a href="/en/contact/">Contact</a>
+    <a href="/en/#proximos">Upcoming concerts</a>
+    <a href="/en/past-concerts/">Past</a>
+    <a href="/en/pub-la-calle/">Pub La Calle</a>
+    <a href="/en/cultural-projects/">Cultural projects</a>
+    <a href="/en/contact/">Contact</a>
   </nav>
 </header>
-<section class="page-hero">
-  <div class="container">
-    <p class="page-hero-eyebrow">Music production from the Canary Islands</p>
-    <h1 class="page-hero-title"><span>Concerts and live music</span></h1>
-    <p class="page-hero-desc">Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.</p>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" aria-label="Presentación">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Salán Producciones — Canary Islands · Since 1987</p>
+      <h1 class="hero-title">
+        Live concerts<br>in <em>Spain</em><br>since 1987
+      </h1>
+      <p class="hero-subtitle">
+        A trusted music promoter in Gran Canaria and Tenerife. Rock, blues, soul and alternative live music in the Canary Islands.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">35+</div>
+          <div class="hero-stat-label">Years of history</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">700+</div>
+          <div class="hero-stat-label">concerts produced</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/assets/home-banner-1280.webp" srcset="/assets/home-banner-768.webp 768w, /assets/home-banner-1280.webp 1280w, /assets/home-banner-1920.webp 1920w" sizes="(max-width: 900px) 92vw, 48vw" fetchpriority="high" decoding="async" alt="Firma de Salán Producciones" loading="eager" width="6372" height="1135">
+    </div>
   </div>
 </section>
-<section class="section">
-  <div class="container">
-<div class="bio-card" style="margin-bottom:48px"><div class="bio-text"><h2>Concerts and live music</h2><p>Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.</p><a href="/en/upcoming-concerts/" class="btn btn-primary">Upcoming concerts</a></div></div>
-<div class="section-header reveal"><span class="section-label">Music production from the Canary Islands</span><h2 class="section-title">Upcoming concerts</h2><p class="section-desc">Official ticket links and confirmed dates.</p></div>
-<div class="concerts-grid" id="upcoming-grid"></div>
-</div>
+
+<!-- ===================== CARRUSEL MOBILE ===================== -->
+<section class="mobile-carousel-section" aria-label="Upcoming concerts — vista rápida">
+  <div class="carousel-outer" id="carousel-outer">
+    <div class="carousel-track" id="carousel-track">
+
+      <a href="/en/concerts/2026/poseidon-rock-fest-13-06-2026/" class="carousel-item" aria-label="Poseidón Rock Fest — 13 June 2026">
+        <img src="/conciertos/2026/poseidon-rock-fest-13-06-2026/poster-320.webp" alt="Poseidón Rock Fest 13 junio 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">13 Jun 2026</div>
+          <div class="carousel-item-title">Poseidón Rock Fest</div>
+          <div class="carousel-item-venue">Auditorio Parque San Juan · Telde</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/bywater-call-16-06-2026/" class="carousel-item" aria-label="Bywater Call — 16 June Tenerife">
+        <img src="/conciertos/2026/bywater-call-16-06-2026/poster-320.webp" alt="Bywater Call 16 junio Teatro Leal" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">16 Jun 2026</div>
+          <div class="carousel-item-title">Bywater Call</div>
+          <div class="carousel-item-venue">Teatro Leal · La Laguna, Tenerife</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/bywater-call-17-06-2026/" class="carousel-item" aria-label="Bywater Call — 17 June Gran Canaria">
+        <img src="/conciertos/2026/bywater-call-17-06-2026/poster-320.webp" alt="Bywater Call 17 junio Teatro Guiniguada" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">17 Jun 2026</div>
+          <div class="carousel-item-title">Bywater Call</div>
+          <div class="carousel-item-venue">Teatro Guiniguada · Las Palmas</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/" class="carousel-item" aria-label="Acantha Lang Tour Spain — 24–27 June">
+        <img src="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-320.webp" alt="Acantha Lang Tour Spain 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">24–27 Jun 2026</div>
+          <div class="carousel-item-title">Acantha Lang</div>
+          <div class="carousel-item-venue">Madrid · Valladolid · Toledo · Zaragoza</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/" class="carousel-item" aria-label="Kenny Blues Boss Wayne — Spain Tour Sep 2026">
+        <img src="/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-320.webp" alt="Kenny Blues Boss Wayne Band gira Spain 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">9–20 Sep 2026</div>
+          <div class="carousel-item-title">Kenny "Blues Boss" Wayne</div>
+          <div class="carousel-item-venue">Donosti · Bilbao · Valencia · Barcelona…</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/rebrote-telde-02-10-2026/" class="carousel-item" aria-label="Rebrote — 2 Oct Gran Canaria">
+        <img src="/conciertos/2026/rebrote-telde-02-10-2026/poster-320.webp" alt="Rebrote Telde octubre 2026" loading="lazy" width="320" height="450">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">2 Oct 2026</div>
+          <div class="carousel-item-title">Rebrote</div>
+          <div class="carousel-item-venue">Teatro J. R. Jiménez · Telde</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/rebrote-el-sauzal-03-10-2026/" class="carousel-item" aria-label="Rebrote — 3 Oct Tenerife">
+        <img src="/conciertos/2026/rebrote-el-sauzal-03-10-2026/poster-320.webp" alt="Rebrote El Sauzal octubre 2026" loading="lazy" width="320" height="448">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">3 Oct 2026</div>
+          <div class="carousel-item-title">Rebrote</div>
+          <div class="carousel-item-venue">Teatro El Sauzal · Tenerife</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" class="carousel-item" aria-label="Clearwater Creedence Revival — 13 Nov Tenerife">
+        <img src="/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-320.webp" alt="Clearwater Creedence Revival El Sauzal noviembre 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">13 Nov 2026</div>
+          <div class="carousel-item-title">Clearwater Creedence Revival</div>
+          <div class="carousel-item-venue">Teatro El Sauzal · Tenerife</div>
+        </div>
+      </a>
+
+      <a href="/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/" class="carousel-item" aria-label="Clearwater Creedence Revival — 14 Nov Gran Canaria">
+        <img src="/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-320.webp" alt="Clearwater Creedence Revival Telde noviembre 2026" loading="lazy" width="320" height="427">
+        <div class="carousel-item-info">
+          <div class="carousel-item-date">14 Nov 2026</div>
+          <div class="carousel-item-title">Clearwater Creedence Revival</div>
+          <div class="carousel-item-venue">Teatro J. R. Jiménez · Telde</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <div class="carousel-dots" id="carousel-dots" aria-hidden="true"></div>
 </section>
+
+<!-- ===================== PRÓXIMOS CONCIERTOS ===================== -->
+<section class="section" id="proximos" aria-labelledby="proximos-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Now on sale</span>
+      <h2 class="section-title" id="proximos-title">Upcoming <span>Concerts</span></h2>
+      <p class="section-desc">Get your tickets before they sell out.</p>
+    </div>
+
+    <div class="concerts-grid" id="upcoming-grid">
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/poseidon-rock-fest-13-06-2026/poster-768.webp" srcset="/conciertos/2026/poseidon-rock-fest-13-06-2026/poster-320.webp 320w, /conciertos/2026/poseidon-rock-fest-13-06-2026/poster-480.webp 480w, /conciertos/2026/poseidon-rock-fest-13-06-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Poseidón Rock Fest — 13 June 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Festival</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">13 June 2026</div>
+          <h3 class="concert-card-title">Poseidón Rock Fest</h3>
+          <p class="concert-card-venue">Auditorio Parque San Juan · Telde</p>
+          <p class="concert-card-price"><strong>H.E.A.T · Kadavar · The Zeronaut · Malamutte</strong><br>From <strong>40 €</strong></p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/poseidon-rock-fest-13-06-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://tickety.es/event/poseidon-rock-fest" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Poseidón Rock Fest Telde">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/bywater-call-16-06-2026/poster-768.webp" srcset="/conciertos/2026/bywater-call-16-06-2026/poster-320.webp 320w, /conciertos/2026/bywater-call-16-06-2026/poster-480.webp 480w, /conciertos/2026/bywater-call-16-06-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Bywater Call — 16 June 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Tenerife</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">16 June 2026</div>
+          <h3 class="concert-card-title">Bywater Call</h3>
+          <p class="concert-card-venue">Teatro Leal · La Laguna, Tenerife</p>
+          <p class="concert-card-price">From <strong>25 €</strong></p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/bywater-call-16-06-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://tickety.es/event/bywater-call-teatro-leal-de-la-laguna" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Bywater Call Teatro Leal La Laguna">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/bywater-call-17-06-2026/poster-768.webp" srcset="/conciertos/2026/bywater-call-17-06-2026/poster-320.webp 320w, /conciertos/2026/bywater-call-17-06-2026/poster-480.webp 480w, /conciertos/2026/bywater-call-17-06-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Bywater Call — 17 June 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Gran Canaria</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">17 June 2026</div>
+          <h3 class="concert-card-title">Bywater Call</h3>
+          <p class="concert-card-venue">Teatro Guiniguada · Las Palmas de Gran Canaria</p>
+          <p class="concert-card-price">From <strong>25 €</strong></p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/bywater-call-17-06-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://entradas.elteatroguiniguada.com/es/concierto-de-bywater-call--20260617-2000" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Bywater Call Teatro Guiniguada Las Palmas">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-768.webp" srcset="/conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-320.webp 320w, /conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-480.webp 480w, /conciertos/2026/acantha-lang-tour-espana-28-06-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Acantha Lang Tour Spain 2026 — 24–27 June 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Mainland Spain Tour</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">24–27 June 2026</div>
+          <h3 class="concert-card-title">Acantha Lang<br><small style="font-size:.75em;color:var(--muted)">Tour Spain 2026</small></h3>
+          <p class="concert-card-venue">Madrid · Valladolid · Toledo · Zaragoza</p>
+          <p class="concert-card-price">From <strong>25 €</strong></p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://entradas.babylonmadrid.com/es/babylon-jazz-club/Acantha-Lang/" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Acantha Lang en Madrid — 24 junio 2026">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-768.webp" srcset="/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-320.webp 320w, /conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-480.webp 480w, /conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Kenny Blues Boss Wayne Band — 9–20 September 2026" loading="lazy" width="400" height="563" decoding="async">
+          <span class="concert-card-badge">Spain Tour</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">9–20 September 2026</div>
+          <h3 class="concert-card-title">Kenny "Blues Boss" Wayne Band</h3>
+          <p class="concert-card-venue">Spain Tour — Donosti, Bilbao, Ponferrada, Santiago, Coruña, Valladolid, Zaragoza, Castellón, Valencia, Barcelona</p>
+          <p class="concert-card-price"><strong>27,25€</strong> G.G incluidos</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://tickety.es/entity/kenny-blues-boss-wayne?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Kenny Blues Boss Wayne Spain Tour 2026">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/rebrote-telde-02-10-2026/poster-768.webp" srcset="/conciertos/2026/rebrote-telde-02-10-2026/poster-320.webp 320w, /conciertos/2026/rebrote-telde-02-10-2026/poster-480.webp 480w, /conciertos/2026/rebrote-telde-02-10-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Rebrote — 2 October 2026" loading="lazy" width="400" height="563" decoding="async">
+          <span class="concert-card-badge">Gran Canaria</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">2 October 2026</div>
+          <h3 class="concert-card-title">Rebrote<br><small style="font-size:.75em;color:var(--muted)">En concierto</small></h3>
+          <p class="concert-card-venue">Teatro Municipal Juan Ramón Jiménez · Telde</p>
+          <p class="concert-card-price"><strong>26,20€</strong> G.G incluidos</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/rebrote-telde-02-10-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://www.tureservaonline.es/en/events/rebrote-en-concierto?utm_source=landing&utm_medium=web&utm_campaign=agenda-proximos" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Rebrote Telde">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/rebrote-el-sauzal-03-10-2026/poster-768.webp" srcset="/conciertos/2026/rebrote-el-sauzal-03-10-2026/poster-320.webp 320w, /conciertos/2026/rebrote-el-sauzal-03-10-2026/poster-480.webp 480w, /conciertos/2026/rebrote-el-sauzal-03-10-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Rebrote — 3 October 2026" loading="lazy" width="400" height="560" decoding="async">
+          <span class="concert-card-badge">Tenerife</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">3 October 2026</div>
+          <h3 class="concert-card-title">Rebrote<br><small style="font-size:.75em;color:var(--muted)">En concierto</small></h3>
+          <p class="concert-card-venue">Teatro El Sauzal · El Sauzal, Tenerife</p>
+          <p class="concert-card-price"><strong>27€</strong> G.G incluidos</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/rebrote-el-sauzal-03-10-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://tickety.es/event/rebote-en-concierto-en-el-teatro-el-sauzal?utm_source=landing&utm_medium=web&utm_campaign=agenda-proximos" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Rebrote El Sauzal">Buy</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-768.webp" srcset="/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-320.webp 320w, /conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-480.webp 480w, /conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Clearwater Creedence Revival — 13 November 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Tenerife</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">13 November 2026</div>
+          <h3 class="concert-card-title">Clearwater Creedence Revival</h3>
+          <p class="concert-card-venue">Teatro El Sauzal · El Sauzal, Tenerife</p>
+          <p class="concert-card-price">Tickets coming soon</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <button class="btn btn-outline" style="flex:1" disabled>Coming soon</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="concert-card reveal">
+        <div class="concert-card-img">
+          <img src="/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-768.webp" srcset="/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-320.webp 320w, /conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-480.webp 480w, /conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/poster-768.webp 768w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px" alt="Cartel Clearwater Creedence Revival — 14 November 2026" loading="lazy" width="400" height="533" decoding="async">
+          <span class="concert-card-badge">Gran Canaria</span>
+        </div>
+        <div class="concert-card-body">
+          <div class="concert-card-date">14 November 2026</div>
+          <h3 class="concert-card-title">Clearwater Creedence Revival</h3>
+          <p class="concert-card-venue">Teatro Juan Ramón Jiménez · Telde</p>
+          <p class="concert-card-price"><strong>26,20€</strong> G.G incluidos</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a href="/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+            <a href="https://www.tureservaonline.es/es/events/clearwater-creedence-revival" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="Buy tickets Clearwater Creedence Revival Telde">Buy</a>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /concerts-grid -->
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== JUAN SALÁN ===================== -->
+<section class="section juansalan-section" id="sobre-nosotros" aria-labelledby="salan-title">
+  <div class="container">
+    <div class="juansalan-inner">
+
+      <div class="juansalan-photo reveal">
+        <div class="juansalan-photo-frame">
+          <img src="/assets/images/juan-salan.webp"
+               alt="Juan Salán, fundador y promotor musical de Salán Producciones"
+               loading="lazy"
+               width="756" height="1008"
+               style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+        </div>
+      </div>
+
+      <div class="reveal">
+        <span class="section-label">El hombre detrás de los conciertos</span>
+        <h2 class="section-title" id="salan-title" style="margin-bottom:24px">
+          Juan <span>Salán</span>
+        </h2>
+        <blockquote class="juansalan-quote">
+          <p>"La capacidad de generar conocimiento para interpretar la realidad es la diferencia entre programar actividades y construir cultura. Ese ha sido el legado de Juan Salán durante casi cuarenta años"</p>
+          <cite>
+            <a href="https://www.laprovincia.es/opinion/2026/06/28/juan-salan-club-la-provincia-supersubmarina-m-clan-ilegales-131801899.html"
+               target="_blank" rel="noopener">
+              Antonio Cacereño, La Provincia
+            </a>
+          </cite>
+        </blockquote>
+        <p class="juansalan-text">
+          Nacido en Burdeos y afincado en Canarias since 1987, Juan Salán es uno de los promotores musicales más longevos e influyentes del archipiélago. Fundó <strong style="color:var(--text)">Salán Producciones</strong> ese mismo año, arrancando con el legendario <strong style="color:var(--text)">Pub La Calle</strong> (1988–2000) como primer gran proyecto: durante doce años, la única sala dedicada al rock live de las Islas Canarias.
+        </p>
+        <p class="juansalan-text">
+          Entre sus hitos: los <strong style="color:var(--text)">Ramones en Los Tarahales (1993)</strong>, Chuck Berry en Telde, Extremoduro, Los Rodríguez, Wilko Johnson… y hoy WOMEX Gran Canaria 2026. En 2023 fue nombrado <strong style="color:var(--text)">Hijo Adoptivo de Las Palmas de Gran Canaria</strong> por unanimidad del pleno municipal. Lleva 38 años apostando por el directo con una sola filosofía: "Lo difícil es permanecer después del caos."
+        </p>
+        <div class="juansalan-highlights">
+          <div>
+            <div class="juansalan-hl-num">35+</div>
+            <div class="juansalan-hl-txt">Años en activo</div>
+          </div>
+          <div>
+            <div class="juansalan-hl-num">700+</div>
+            <div class="juansalan-hl-txt">concerts produced</div>
+          </div>
+        </div>
+        <a href="/en/past-concerts/" class="btn btn-outline">
+          Ver historial de conciertos
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===================== PUB LA CALLE TEASER ===================== -->
+<section class="section section-alt" aria-labelledby="pubcalle-teaser-title">
+  <div class="container">
+    <div class="pubcalle-teaser-grid">
+
+      <div class="reveal">
+        <span class="section-label">Legado</span>
+        <h2 class="section-title" id="pubcalle-teaser-title" style="margin-bottom:20px">
+          Pub <span>La Calle</span><br>
+          <small style="font-size:.5em;color:var(--muted);font-weight:400">1988 — 2000</small>
+        </h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:16px;font-size:.95rem">
+          Durante doce años, el Pub La Calle fue el corazón de la escena musical alternativa en Las Palmas de Gran Canaria. Una sala que se atrevió con lo que nadie más se atrevía: traer a los mejores del rock nacional e internacional al Puerto de la ciudad.
+        </p>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:28px;font-size:.95rem">
+          Extremoduro, Los Rodríguez, Dover, M-Clan, Siniestro Total, The Yardbirds… pasaron por su escenario. Un legado que sigue vivo en la memoria de toda una generación canaria.
+        </p>
+        <a href="/en/pub-la-calle/" class="btn btn-outline">Descubrir la historia</a>
+      </div>
+
+      <div class="reveal pubcalle-teaser-tags">
+        <!-- Artista tags representativos -->
+        <span class="pubcalle-artist-tag">Extremoduro</span>
+        <span class="pubcalle-artist-tag">Los Rodríguez</span>
+        <span class="pubcalle-artist-tag">Siniestro Total</span>
+        <span class="pubcalle-artist-tag">Los Suaves</span>
+        <span class="pubcalle-artist-tag">Dover</span>
+        <span class="pubcalle-artist-tag">M-Clan</span>
+        <span class="pubcalle-artist-tag">The Godfathers</span>
+        <span class="pubcalle-artist-tag">Robyn Hitchcock</span>
+        <span class="pubcalle-artist-tag">The Yardbirds</span>
+        <span class="pubcalle-artist-tag">Long Ryders</span>
+        <span class="pubcalle-artist-tag">Obús</span>
+        <span class="pubcalle-artist-tag">Los Enemigos</span>
+        <span class="pubcalle-artist-tag">Del Tonos</span>
+        <span class="pubcalle-artist-tag">El Inquilino Comunista</span>
+        <span class="pubcalle-artist-tag">Marañones</span>
+        <span class="pubcalle-artist-tag">+ muchos más</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="newsletter-section" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title" id="newsletter-title">
+        Entérate el primero 🎸
+      </h2>
+      <p class="newsletter-desc">
+        Suscríbete y recibe los próximos conciertos antes de que se anuncien oficialmente.
+      </p>
+      <div class="newsletter-form-container">
+        <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/cmb7ofbqv5jgi0y0ipx3q1au0" method="POST">
+          <input class="newsletter-form-input" type="text" name="firstName" placeholder="Tu nombre (opcional)" autocomplete="given-name" aria-label="Nombre (opcional)">
+          <input class="newsletter-form-input" type="email" name="newsletter-form-input" placeholder="Tu email" required aria-label="Correo electrónico" autocomplete="email">
+          <button type="submit" class="newsletter-form-button btn btn-primary">Suscribirme</button>
+          <button type="button" class="newsletter-loading-button btn btn-primary" style="display:none;">Enviando…</button>
+        </form>
+        <div class="newsletter-success" style="display:none;">
+          <p class="newsletter-success-message">¡Gracias por suscribirte!</p>
+        </div>
+        <div class="newsletter-error" style="display:none;">
+          <p class="newsletter-error-message">Algo salió mal, inténtalo de nuevo.</p>
+        </div>
+        <button class="newsletter-back-button" type="button" style="display:none;">← Volver</button>
+      </div>
+      <p class="newsletter-privacy">
+        Sin spam. Puedes darte de baja cuando quieras. <a href="/en/privacy/">Privacy policy</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-inner">
+
       <div>
         <div class="footer-brand-name">Salán <span>Producciones</span></div>
-        <p class="footer-brand-desc">More than 35 years producing and promoting live music in the Canary Islands and Spain.</p>
-        <div class="footer-social" aria-label="Social media">
+        <p class="footer-brand-desc">
+          More than 35 years producing and promoting live music in the Canary Islands and Spain. A project by Juan Salán.
+        </p>
+        <div class="footer-social" aria-label="Redes sociales">
           <a href="https://www.facebook.com/salanproducciones" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
           <a href="https://www.instagram.com/salanjuan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
           <a href="https://www.youtube.com/@juansalan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">yt</a>
         </div>
       </div>
+
       <div>
         <div class="footer-col-title">Sections</div>
         <ul class="footer-links">
-          <li><a href="/en/upcoming-concerts/">Upcoming concerts</a></li>
+          <li><a href="/en/#proximos">Upcoming concerts</a></li>
           <li><a href="/en/past-concerts/">Past concerts</a></li>
           <li><a href="/en/pub-la-calle/">Pub La Calle</a></li>
-          <li><a href="/en/cultural-projects/">Cultural projects</a></li>
           <li><a href="/en/contact/">Contact</a></li>
         </ul>
       </div>
+
       <div>
         <div class="footer-col-title">Contact</div>
-        <div class="footer-contact-item"><span>Tel</span><a href="tel:+34637138073">637 138 073</a></div>
-        <div class="footer-contact-item"><span>Email</span><a href="/en/contact/">Contact</a></div>
-        <div class="footer-contact-item"><span>Map</span><span>Canary Islands, Spain</span></div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:+34637138073">637 138 073</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>📧</span>
+          <a href="/en/contact/">Contact form</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Canary Islands, Spain</span>
+        </div>
       </div>
+
     </div>
+
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Salán Producciones SL.</p>
+      <p class="footer-copy">© 2026 Salán Producciones SL. All rights reserved.</p>
       <div class="footer-legal">
         <a href="/en/privacy/">Privacy</a>
         <a href="/en/legal-notice/">Legal notice</a>
@@ -109,14 +678,152 @@
     </div>
   </div>
 </footer>
+
+
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111111;border-top:1px solid #2a2a2a;padding:18px 24px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-  <p style="margin:0;font-size:.85rem;color:#888;max-width:680px;line-height:1.5">We use first-party and third-party cookies for analytics, advertising and basic site operation. <a href="/en/cookies/" style="color:#e8c44d;text-decoration:underline">More information</a></p>
+  <p style="margin:0;font-size:.85rem;color:#888;max-width:680px;line-height:1.5">
+    We use first-party and third-party cookies for analytics, advertising and basic site operation. You can accept all cookies or only the necessary ones.
+    <a href="/en/cookies/" style="color:#e8c44d;text-decoration:underline">More information</a>
+  </p>
   <div style="display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap">
     <button id="ck-accept-necessary" style="padding:10px 20px;background:transparent;color:#888;border:1px solid #2a2a2a;border-radius:4px;cursor:pointer;font-size:.85rem;font-family:inherit;white-space:nowrap">Necessary only</button>
     <button id="ck-accept-all" style="padding:10px 20px;background:#e8c44d;color:#000;border:none;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:inherit;white-space:nowrap">Accept all</button>
   </div>
 </div>
+
 <script src="/assets/js/cookies.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
+<script>
+(function() {
+  window.initVenuenCarousel = function() {
+  var outer = document.getElementById('carousel-outer');
+  var track = document.getElementById('carousel-track');
+  var dotsEl = document.getElementById('carousel-dots');
+  if (!outer || !track || !dotsEl) return;
+  if (track.dataset.carouselReady === 'true') return;
+  track.dataset.carouselReady = 'true';
+
+  var items = Array.prototype.slice.call(track.querySelectorAll('.carousel-item'));
+  var total = items.length;
+  if (!total) return;
+  var paused = false;
+  var offset = 0;
+  var rafId = null;
+  var halfWidth = 0;
+  var speed = 0.45; // px por frame — ajusta aquí la velocidad
+
+  // Duplicar items para loop infinito
+  items.forEach(function(item) {
+    var clone = item.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute('tabindex', '-1');
+    track.appendChild(clone);
+  });
+
+  // Dots
+  var dotEls = [];
+  items.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Concierto ' + (i + 1) + ' de ' + total);
+    dot.addEventListener('click', function() { jumpTo(i); });
+    dotsEl.appendChild(dot);
+    dotEls.push(dot);
+  });
+
+  function updateDots() {
+    // Calcula qué item está más centrado en pantalla
+    var center = offset + outer.offsetWidth / 2;
+    var nearIdx = 0, minDist = Infinity;
+    items.forEach(function(item, i) {
+      var c = item.offsetLeft + item.offsetWidth / 2;
+      var d = Math.abs(c - center);
+      if (d < minDist) { minDist = d; nearIdx = i; }
+    });
+    dotEls.forEach(function(d, i) { d.classList.toggle('active', i === nearIdx); });
+  }
+
+  function jumpTo(idx) {
+    var item = items[idx];
+    var padLeft = parseInt(getComputedStyle(track).paddingLeft) || 12;
+    offset = item.offsetLeft - padLeft - (outer.offsetWidth - item.offsetWidth) / 2;
+    if (offset < 0) offset = 0;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  }
+
+  function loop() {
+    if (!paused) {
+      offset += speed;
+      // Reset silencioso cuando llega a la mitad (items duplicados)
+      if (offset >= halfWidth) offset -= halfWidth;
+      track.style.transform = 'translateX(' + (-offset) + 'px)';
+      updateDots();
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function init() {
+    // halfWidth = ancho de los items originales (mitad del track total duplicado)
+    halfWidth = track.scrollWidth / 2;
+    offset = 0;
+    loop();
+  }
+
+  // Touch: pausar al tocar, reanudar al soltar
+  outer.addEventListener('touchstart', function() { paused = true; }, { passive: true });
+  outer.addEventListener('touchend', function() {
+    setTimeout(function() { paused = false; }, 600);
+  }, { passive: true });
+
+  // Mouse drag
+  var dragX = 0, dragOffset = 0, dragging = false;
+  outer.addEventListener('mousedown', function(e) {
+    dragging = true;
+    dragX = e.clientX;
+    dragOffset = offset;
+    paused = true;
+    outer.classList.add('is-dragging');
+  });
+  document.addEventListener('mousemove', function(e) {
+    if (!dragging) return;
+    var delta = dragX - e.clientX;
+    offset = dragOffset + delta;
+    if (offset < 0) offset = 0;
+    if (halfWidth > 0 && offset >= halfWidth) offset -= halfWidth;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  });
+  document.addEventListener('mouseup', function() {
+    if (!dragging) return;
+    dragging = false;
+    outer.classList.remove('is-dragging');
+    setTimeout(function() { paused = false; }, 400);
+  });
+
+  // Swipe táctil manual
+  var touchStartX = 0, touchOffset = 0;
+  outer.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchOffset = offset;
+  }, { passive: true });
+  outer.addEventListener('touchmove', function(e) {
+    var delta = touchStartX - e.touches[0].clientX;
+    offset = touchOffset + delta;
+    if (offset < 0) offset = 0;
+    if (halfWidth > 0 && offset >= halfWidth) offset -= halfWidth;
+    track.style.transform = 'translateX(' + (-offset) + 'px)';
+    updateDots();
+  }, { passive: true });
+
+  init();
+  };
+
+  if (window.salanCarouselNeedsInit) {
+    window.salanCarouselNeedsInit = false;
+    window.initVenuenCarousel();
+  }
+})();
+</script>
 </body>
 </html>

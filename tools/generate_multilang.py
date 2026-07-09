@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import html
 import json
 import re
 from pathlib import Path
@@ -10,569 +9,544 @@ ROOT = Path(__file__).resolve().parents[1]
 DOMAIN = "https://www.salanproducciones.com"
 
 
-STATIC_PAGES = [
-    {
-        "key": "home",
-        "es": "/",
-        "en": "/en/",
-        "de": "/de/",
-        "title": {"en": "Salan Producciones | Concerts and Live Music in Spain", "de": "Salan Producciones | Konzerte und Live-Musik in Spanien"},
-        "h1": {"en": "Concerts and live music", "de": "Konzerte und Live-Musik"},
-        "eyebrow": {"en": "Music production from the Canary Islands", "de": "Musikproduktion von den Kanarischen Inseln"},
-        "desc": {
-            "en": "Salán Producciones promotes rock, blues, soul and cultural events in the Canary Islands and across Spain. Discover upcoming concerts and official ticket links.",
-            "de": "Salán Producciones veranstaltet Rock-, Blues-, Soul- und Kulturereignisse auf den Kanarischen Inseln und in ganz Spanien. Entdecke kommende Konzerte und offizielle Ticketlinks.",
-        },
-        "cta": {"en": "Upcoming concerts", "de": "Kommende Konzerte"},
-        "cta_url": {"en": "/en/upcoming-concerts/", "de": "/de/kommende-konzerte/"},
-    },
-    {
-        "key": "upcoming",
-        "es": "/proximos-conciertos/",
-        "en": "/en/upcoming-concerts/",
-        "de": "/de/kommende-konzerte/",
-        "title": {"en": "Upcoming Concerts in Spain | Salan Producciones", "de": "Kommende Konzerte in Spanien | Salan Producciones"},
-        "h1": {"en": "Upcoming concerts in Spain", "de": "Kommende Konzerte in Spanien"},
-        "eyebrow": {"en": "Agenda", "de": "Agenda"},
-        "desc": {
-            "en": "Official agenda for the concerts promoted by Salán Producciones. Rock, blues, soul and live music in the Canary Islands and Spain.",
-            "de": "Offizielle Agenda der von Salán Producciones produzierten Konzerte. Rock, Blues, Soul und Live-Musik auf den Kanaren und in Spanien.",
-        },
-        "grid": "agenda-grid",
-    },
-    {
-        "key": "past",
-        "es": "/conciertos-anteriores/",
-        "en": "/en/past-concerts/",
-        "de": "/de/vergangene-konzerte/",
-        "title": {"en": "Past Concerts | Salan Producciones", "de": "Vergangene Konzerte | Salan Producciones"},
-        "h1": {"en": "Past concerts", "de": "Vergangene Konzerte"},
-        "eyebrow": {"en": "Archive", "de": "Archiv"},
-        "desc": {
-            "en": "A living archive of concerts and cultural projects promoted by Salán Producciones over more than three decades.",
-            "de": "Ein lebendiges Archiv der Konzerte und Kulturprojekte, die Salán Producciones seit mehr als drei Jahrzehnten begleitet.",
-        },
-        "grid": "concerts-timeline",
-    },
-    {
-        "key": "pub",
-        "es": "/pub-la-calle/",
-        "en": "/en/pub-la-calle/",
-        "de": "/de/pub-la-calle/",
-        "title": {"en": "Pub La Calle | Rock venue in Las Palmas 1988-2000", "de": "Pub La Calle | Rockclub in Las Palmas 1988-2000"},
-        "h1": {"en": "Pub La Calle", "de": "Pub La Calle"},
-        "eyebrow": {"en": "Legacy", "de": "Geschichte"},
-        "desc": {
-            "en": "The story of Pub La Calle, the Las Palmas venue that became part of the musical memory of the Canary Islands between 1988 and 2000.",
-            "de": "Die Geschichte des Pub La Calle, des Clubs in Las Palmas, der zwischen 1988 und 2000 Teil des musikalischen Gedächtnisses der Kanarischen Inseln wurde.",
-        },
-        "body": {
-            "en": "This section preserves the memory of a venue, a scene and a way of understanding live music. The Spanish page remains the source text for names, dates and historical details.",
-            "de": "Dieser Bereich bewahrt die Erinnerung an einen Club, eine Szene und eine besondere Art, Live-Musik zu verstehen. Die spanische Seite bleibt die Quelle für Namen, Daten und historische Details.",
-        },
-    },
-    {
-        "key": "cultural",
-        "es": "/proyectosculturales/",
-        "en": "/en/cultural-projects/",
-        "de": "/de/kulturprojekte/",
-        "title": {"en": "Cultural Projects | Salan Producciones", "de": "Kulturprojekte | Salan Producciones"},
-        "h1": {"en": "Cultural projects", "de": "Kulturprojekte"},
-        "eyebrow": {"en": "Beyond concerts", "de": "Mehr als Konzerte"},
-        "desc": {
-            "en": "Festivals, cultural collaborations and special projects connected with music, film and live creation.",
-            "de": "Festivals, kulturelle Kooperationen und besondere Projekte rund um Musik, Film und Live-Kultur.",
-        },
-    },
-    {
-        "key": "contact",
-        "es": "/contacto/",
-        "en": "/en/contact/",
-        "de": "/de/kontakt/",
-        "title": {"en": "Contact | Salan Producciones", "de": "Kontakt | Salan Producciones"},
-        "h1": {"en": "Contact", "de": "Kontakt"},
-        "eyebrow": {"en": "Let us talk", "de": "Kontakt aufnehmen"},
-        "desc": {
-            "en": "Contact Salán Producciones for concert information, tickets, press, collaborations or memories of Pub La Calle.",
-            "de": "Kontaktiere Salán Producciones für Informationen zu Konzerten, Tickets, Presse, Kooperationen oder Erinnerungen an Pub La Calle.",
-        },
-        "form": True,
-    },
-    {
-        "key": "privacy",
-        "es": "/privacidad/",
-        "en": "/en/privacy/",
-        "de": "/de/datenschutz/",
-        "title": {"en": "Privacy Policy | Salan Producciones", "de": "Datenschutzerklarung | Salan Producciones"},
-        "h1": {"en": "Privacy policy", "de": "Datenschutzerklarung"},
-        "eyebrow": {"en": "Legal", "de": "Rechtliches"},
-        "desc": {"en": "Information about privacy and personal data processing on this website.", "de": "Informationen zum Datenschutz und zur Verarbeitung personenbezogener Daten auf dieser Website."},
-        "legal": True,
-    },
-    {
-        "key": "legal",
-        "es": "/aviso-legal/",
-        "en": "/en/legal-notice/",
-        "de": "/de/impressum/",
-        "title": {"en": "Legal Notice | Salan Producciones", "de": "Impressum | Salan Producciones"},
-        "h1": {"en": "Legal notice", "de": "Impressum"},
-        "eyebrow": {"en": "Legal", "de": "Rechtliches"},
-        "desc": {"en": "Legal information about the owner and use of this website.", "de": "Rechtliche Informationen zum Betreiber und zur Nutzung dieser Website."},
-        "legal": True,
-    },
-    {
-        "key": "cookies",
-        "es": "/cookies/",
-        "en": "/en/cookies/",
-        "de": "/de/cookies/",
-        "title": {"en": "Cookie Policy | Salan Producciones", "de": "Cookie-Richtlinie | Salan Producciones"},
-        "h1": {"en": "Cookie policy", "de": "Cookie-Richtlinie"},
-        "eyebrow": {"en": "Legal", "de": "Rechtliches"},
-        "desc": {"en": "Information about the cookies used for analytics, advertising and basic site operation.", "de": "Informationen zu Cookies fuer Analyse, Werbung und den grundlegenden Betrieb der Website."},
-        "legal": True,
-    },
-]
-
-PROJECT_PAGES = [
-    ("womex", "WOMEX", "World music and professional cultural meeting.", "Weltmusik und professionelles Kulturtreffen."),
-    ("cinezin", "Cinezin", "Film, music and independent culture project.", "Projekt fuer Film, Musik und unabhaengige Kultur."),
-    ("festivalsonora", "Festival Sonora", "Music festival and emerging talent platform.", "Musikfestival und Plattform fuer neue Talente."),
+STATIC_ROUTES = [
+    ("index.html", "/", "/en/", "/de/"),
+    ("proximos-conciertos/index.html", "/proximos-conciertos/", "/en/upcoming-concerts/", "/de/kommende-konzerte/"),
+    ("conciertos-anteriores/index.html", "/conciertos-anteriores/", "/en/past-concerts/", "/de/vergangene-konzerte/"),
+    ("pub-la-calle/index.html", "/pub-la-calle/", "/en/pub-la-calle/", "/de/pub-la-calle/"),
+    ("proyectosculturales/index.html", "/proyectosculturales/", "/en/cultural-projects/", "/de/kulturprojekte/"),
+    ("proyectosculturales/womex/index.html", "/proyectosculturales/womex/", "/en/cultural-projects/womex/", "/de/kulturprojekte/womex/"),
+    ("proyectosculturales/cinezin/index.html", "/proyectosculturales/cinezin/", "/en/cultural-projects/cinezin/", "/de/kulturprojekte/cinezin/"),
+    ("proyectosculturales/festivalsonora/index.html", "/proyectosculturales/festivalsonora/", "/en/cultural-projects/festivalsonora/", "/de/kulturprojekte/festivalsonora/"),
+    ("contacto/index.html", "/contacto/", "/en/contact/", "/de/kontakt/"),
+    ("privacidad/index.html", "/privacidad/", "/en/privacy/", "/de/datenschutz/"),
+    ("aviso-legal/index.html", "/aviso-legal/", "/en/legal-notice/", "/de/impressum/"),
+    ("cookies/index.html", "/cookies/", "/en/cookies/", "/de/cookies/"),
 ]
 
 
-def read_json(path: str):
-    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+def read(path: str) -> str:
+    return (ROOT / path).read_text(encoding="utf-8")
 
 
-def write(path: str, content: str):
-    target = ROOT / path
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(content, encoding="utf-8", newline="\n")
-
-
-def abs_url(path: str) -> str:
-    return DOMAIN + path
-
-
-def alt_links(es: str, en: str, de: str, current: str) -> str:
-    canon = {"es": es, "en": en, "de": de}[current]
-    return "\n".join(
-        [
-            f'  <link rel="canonical" href="{abs_url(canon)}">',
-            f'  <link rel="alternate" hreflang="es" href="{abs_url(es)}">',
-            f'  <link rel="alternate" hreflang="en" href="{abs_url(en)}">',
-            f'  <link rel="alternate" hreflang="de" href="{abs_url(de)}">',
-            f'  <link rel="alternate" hreflang="x-default" href="{abs_url(es)}">',
-        ]
-    )
-
-
-def nav(lang: str) -> str:
-    labels = {
-        "en": [("Home", "/en/"), ("Upcoming concerts", "/en/upcoming-concerts/"), ("Past", "/en/past-concerts/"), ("Pub La Calle", "/en/pub-la-calle/"), ("Cultural projects", "/en/cultural-projects/"), ("Contact", "/en/contact/")],
-        "de": [("Start", "/de/"), ("Kommende Konzerte", "/de/kommende-konzerte/"), ("Archiv", "/de/vergangene-konzerte/"), ("Pub La Calle", "/de/pub-la-calle/"), ("Kulturprojekte", "/de/kulturprojekte/"), ("Kontakt", "/de/kontakt/")],
-    }[lang]
-    links = "\n      ".join(f'<a href="{url}">{text}</a>' for text, url in labels)
-    return f"""<header class="site-header" role="banner">
-  <div class="nav-inner">
-    <a href="/{lang}/" class="nav-logo" aria-label="Salán Producciones">
-      <img src="/assets/images/logo-salan.png" alt="Salán Producciones" height="36" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
-    </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      {links}
-    </nav>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </div>
-  <nav class="nav-mobile" aria-label="Mobile menu">
-    {links}
-  </nav>
-</header>"""
-
-
-def footer(lang: str) -> str:
-    copy = {
-        "en": ("More than 35 years producing and promoting live music in the Canary Islands and Spain.", "Sections", "Contact", "Privacy", "Legal notice", "Cookies"),
-        "de": ("Seit mehr als 35 Jahren Produktion und Promotion von Live-Musik auf den Kanaren und in Spanien.", "Bereiche", "Kontakt", "Datenschutz", "Impressum", "Cookies"),
-    }[lang]
-    base = "/en" if lang == "en" else "/de"
-    legal = ("/privacy/", "/legal-notice/", "/cookies/") if lang == "en" else ("/datenschutz/", "/impressum/", "/cookies/")
-    sections = (
-        [("Upcoming concerts", "/upcoming-concerts/"), ("Past concerts", "/past-concerts/"), ("Pub La Calle", "/pub-la-calle/"), ("Cultural projects", "/cultural-projects/"), (copy[2], "/contact/")]
-        if lang == "en"
-        else [("Kommende Konzerte", "/kommende-konzerte/"), ("Archiv", "/vergangene-konzerte/"), ("Pub La Calle", "/pub-la-calle/"), ("Kulturprojekte", "/kulturprojekte/"), (copy[2], "/kontakt/")]
-    )
-    section_links = "\n          ".join(f'<li><a href="{base}{url}">{label}</a></li>' for label, url in sections)
-    return f"""<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand-name">Salán <span>Producciones</span></div>
-        <p class="footer-brand-desc">{copy[0]}</p>
-        <div class="footer-social" aria-label="Social media">
-          <a href="https://www.facebook.com/salanproducciones" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-          <a href="https://www.instagram.com/salanjuan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
-          <a href="https://www.youtube.com/@juansalan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">yt</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">{copy[1]}</div>
-        <ul class="footer-links">
-          {section_links}
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">{copy[2]}</div>
-        <div class="footer-contact-item"><span>Tel</span><a href="tel:+34637138073">637 138 073</a></div>
-        <div class="footer-contact-item"><span>Email</span><a href="{base}{'/contact/' if lang == 'en' else '/kontakt/'}">{copy[2]}</a></div>
-        <div class="footer-contact-item"><span>Map</span><span>Canary Islands, Spain</span></div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Salán Producciones SL.</p>
-      <div class="footer-legal">
-        <a href="{base}{legal[0]}">{copy[3]}</a>
-        <a href="{base}{legal[1]}">{copy[4]}</a>
-        <a href="{base}{legal[2]}" onclick="window.salanCookiesOpen &amp;&amp; window.salanCookiesOpen(); return false;">{copy[5]}</a>
-      </div>
-    </div>
-  </div>
-</footer>"""
-
-
-def cookie_banner(lang: str) -> str:
-    text = {
-        "en": ("We use first-party and third-party cookies for analytics, advertising and basic site operation.", "More information", "Necessary only", "Accept all"),
-        "de": ("Wir verwenden eigene Cookies und Cookies von Drittanbietern fuer Analyse, Werbung und den grundlegenden Betrieb der Website.", "Mehr Informationen", "Nur notwendige", "Alle akzeptieren"),
-    }[lang]
-    return f"""<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111111;border-top:1px solid #2a2a2a;padding:18px 24px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-  <p style="margin:0;font-size:.85rem;color:#888;max-width:680px;line-height:1.5">{text[0]} <a href="/{lang}/cookies/" style="color:#e8c44d;text-decoration:underline">{text[1]}</a></p>
-  <div style="display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap">
-    <button id="ck-accept-necessary" style="padding:10px 20px;background:transparent;color:#888;border:1px solid #2a2a2a;border-radius:4px;cursor:pointer;font-size:.85rem;font-family:inherit;white-space:nowrap">{text[2]}</button>
-    <button id="ck-accept-all" style="padding:10px 20px;background:#e8c44d;color:#000;border:none;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:inherit;white-space:nowrap">{text[3]}</button>
-  </div>
-</div>"""
-
-
-def head(title: str, desc: str, lang: str, es: str, en: str, de: str, image: str = "/assets/images/salan-og.jpg") -> str:
-    locale = "en_US" if lang == "en" else "de_DE"
-    current = {"en": en, "de": de}[lang]
-    return f"""<!DOCTYPE html>
-<html lang="{lang}">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/assets/favicon.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>{html.escape(title)}</title>
-  <meta name="description" content="{html.escape(desc)}">
-{alt_links(es, en, de, lang)}
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="{locale}">
-  <meta property="og:url" content="{abs_url(current)}">
-  <meta property="og:title" content="{html.escape(title)}">
-  <meta property="og:description" content="{html.escape(desc)}">
-  <meta property="og:image" content="{abs_url(image)}">
-  <meta property="og:site_name" content="Salán Producciones">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{html.escape(title)}">
-  <meta name="twitter:description" content="{html.escape(desc)}">
-  <meta name="twitter:image" content="{abs_url(image)}">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="/assets/css/main.css?v=3">
-</head>"""
-
-
-def page_html(page: dict, lang: str) -> str:
-    es, en, de = page["es"], page["en"], page["de"]
-    title = page["title"][lang]
-    desc = page["desc"][lang]
-    body = ""
-    if page.get("grid") == "agenda-grid":
-        body = f'<div class="concerts-grid" id="agenda-grid"></div>'
-    elif page.get("grid") == "concerts-timeline":
-        body = f'<div id="concerts-timeline" class="timeline"></div>'
-    elif page.get("form"):
-        submit = "Send message" if lang == "en" else "Nachricht senden"
-        name = "Name" if lang == "en" else "Name"
-        subject = "Subject" if lang == "en" else "Betreff"
-        message = "Message" if lang == "en" else "Nachricht"
-        body = f"""<form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="384b54b5-88de-4130-b7ed-073508be7aaf">
-  <input type="hidden" name="subject" value="New message from salanproducciones.com">
-  <div class="form-group"><label class="form-label" for="name">{name}</label><input class="form-input" id="name" name="from_name" required></div>
-  <div class="form-group"><label class="form-label" for="email">Email</label><input class="form-input" id="email" name="email" type="email" required></div>
-  <div class="form-group"><label class="form-label" for="subject">{subject}</label><input class="form-input" id="subject" name="category" required></div>
-  <div class="form-group"><label class="form-label" for="message">{message}</label><textarea class="form-textarea" id="message" name="message" required></textarea></div>
-  <button type="submit" class="btn btn-primary btn-lg">{submit}</button>
-</form>"""
-    elif page.get("legal"):
-        body = f'<div class="bio-card"><div class="bio-text"><h2>{html.escape(page["h1"][lang])}</h2><p>{html.escape(desc)}</p><p>Salán Producciones SL. Canary Islands, Spain.</p></div></div>'
-    elif page.get("key") == "cultural":
-        items = "".join(project_card(slug, title, en_desc if lang == "en" else de_desc, lang) for slug, title, en_desc, de_desc in PROJECT_PAGES)
-        body = f'<div class="concerts-grid">{items}</div>'
-    elif page.get("key") == "home":
-        heading = "Upcoming concerts" if lang == "en" else "Kommende Konzerte"
-        intro = "Official ticket links and confirmed dates." if lang == "en" else "Offizielle Ticketlinks und bestätigte Termine."
-        body_text = page.get("body", {}).get(lang, desc)
-        cta = page.get("cta", {}).get(lang)
-        cta_html = f'<a href="{page["cta_url"][lang]}" class="btn btn-primary">{cta}</a>' if cta else ""
-        body = f"""
-<div class="bio-card" style="margin-bottom:48px"><div class="bio-text"><h2>{html.escape(page["h1"][lang])}</h2><p>{html.escape(body_text)}</p>{cta_html}</div></div>
-<div class="section-header reveal"><span class="section-label">{html.escape(page["eyebrow"][lang])}</span><h2 class="section-title">{heading}</h2><p class="section-desc">{intro}</p></div>
-<div class="concerts-grid" id="upcoming-grid"></div>
-"""
-    else:
-        body_text = page.get("body", {}).get(lang, desc)
-        cta = page.get("cta", {}).get(lang)
-        cta_html = f'<a href="{page["cta_url"][lang]}" class="btn btn-primary">{cta}</a>' if cta else ""
-        body = f'<div class="bio-card"><div class="bio-text"><h2>{html.escape(page["h1"][lang])}</h2><p>{html.escape(body_text)}</p>{cta_html}</div></div>'
-    return f"""{head(title, desc, lang, es, en, de)}
-<body>
-{nav(lang)}
-<section class="page-hero">
-  <div class="container">
-    <p class="page-hero-eyebrow">{html.escape(page["eyebrow"][lang])}</p>
-    <h1 class="page-hero-title"><span>{html.escape(page["h1"][lang])}</span></h1>
-    <p class="page-hero-desc">{html.escape(desc)}</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container">{body}</div>
-</section>
-{footer(lang)}
-{cookie_banner(lang)}
-<script src="/assets/js/cookies.js" defer></script>
-<script src="/assets/js/main.js" defer></script>
-</body>
-</html>
-"""
-
-
-def project_card(slug: str, title: str, desc: str, lang: str) -> str:
-    base = "/en/cultural-projects" if lang == "en" else "/de/kulturprojekte"
-    label = "View project" if lang == "en" else "Projekt ansehen"
-    return f"""<article class="concert-card reveal">
-  <div class="concert-card-body">
-    <h2 class="concert-card-title">{html.escape(title)}</h2>
-    <p class="concert-card-venue">{html.escape(desc)}</p>
-    <a href="{base}/{slug}/" class="btn btn-outline">{label}</a>
-  </div>
-</article>"""
-
-
-def translate_concert(c: dict, lang: str) -> dict:
-    d = dict(c)
-    replacements = {
-        "en": {
-            "Abril": "April", "Mayo": "May", "Junio": "June", "Septiembre": "September", "Noviembre": "November",
-            "Gira España": "Spain Tour", "Gira Península": "Mainland Spain Tour", "Canarias": "Canary Islands",
-            "Gran Canaria": "Gran Canaria", "Tenerife": "Tenerife", "Desde": "From", "Entradas próximamente": "Tickets coming soon",
-            "Próximamente": "Coming soon", "Comprar": "Buy", "Agotado": "Sold out", "España": "Spain",
-        },
-        "de": {
-            "Abril": "April", "Mayo": "Mai", "Junio": "Juni", "Septiembre": "September", "Noviembre": "November",
-            "Gira España": "Spanien-Tour", "Gira Península": "Tour Festland Spanien", "Canarias": "Kanarische Inseln",
-            "Gran Canaria": "Gran Canaria", "Tenerife": "Teneriffa", "Desde": "Ab", "Entradas próximamente": "Tickets bald verfügbar",
-            "Próximamente": "Bald verfügbar", "Comprar": "Kaufen", "Agotado": "Ausverkauft", "España": "Spanien",
-        },
-    }[lang]
-    for key in ["dateDisplay", "subtitle", "venue", "badge", "price", "buyAria", "buttonLabel"]:
-        value = d.get(key)
-        if isinstance(value, str):
-            for src, dst in replacements.items():
-                value = value.replace(src, dst)
-            d[key] = value
-    prefix = "/en/concerts/2026/" if lang == "en" else "/de/konzerte/2026/"
-    d["linkInfo"] = prefix + d["id"] + "/"
-    if d.get("linkBuy"):
-        sep = "&" if "?" in d["linkBuy"] else "?"
-        if "utm_source=" not in d["linkBuy"]:
-            d["linkBuy"] = f'{d["linkBuy"]}{sep}utm_source=landing&utm_medium=web&utm_campaign={d["id"]}-{lang}'
-    return d
-
-
-def concert_page(c: dict, lang: str) -> str:
-    slug = c["id"]
-    es = f"/conciertos/2026/{slug}/"
-    en = f"/en/concerts/2026/{slug}/"
-    de = f"/de/konzerte/2026/{slug}/"
-    city = c.get("venue", "").split("·")[-1].strip() if "·" in c.get("venue", "") else c.get("venue", "")
-    h1 = f'{c["title"]} in {city}' if lang == "en" else f'{c["title"]} in {city}'
-    title = f'{h1} | Salan Producciones'
-    desc = (
-        f'Official information and tickets for {c["title"]}. {c.get("dateDisplay", "")}. {c.get("venue", "")}.'
-        if lang == "en"
-        else f'Offizielle Informationen und Tickets für {c["title"]}. {c.get("dateDisplay", "")}. {c.get("venue", "")}.'
-    )
-    buy = "Buy tickets" if lang == "en" else "Tickets kaufen"
-    video = "Watch video" if lang == "en" else "Video ansehen"
-    about = f'About {c["title"]}' if lang == "en" else f'Über {c["title"]}'
-    presents = "Salan Producciones presents" if lang == "en" else "Salan Producciones präsentiert"
-    info_labels = ("Date", "Venue", "Price") if lang == "en" else ("Datum", "Ort", "Preis")
-    preview = f'{c["title"]} live music preview.' if lang == "en" else f'Live-Vorschau von {c["title"]}.'
-    intro = (
-        f'{c["title"]} arrives with a live show promoted by Salán Producciones. Check the confirmed date, venue and official ticket link before booking.'
-        if lang == "en"
-        else f'{c["title"]} kommt mit einer Live-Show von Salán Producciones. Prüfe Datum, Ort und offiziellen Ticketlink vor der Buchung.'
-    )
-    poster = c["image"].replace("/poster.webp", "/poster-768.webp")
-    buy_html = f'<a href="{html.escape(c.get("linkBuy") or es)}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{buy}</a>'
-    schema_name = h1
-    current_url = {"en": en, "de": de}[lang]
-    start_date = f'{c.get("dateISO")}T20:00:00+01:00' if c.get("dateISO") else None
-    end_date = f'{c.get("endDateISO", c.get("dateISO"))}T23:00:00+01:00' if c.get("dateISO") else None
-    schema = {
-        "@context": "https://schema.org",
-        "@type": "MusicEvent",
-        "name": schema_name,
-        "startDate": start_date,
-        "endDate": end_date,
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "url": abs_url(current_url),
-        "image": abs_url(c["image"]),
-        "organizer": {"@type": "Organization", "name": "Salan Producciones", "url": "https://salanproducciones.com"},
-        "performer": {"@type": "MusicGroup", "name": c["title"]},
-        "offers": {"@type": "Offer", "url": c.get("linkBuy") or abs_url(current_url), "priceCurrency": "EUR", "availability": "https://schema.org/InStock"},
-    }
-    breadcrumb_name = "Home" if lang == "en" else "Start"
-    breadcrumb = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": breadcrumb_name, "item": abs_url("/en/" if lang == "en" else "/de/")},
-            {"@type": "ListItem", "position": 2, "name": schema_name, "item": abs_url(current_url)},
-        ],
-    }
-    head_html = head(title, desc, lang, es, en, de, c["image"]).replace(
-        "</head>",
-        f'<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>\n'
-        f'<script type="application/ld+json">{json.dumps(breadcrumb, ensure_ascii=False)}</script>\n</head>',
-    )
-    return f"""{head_html}
-<body>
-{nav(lang)}
-<section class="hero">
-  <div class="hero-grid">
-    <div class="poster-card"><img src="{poster}" alt="{html.escape(c["title"])}" loading="eager" fetchpriority="high" width="900" height="1260"></div>
-    <div class="content-card">
-      <span class="eyebrow">{presents}</span>
-      <h1 class="event-title">{html.escape(h1)}</h1>
-      <p class="event-desc">{html.escape(intro)}</p>
-      <div class="info-grid">
-        <div class="info-item"><div class="info-label">{info_labels[0]}</div><div class="info-value">{html.escape(c.get("dateDisplay", ""))}</div></div>
-        <div class="info-item"><div class="info-label">{info_labels[1]}</div><div class="info-value">{html.escape(c.get("venue", ""))}</div></div>
-        <div class="info-item"><div class="info-label">{info_labels[2]}</div><div class="info-value">{c.get("price", "")}</div></div>
-      </div>
-      <div class="cta-group">{buy_html}<a href="#video" class="btn btn-secondary">{video}</a></div>
-    </div>
-  </div>
-</section>
-<hr class="divider">
-<div id="video" class="section"><h2 class="section-title">{video}</h2><p class="section-sub">{html.escape(preview)}</p></div>
-<hr class="divider">
-<div class="section"><div class="bio-card"><div class="bio-text"><h2>{html.escape(about)}</h2><p>{html.escape(intro)}</p><p>{html.escape(desc)}</p></div></div></div>
-<div class="final-cta-wrap"><div class="final-cta"><div class="final-box"><h2>{buy}</h2><p>{html.escape(desc)}</p>{buy_html}</div></div></div>
-{footer(lang)}
-{cookie_banner(lang)}
-<script src="/assets/js/cookies.js" defer></script>
-<script src="/assets/js/main.js" defer></script>
-</body>
-</html>
-"""
-
-
-def inject_hreflang_into_spanish(path: Path, es: str, en: str, de: str):
-    if not path.exists():
-        return
-    content = path.read_text(encoding="utf-8")
-    if 'rel="alternate" hreflang="en"' in content:
-        return
-    block = "\n" + "\n".join(
-        [
-            f'  <link rel="alternate" hreflang="es" href="{abs_url(es)}">',
-            f'  <link rel="alternate" hreflang="en" href="{abs_url(en)}">',
-            f'  <link rel="alternate" hreflang="de" href="{abs_url(de)}">',
-            f'  <link rel="alternate" hreflang="x-default" href="{abs_url(es)}">',
-        ]
-    )
-    content = re.sub(r'(\s*<link rel="canonical"[^>]+>)', r'\1' + block, content, count=1)
-    if 'property="og:locale"' not in content and '<meta property="og:type"' in content:
-        content = content.replace('<meta property="og:type"', '<meta property="og:locale" content="es_ES">\n  <meta property="og:type"', 1)
+def write(route: str, content: str) -> None:
+    rel = route.strip("/")
+    path = ROOT / (rel + "/index.html" if rel else "index.html")
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
-def update_spanish_pages(concerts: list[dict]):
-    mapping = {p["key"]: p for p in STATIC_PAGES}
-    spanish_paths = {
-        "home": "index.html", "upcoming": "proximos-conciertos/index.html", "past": "conciertos-anteriores/index.html",
-        "pub": "pub-la-calle/index.html", "cultural": "proyectosculturales/index.html", "contact": "contacto/index.html",
-        "privacy": "privacidad/index.html", "legal": "aviso-legal/index.html", "cookies": "cookies/index.html",
-    }
-    for key, rel in spanish_paths.items():
-        p = mapping[key]
-        inject_hreflang_into_spanish(ROOT / rel, p["es"], p["en"], p["de"])
-    for slug, _title, _en, _de in PROJECT_PAGES:
-        inject_hreflang_into_spanish(ROOT / f"proyectosculturales/{slug}/index.html", f"/proyectosculturales/{slug}/", f"/en/cultural-projects/{slug}/", f"/de/kulturprojekte/{slug}/")
+def abs_url(route: str) -> str:
+    return DOMAIN + route
+
+
+def route_map(concerts: list[dict]) -> dict[str, dict[str, str]]:
+    routes = {}
+    for _src, es, en, de in STATIC_ROUTES:
+        routes[es] = {"es": es, "en": en, "de": de}
     for c in concerts:
         slug = c["id"]
-        inject_hreflang_into_spanish(ROOT / f"conciertos/2026/{slug}/index.html", f"/conciertos/2026/{slug}/", f"/en/concerts/2026/{slug}/", f"/de/konzerte/2026/{slug}/")
+        es = f"/conciertos/2026/{slug}/"
+        routes[es] = {"es": es, "en": f"/en/concerts/2026/{slug}/", "de": f"/de/konzerte/2026/{slug}/"}
+    return routes
 
 
-def build_sitemap(concerts: list[dict]):
+def alternate_block(es: str, en: str, de: str, lang: str) -> str:
+    current = {"es": es, "en": en, "de": de}[lang]
+    return "\n".join(
+        [
+            f'  <link rel="canonical" href="{abs_url(current)}">',
+            f'  <link rel="alternate" hreflang="es" href="{abs_url(es)}">',
+            f'  <link rel="alternate" hreflang="en" href="{abs_url(en)}">',
+            f'  <link rel="alternate" hreflang="de" href="{abs_url(de)}">',
+            f'  <link rel="alternate" hreflang="x-default" href="{abs_url(es)}">',
+        ]
+    )
+
+
+def replace_head_seo(html: str, es: str, en: str, de: str, lang: str) -> str:
+    current = {"en": en, "de": de}[lang]
+    html = re.sub(r'<html lang="[^"]*"', f'<html lang="{lang}"', html, count=1)
+    html = re.sub(
+        r'\s*<link rel="canonical"[^>]+>(?:\s*<link rel="alternate"[^>]+>)*',
+        "\n" + alternate_block(es, en, de, lang),
+        html,
+        count=1,
+    )
+    locale = "en_US" if lang == "en" else "de_DE"
+    if 'property="og:locale"' in html:
+        html = re.sub(r'<meta property="og:locale" content="[^"]*">', f'<meta property="og:locale" content="{locale}">', html, count=1)
+    else:
+        html = html.replace("  <!-- Open Graph -->", f"  <!-- Open Graph -->\n  <meta property=\"og:locale\" content=\"{locale}\">", 1)
+    html = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{abs_url(current)}">', html, count=1)
+    return html
+
+
+def translate_common(html: str, lang: str) -> str:
+    en = {
+        "Inicio": "Home",
+        "Próximos conciertos": "Upcoming concerts",
+        "Conciertos anteriores": "Past concerts",
+        "Anteriores": "Past",
+        "Proyectos culturales": "Cultural projects",
+        "Contacto": "Contact",
+        "Navegación principal": "Main navigation",
+        "Menú móvil": "Mobile menu",
+        "Abrir menú": "Open menu",
+        "Formulario de contacto": "Contact form",
+        "Secciones": "Sections",
+        "Privacidad": "Privacy",
+        "Aviso legal": "Legal notice",
+        "Política de privacidad": "Privacy policy",
+        "Política de Cookies": "Cookie policy",
+        "Todos los derechos reservados": "All rights reserved",
+        "Más de 35 años produciendo y promoviendo música en directo en las Islas Canarias y España. Un proyecto de Juan Salán.": "More than 35 years producing and promoting live music in the Canary Islands and Spain. A project by Juan Salán.",
+        "Más de 35 años produciendo y promoviendo música en directo en las Islas Canarias y España.": "More than 35 years producing and promoting live music in the Canary Islands and Spain.",
+        "Islas Canarias, España": "Canary Islands, Spain",
+        "Aceptar todo": "Accept all",
+        "Solo necesarias": "Necessary only",
+        "Más información": "More information",
+        "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "We use first-party and third-party cookies for analytics, advertising and basic site operation. You can accept all cookies or only the necessary ones.",
+        "Comprar Entradas": "Buy tickets",
+        "Comprar entradas": "Buy tickets",
+        "Comprar": "Buy",
+        "Próximamente": "Coming soon",
+        "Entradas próximamente": "Tickets coming soon",
+        "Agotado": "Sold out",
+        "Ver vídeo": "Watch video",
+        "Vídeo del show": "Show video",
+        "Sobre ": "About ",
+        "Ciudad": "City",
+        "Fecha": "Date",
+        "Hora": "Time",
+        "Sala": "Venue",
+        "Precio": "Price",
+        "Aforo": "Capacity",
+        "Desde": "From",
+        "Gira España": "Spain Tour",
+        "Gira Península": "Mainland Spain Tour",
+        "Gran Canaria": "Gran Canaria",
+        "Tenerife": "Tenerife",
+        "España": "Spain",
+        "Enero": "January",
+        "Febrero": "February",
+        "Marzo": "March",
+        "Abril": "April",
+        "Mayo": "May",
+        "Junio": "June",
+        "Julio": "July",
+        "Agosto": "August",
+        "Septiembre": "September",
+        "Octubre": "October",
+        "Noviembre": "November",
+        "Diciembre": "December",
+        "años de trayectoria": "years of history",
+        "Conciertos producidos": "concerts produced",
+        "En cartelera": "Now on sale",
+        "Próximos": "Upcoming",
+        "Conciertos": "Concerts",
+        "en directo": "live",
+        "desde": "since",
+        "Desde": "From",
+        "Salán Producciones presenta": "Salan Producciones presents",
+        "Salan Producciones presenta": "Salan Producciones presents",
+        "artista invitado": "guest artist",
+        "+ artista invitado": "+ guest artist",
+        "Mira un adelanto del directo antes del": "Watch a preview of the live show before",
+        "No te quedes fuera": "Do not miss out",
+        "Consigue tus entradas antes de que se agoten.": "Get your tickets before they sell out.",
+    }
+    de = {
+        "Inicio": "Start",
+        "Próximos conciertos": "Kommende Konzerte",
+        "Conciertos anteriores": "Vergangene Konzerte",
+        "Anteriores": "Archiv",
+        "Proyectos culturales": "Kulturprojekte",
+        "Contacto": "Kontakt",
+        "Navegación principal": "Hauptnavigation",
+        "Menú móvil": "Mobiles Menü",
+        "Abrir menú": "Menü öffnen",
+        "Formulario de contacto": "Kontaktformular",
+        "Secciones": "Bereiche",
+        "Privacidad": "Datenschutz",
+        "Aviso legal": "Impressum",
+        "Política de privacidad": "Datenschutzerklärung",
+        "Política de Cookies": "Cookie-Richtlinie",
+        "Todos los derechos reservados": "Alle Rechte vorbehalten",
+        "Más de 35 años produciendo y promoviendo música en directo en las Islas Canarias y España. Un proyecto de Juan Salán.": "Seit mehr als 35 Jahren Produktion und Promotion von Live-Musik auf den Kanaren und in Spanien. Ein Projekt von Juan Salán.",
+        "Más de 35 años produciendo y promoviendo música en directo en las Islas Canarias y España.": "Seit mehr als 35 Jahren Produktion und Promotion von Live-Musik auf den Kanaren und in Spanien.",
+        "Islas Canarias, España": "Kanarische Inseln, Spanien",
+        "Aceptar todo": "Alle akzeptieren",
+        "Solo necesarias": "Nur notwendige",
+        "Más información": "Mehr Informationen",
+        "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "Wir verwenden eigene Cookies und Cookies von Drittanbietern für Analyse, Werbung und den grundlegenden Betrieb der Website. Du kannst alle oder nur die notwendigen Cookies akzeptieren.",
+        "Comprar Entradas": "Tickets kaufen",
+        "Comprar entradas": "Tickets kaufen",
+        "Comprar": "Kaufen",
+        "Próximamente": "Bald verfügbar",
+        "Entradas próximamente": "Tickets bald verfügbar",
+        "Agotado": "Ausverkauft",
+        "Ver vídeo": "Video ansehen",
+        "Vídeo del show": "Show-Video",
+        "Sobre ": "Über ",
+        "Ciudad": "Stadt",
+        "Fecha": "Datum",
+        "Hora": "Uhrzeit",
+        "Sala": "Ort",
+        "Precio": "Preis",
+        "Aforo": "Kapazität",
+        "Desde": "Ab",
+        "Gira España": "Spanien-Tour",
+        "Gira Península": "Tour Festland Spanien",
+        "Gran Canaria": "Gran Canaria",
+        "Tenerife": "Teneriffa",
+        "España": "Spanien",
+        "Enero": "Januar",
+        "Febrero": "Februar",
+        "Marzo": "März",
+        "Abril": "April",
+        "Mayo": "Mai",
+        "Junio": "Juni",
+        "Julio": "Juli",
+        "Agosto": "August",
+        "Septiembre": "September",
+        "Octubre": "Oktober",
+        "Noviembre": "November",
+        "Diciembre": "Dezember",
+        "años de trayectoria": "Jahre Erfahrung",
+        "Conciertos producidos": "produzierte Konzerte",
+        "En cartelera": "Im Programm",
+        "Próximos": "Kommende",
+        "Conciertos": "Konzerte",
+        "en directo": "live",
+        "desde": "seit",
+        "Desde": "Ab",
+        "Salán Producciones presenta": "Salan Producciones präsentiert",
+        "Salan Producciones presenta": "Salan Producciones präsentiert",
+        "artista invitado": "Gastkünstler",
+        "+ artista invitado": "+ Gastkünstler",
+        "Mira un adelanto del directo antes del": "Sieh dir vorab einen Eindruck der Live-Show an vor dem",
+        "No te quedes fuera": "Nicht verpassen",
+        "Consigue tus entradas antes de que se agoten.": "Sichere dir Tickets, bevor sie ausverkauft sind.",
+    }
+    table = en if lang == "en" else de
+    for src, dst in sorted(table.items(), key=lambda item: len(item[0]), reverse=True):
+        html = html.replace(src, dst)
+    return html
+
+
+def translate_page_specific(html: str, lang: str, key: str) -> str:
+    page = {
+        "home": {
+            "en": {
+                "Salán Producciones — Canarias · Desde 1987": "Salán Producciones — Canary Islands · Since 1987",
+                "Conciertos en directo<br>en <em>España</em><br>desde 1987": "Live concerts<br>in <em>Spain</em><br>since 1987",
+                "Promotor musical de referencia en Gran Canaria y Tenerife. Rock, blues, soul y música alternativa en directo en las Islas Canarias.": "A trusted music promoter in Gran Canaria and Tenerife. Rock, blues, soul and alternative live music in the Canary Islands.",
+                "Años de trayectoria": "Years of history",
+            },
+            "de": {
+                "Salán Producciones — Canarias · Desde 1987": "Salán Producciones — Kanarische Inseln · Seit 1987",
+                "Conciertos en directo<br>en <em>España</em><br>desde 1987": "Live-Konzerte<br>in <em>Spanien</em><br>seit 1987",
+                "Promotor musical de referencia en Gran Canaria y Tenerife. Rock, blues, soul y música alternativa en directo en las Islas Canarias.": "Musikveranstalter auf Gran Canaria und Teneriffa. Rock, Blues, Soul und alternative Live-Musik auf den Kanarischen Inseln.",
+                "Años de trayectoria": "Jahre Erfahrung",
+            },
+        },
+        "past": {
+            "en": {
+                "35+ años de historia": "35+ years of history",
+                "Conciertos <span>Anteriores</span>": "Past <span>Concerts</span>",
+                "Breve repaso a los conciertos producidos por Juan Salán a lo largo de los últimos años en las Islas Canarias y España.": "A brief look back at concerts produced by Juan Salán across the Canary Islands and Spain.",
+                "Todos": "All",
+                "2020 y anteriores": "2020 and earlier",
+            },
+            "de": {
+                "35+ años de historia": "35+ Jahre Geschichte",
+                "Conciertos <span>Anteriores</span>": "Vergangene <span>Konzerte</span>",
+                "Breve repaso a los conciertos producidos por Juan Salán a lo largo de los últimos años en las Islas Canarias y España.": "Ein kurzer Rückblick auf Konzerte, die Juan Salán auf den Kanaren und in Spanien produziert hat.",
+                "Todos": "Alle",
+                "2020 y anteriores": "2020 und früher",
+            },
+        },
+        "pub": {
+            "en": {
+                "Las Palmas de Gran Canaria · 1988 — 2000": "Las Palmas de Gran Canaria · 1988 — 2000",
+                "Durante doce años, el Pub La Calle fue el corazón de la escena musical alternativa en Las Palmas de Gran Canaria. Una sala que equiparó la capital grancanaria con las ciudades más importantes del circuito de conciertos nacional.": "For twelve years, Pub La Calle was the heart of the alternative music scene in Las Palmas de Gran Canaria. A venue that placed the city alongside the most important live circuits in Spain.",
+                "Años de historia": "Years of history",
+                "Año de apertura": "Opening year",
+                "Cierre": "Closed",
+                "Artistas": "Artists",
+                "Recuerdos": "Memories",
+            },
+            "de": {
+                "Las Palmas de Gran Canaria · 1988 — 2000": "Las Palmas de Gran Canaria · 1988 — 2000",
+                "Durante doce años, el Pub La Calle fue el corazón de la escena musical alternativa en Las Palmas de Gran Canaria. Una sala que equiparó la capital grancanaria con las ciudades más importantes del circuito de conciertos nacional.": "Zwölf Jahre lang war Pub La Calle das Herz der alternativen Musikszene in Las Palmas de Gran Canaria. Ein Club, der die Stadt mit den wichtigsten Konzertorten Spaniens verband.",
+                "Años de historia": "Jahre Geschichte",
+                "Año de apertura": "Eröffnung",
+                "Cierre": "Schließung",
+                "Artistas": "Künstler",
+                "Recuerdos": "Erinnerungen",
+            },
+        },
+    }
+    for src, dst in page.get(key, {}).get(lang, {}).items():
+        html = html.replace(src, dst)
+    return html
+
+
+EVENT_TEXT = {
+    "La nueva reina del soul de Nueva Orleans trae su voz extraordinaria y una potencia arrolladora a España. Nominada al Grammy®, comparada con Aretha Franklin y Etta James. Una gira única en 4 ciudades españolas durante junio de 2026.": {
+        "en": "The new queen of New Orleans soul brings her extraordinary voice and unstoppable power to Spain. Grammy-nominated and compared with Aretha Franklin and Etta James, she visits four Spanish cities in June 2026.",
+        "de": "Die neue Queen des New-Orleans-Soul bringt ihre außergewöhnliche Stimme und enorme Kraft nach Spanien. Grammy-nominiert und mit Aretha Franklin und Etta James verglichen, kommt sie im Juni 2026 in vier spanische Städte.",
+    },
+    "La nueva reina del soul nominada al Grammy® vuelve a España en 2026. Con su aclamado álbum \"Beautiful Dreams\", Acantha Lang ofrece un directo elegante, vibrante y lleno de soul auténtico. Una experiencia que no te puedes perder.": {
+        "en": "The Grammy-nominated new queen of soul returns to Spain in 2026. With her acclaimed album \"Beautiful Dreams\", Acantha Lang delivers an elegant, vibrant show full of authentic soul.",
+        "de": "Die Grammy-nominierte neue Queen des Soul kehrt 2026 nach Spanien zurück. Mit ihrem gefeierten Album \"Beautiful Dreams\" liefert Acantha Lang eine elegante, lebendige Show voller echtem Soul.",
+    },
+    "Ex-guitarrista principal de Bunbury durante casi dos décadas. El músico sevillano Álvaro Suite presenta su cuarto álbum en solitario, un viaje que va desde el glam más eléctrico hasta el pop barroco, demostrando por qué es uno de los guitarristas más respetados del rock en español.": {
+        "en": "Former lead guitarist for Bunbury for almost two decades. Seville musician Álvaro Suite presents his fourth solo album, a journey from electric glam to baroque pop that shows why he is one of the most respected guitarists in Spanish rock.",
+        "de": "Fast zwei Jahrzehnte lang Leadgitarrist von Bunbury. Der Musiker aus Sevilla präsentiert sein viertes Soloalbum, eine Reise von elektrischem Glam bis Barock-Pop, die zeigt, warum er zu den angesehensten Gitarristen des spanischen Rock zählt.",
+    },
+    "La reina del punk nacional llega a Telde en una fecha única en Canarias. Ana Curra revivirá el legado de Parálisis Permanente interpretando íntegramente el álbum 'El Acto' junto a sus composiciones más recientes. Un concierto irrepetible para los amantes del punk rock más auténtico.": {
+        "en": "The queen of Spanish punk comes to Telde for a unique Canary Islands date. Ana Curra revisits the legacy of Parálisis Permanente by performing 'El Acto' in full alongside her more recent songs.",
+        "de": "Die Königin des spanischen Punk kommt für ein einmaliges Konzert auf den Kanaren nach Telde. Ana Curra lässt das Erbe von Parálisis Permanente aufleben und spielt 'El Acto' vollständig plus neuere Songs.",
+    },
+    "Una de las bandas más poderosas del soul y roots rock llega a Tenerife. Meghan Parnell y sus seis músicos traen un directo que ha conquistado escenarios en 10 países — 140 conciertos en 2024 — y esta noche aterrizan en el Teatro Leal de La Laguna.": {
+        "en": "One of the most powerful soul and roots rock bands arrives in Tenerife. Meghan Parnell and her six musicians bring a live show that has conquered stages in 10 countries, with 140 concerts in 2024.",
+        "de": "Eine der kraftvollsten Soul- und Roots-Rock-Bands kommt nach Teneriffa. Meghan Parnell und ihre sechs Musiker bringen eine Live-Show, die Bühnen in 10 Ländern erobert hat, mit 140 Konzerten im Jahr 2024.",
+    },
+    "Una de las bandas más poderosas del soul y roots rock llega a Las Palmas de Gran Canaria. Meghan Parnell y sus seis músicos traen un directo que ha conquistado escenarios en 10 países — 140 conciertos en 2024 — y esta noche aterrizan en el Teatro Guiniguada.": {
+        "en": "One of the most powerful soul and roots rock bands arrives in Las Palmas de Gran Canaria. Meghan Parnell and her six musicians bring a live show that has conquered stages in 10 countries, with 140 concerts in 2024.",
+        "de": "Eine der kraftvollsten Soul- und Roots-Rock-Bands kommt nach Las Palmas de Gran Canaria. Meghan Parnell und ihre sechs Musiker bringen eine Live-Show, die Bühnen in 10 Ländern erobert hat, mit 140 Konzerten im Jahr 2024.",
+    },
+    "Creedence Clearwater Revived llega a El Sauzal para revivir el auténtico sonido del Bayou Rock. Liderada por Peter Barton, exvocalista de The Animals, junto a veteranos músicos de Wings y The Hollies, la banda ofrece una recreación magistral del catálogo clásico de John Fogerty.": {
+        "en": "Creedence Clearwater Revived comes to El Sauzal to revive the authentic Bayou Rock sound. Led by Peter Barton, former singer of The Animals, the band delivers a masterful recreation of John Fogerty's classic catalogue.",
+        "de": "Creedence Clearwater Revived kommt nach El Sauzal, um den authentischen Bayou-Rock-Sound wieder aufleben zu lassen. Unter der Leitung von Peter Barton, Ex-Sänger von The Animals, interpretiert die Band John Fogertys Klassiker meisterhaft.",
+    },
+    "Creedence Clearwater Revived llega a Telde para revivir el auténtico sonido del Bayou Rock. Liderada por Peter Barton, exvocalista de The Animals, junto a veteranos músicos de Wings y The Hollies, la banda ofrece una recreación magistral del catálogo clásico de John Fogerty.": {
+        "en": "Creedence Clearwater Revived comes to Telde to revive the authentic Bayou Rock sound. Led by Peter Barton, former singer of The Animals, the band delivers a masterful recreation of John Fogerty's classic catalogue.",
+        "de": "Creedence Clearwater Revived kommt nach Telde, um den authentischen Bayou-Rock-Sound wieder aufleben zu lassen. Unter der Leitung von Peter Barton, Ex-Sänger von The Animals, interpretiert die Band John Fogertys Klassiker meisterhaft.",
+    },
+    "El pianista más electrizante del boogie-woogie desembarca en España con su banda completa. Boogie-Woogie Hall of Fame 2017 · Mejor Pianista de Blues 2024 · Premio Juno al Álbum de Blues.": {
+        "en": "The most electrifying boogie-woogie pianist lands in Spain with his full band. Boogie-Woogie Hall of Fame 2017, Best Blues Pianist 2024 and Juno Award for Blues Album.",
+        "de": "Der elektrisierendste Boogie-Woogie-Pianist kommt mit kompletter Band nach Spanien. Boogie-Woogie Hall of Fame 2017, bester Blues-Pianist 2024 und Juno Award für Blues Album.",
+    },
+    "La primera edición del Poseidón Rock Fest llega a Telde con un cartel brutal: H.E.A.T, Kadavar, The Zeronaut y Malamutte en el Auditorio Parque San Juan. Una noche que pasará a la historia del rock en las Islas Canarias.": {
+        "en": "The first edition of Poseidón Rock Fest arrives in Telde with a powerful line-up: H.E.A.T, Kadavar, The Zeronaut and Malamutte at Auditorio Parque San Juan.",
+        "de": "Die erste Ausgabe des Poseidón Rock Fest kommt nach Telde mit einem starken Line-up: H.E.A.T, Kadavar, The Zeronaut und Malamutte im Auditorio Parque San Juan.",
+    },
+    "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor e Iñigo \"El Profe\" López forman Rebrote. La banda llega a Tenerife con su primer disco homónimo y una alineación que trae carretera, oficio y memoria de escenarios grandes. Una noche de rock con músculo, melodía y canciones propias en el Teatro El Sauzal.": {
+        "en": "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor and Iñigo \"El Profe\" López form Rebrote. The band comes to Tenerife with its self-titled debut album and a line-up shaped by the road, craft and big stages.",
+        "de": "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor und Iñigo \"El Profe\" López bilden Rebrote. Die Band kommt mit ihrem selbstbetitelten Debütalbum nach Teneriffa.",
+    },
+    "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor e Iñigo \"El Profe\" López forman Rebrote. La banda abre en Telde su paso por Canarias con su primer disco homónimo: canciones propias, guitarras con firma y una forma de entender el rock que viene de tocarlo mucho, no de explicarlo demasiado.": {
+        "en": "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor and Iñigo \"El Profe\" López form Rebrote. The band opens its Canary Islands visit in Telde with its self-titled debut album.",
+        "de": "Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor und Iñigo \"El Profe\" López bilden Rebrote. Die Band eröffnet ihren Kanaren-Besuch in Telde mit ihrem selbstbetitelten Debütalbum.",
+    },
+}
+
+EVENT_DESC_BY_SLUG = {
+    "acantha-lang-junio-gira-e-04-06-2026": EVENT_TEXT["La nueva reina del soul de Nueva Orleans trae su voz extraordinaria y una potencia arrolladora a España. Nominada al Grammy®, comparada con Aretha Franklin y Etta James. Una gira única en 4 ciudades españolas durante junio de 2026."],
+    "acantha-lang-tour-espana-28-06-2026": EVENT_TEXT["La nueva reina del soul nominada al Grammy® vuelve a España en 2026. Con su aclamado álbum \"Beautiful Dreams\", Acantha Lang ofrece un directo elegante, vibrante y lleno de soul auténtico. Una experiencia que no te puedes perder."],
+    "alvaro-suite-gran-canaria-01-05-2026": EVENT_TEXT["Ex-guitarrista principal de Bunbury durante casi dos décadas. El músico sevillano Álvaro Suite presenta su cuarto álbum en solitario, un viaje que va desde el glam más eléctrico hasta el pop barroco, demostrando por qué es uno de los guitarristas más respetados del rock en español."],
+    "alvaro-suite-tenerife-30-04-2026": EVENT_TEXT["Ex-guitarrista principal de Bunbury durante casi dos décadas. El músico sevillano Álvaro Suite presenta su cuarto álbum en solitario, un viaje que va desde el glam más eléctrico hasta el pop barroco, demostrando por qué es uno de los guitarristas más respetados del rock en español."],
+    "ana-curra-11-04-2026": EVENT_TEXT["La reina del punk nacional llega a Telde en una fecha única en Canarias. Ana Curra revivirá el legado de Parálisis Permanente interpretando íntegramente el álbum 'El Acto' junto a sus composiciones más recientes. Un concierto irrepetible para los amantes del punk rock más auténtico."],
+    "bywater-call-16-06-2026": EVENT_TEXT["Una de las bandas más poderosas del soul y roots rock llega a Tenerife. Meghan Parnell y sus seis músicos traen un directo que ha conquistado escenarios en 10 países — 140 conciertos en 2024 — y esta noche aterrizan en el Teatro Leal de La Laguna."],
+    "bywater-call-17-06-2026": EVENT_TEXT["Una de las bandas más poderosas del soul y roots rock llega a Las Palmas de Gran Canaria. Meghan Parnell y sus seis músicos traen un directo que ha conquistado escenarios en 10 países — 140 conciertos en 2024 — y esta noche aterrizan en el Teatro Guiniguada."],
+    "clearwater-creedence-revival-el-sauzal-13-11-2026": EVENT_TEXT["Creedence Clearwater Revived llega a El Sauzal para revivir el auténtico sonido del Bayou Rock. Liderada por Peter Barton, exvocalista de The Animals, junto a veteranos músicos de Wings y The Hollies, la banda ofrece una recreación magistral del catálogo clásico de John Fogerty."],
+    "clearwater-creedence-revival-telde-14-11-2026": EVENT_TEXT["Creedence Clearwater Revived llega a Telde para revivir el auténtico sonido del Bayou Rock. Liderada por Peter Barton, exvocalista de The Animals, junto a veteranos músicos de Wings y The Hollies, la banda ofrece una recreación magistral del catálogo clásico de John Fogerty."],
+    "kenny-blues-boss-wayne-gira-espana-2026": EVENT_TEXT["El pianista más electrizante del boogie-woogie desembarca en España con su banda completa. Boogie-Woogie Hall of Fame 2017 · Mejor Pianista de Blues 2024 · Premio Juno al Álbum de Blues."],
+    "poseidon-rock-fest-13-06-2026": EVENT_TEXT["La primera edición del Poseidón Rock Fest llega a Telde con un cartel brutal: H.E.A.T, Kadavar, The Zeronaut y Malamutte en el Auditorio Parque San Juan. Una noche que pasará a la historia del rock en las Islas Canarias."],
+    "rebrote-el-sauzal-03-10-2026": EVENT_TEXT["Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor e Iñigo \"El Profe\" López forman Rebrote. La banda llega a Tenerife con su primer disco homónimo y una alineación que trae carretera, oficio y memoria de escenarios grandes. Una noche de rock con músculo, melodía y canciones propias en el Teatro El Sauzal."],
+    "rebrote-telde-02-10-2026": EVENT_TEXT["Iñaki \"Uoho\" Antón, Jaime Moreno, José Ignacio Cantera, Miguel Colino, Jaime Tejedor e Iñigo \"El Profe\" López forman Rebrote. La banda abre en Telde su paso por Canarias con su primer disco homónimo: canciones propias, guitarras con firma y una forma de entender el rock que viene de tocarlo mucho, no de explicarlo demasiado."],
+}
+
+
+def translate_event_text(html: str, lang: str) -> str:
+    for src, translations in EVENT_TEXT.items():
+        html = html.replace(src, translations[lang])
+    return html
+
+
+def replace_event_desc(html: str, slug: str | None, lang: str) -> str:
+    if not slug or slug not in EVENT_DESC_BY_SLUG:
+        return html
+    replacement = f'<p class="event-desc">\n                    {EVENT_DESC_BY_SLUG[slug][lang]}\n                </p>'
+    return re.sub(r'<p class="event-desc">.*?</p>', replacement, html, count=1, flags=re.S)
+
+
+def route_for_href(href: str, routes: dict[str, dict[str, str]], lang: str) -> str:
+    if href.startswith("#"):
+        return href
+    if href == "/#proximos":
+        return "/en/#proximos" if lang == "en" else "/de/#proximos"
+    if href in routes:
+        return routes[href][lang]
+    # Strip query/hash for internal page links.
+    match = re.match(r"([^?#]+)([?#].*)?$", href)
+    if match and match.group(1) in routes:
+        return routes[match.group(1)][lang] + (match.group(2) or "")
+    if href.startswith("/conciertos/2026/"):
+        return href.replace("/conciertos/2026/", "/en/concerts/2026/" if lang == "en" else "/de/konzerte/2026/")
+    if href.startswith("/proyectosculturales/"):
+        return href.replace("/proyectosculturales/", "/en/cultural-projects/" if lang == "en" else "/de/kulturprojekte/")
+    common = {
+        "/": "/en/" if lang == "en" else "/de/",
+        "/proximos-conciertos/": "/en/upcoming-concerts/" if lang == "en" else "/de/kommende-konzerte/",
+        "/conciertos-anteriores/": "/en/past-concerts/" if lang == "en" else "/de/vergangene-konzerte/",
+        "/contacto/": "/en/contact/" if lang == "en" else "/de/kontakt/",
+        "/privacidad/": "/en/privacy/" if lang == "en" else "/de/datenschutz/",
+        "/aviso-legal/": "/en/legal-notice/" if lang == "en" else "/de/impressum/",
+        "/cookies/": "/en/cookies/" if lang == "en" else "/de/cookies/",
+        "/pub-la-calle/": "/en/pub-la-calle/" if lang == "en" else "/de/pub-la-calle/",
+    }
+    return common.get(href, href)
+
+
+def rewrite_links(html: str, routes: dict[str, dict[str, str]], lang: str) -> str:
+    def repl(match: re.Match) -> str:
+        quote = match.group(1)
+        href = match.group(2)
+        if not href.startswith("/") or href.startswith("//"):
+            return match.group(0)
+        return f'href={quote}{route_for_href(href, routes, lang)}{quote}'
+
+    return re.sub(r'href=(["\'])(/[^"\']*)\1', repl, html)
+
+
+def rewrite_concert_asset_paths(html: str, slug: str) -> str:
+    base = f"/conciertos/2026/{slug}/"
+    html = html.replace('src="./poster.webp"', f'src="{base}poster.webp"')
+    html = html.replace("src='./poster.webp'", f"src='{base}poster.webp'")
+    html = html.replace("./poster-", base + "poster-")
+    html = html.replace("./poster.webp", base + "poster.webp")
+    return html
+
+
+def apply_meta_titles(html: str, lang: str, key: str, title_hint: str | None = None) -> str:
+    titles = {
+        ("home", "en"): "Salán Producciones | Concerts and Live Music in Spain",
+        ("home", "de"): "Salán Producciones | Konzerte und Live-Musik in Spanien",
+        ("past", "en"): "Past Concerts | Salán Producciones",
+        ("past", "de"): "Vergangene Konzerte | Salán Producciones",
+        ("pub", "en"): "Pub La Calle Las Palmas — Rock Venue 1988-2000 | Salán Producciones",
+        ("pub", "de"): "Pub La Calle Las Palmas — Rockclub 1988-2000 | Salán Producciones",
+    }
+    title = titles.get((key, lang)) or (title_hint and f"{title_hint} | Salán Producciones")
+    if title:
+        html = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", html, count=1, flags=re.S)
+        html = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{title}">', html, count=1)
+        html = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{title}">', html, count=1)
+    return html
+
+
+def transform(source_html: str, es: str, en: str, de: str, lang: str, routes: dict[str, dict[str, str]], key: str, slug: str | None = None, title_hint: str | None = None) -> str:
+    html = replace_head_seo(source_html, es, en, de, lang)
+    html = rewrite_links(html, routes, lang)
+    html = translate_page_specific(html, lang, key)
+    if key == "concert":
+        html = translate_event_text(html, lang)
+        html = replace_event_desc(html, slug, lang)
+    html = translate_common(html, lang)
+    html = apply_meta_titles(html, lang, key, title_hint)
+    if key == "concert":
+        if lang == "en":
+            html = re.sub(r'(<h1 class="event-title">[^<]+) en ([^<]+</h1>)', r'\1 in \2', html)
+        else:
+            html = re.sub(r'(<h1 class="event-title">[^<]+) en ([^<]+</h1>)', r'\1 in \2', html)
+    if slug:
+        html = rewrite_concert_asset_paths(html, slug)
+    return html
+
+
+def translate_concert_feed(concerts: list[dict], lang: str) -> list[dict]:
+    feed = []
+    for c in concerts:
+        d = dict(c)
+        d["linkInfo"] = f"/en/concerts/2026/{c['id']}/" if lang == "en" else f"/de/konzerte/2026/{c['id']}/"
+        for key in ["dateDisplay", "subtitle", "venue", "badge", "price", "buyAria", "buttonLabel"]:
+            if isinstance(d.get(key), str):
+                d[key] = translate_common(d[key], lang)
+        if d.get("linkBuy") and "utm_source=" not in d["linkBuy"]:
+            sep = "&" if "?" in d["linkBuy"] else "?"
+            d["linkBuy"] = f"{d['linkBuy']}{sep}utm_source=landing&utm_medium=web&utm_campaign={d['id']}-{lang}"
+        feed.append(d)
+    return feed
+
+
+def inject_hreflang_spanish(path: Path, es: str, en: str, de: str) -> None:
+    if not path.exists():
+        return
+    html = path.read_text(encoding="utf-8")
+    html = re.sub(
+        r'\s*<link rel="canonical"[^>]+>(?:\s*<link rel="alternate"[^>]+>)*',
+        "\n" + alternate_block(es, en, de, "es"),
+        html,
+        count=1,
+    )
+    if 'property="og:locale"' not in html:
+        html = html.replace("  <!-- Open Graph -->", '  <!-- Open Graph -->\n  <meta property="og:locale" content="es_ES">', 1)
+    path.write_text(html, encoding="utf-8", newline="\n")
+
+
+def build_sitemap(concerts: list[dict]) -> None:
     entries = []
-    for p in STATIC_PAGES:
-        entries.append((p["es"], p["en"], p["de"], "weekly" if p["key"] in {"home", "upcoming"} else "monthly", "1.0" if p["key"] == "home" else "0.7"))
-    for slug, _title, _en, _de in PROJECT_PAGES:
-        entries.append((f"/proyectosculturales/{slug}/", f"/en/cultural-projects/{slug}/", f"/de/kulturprojekte/{slug}/", "monthly", "0.6"))
+    for _src, es, en, de in STATIC_ROUTES:
+        entries.append((es, en, de, "weekly" if es in {"/", "/proximos-conciertos/"} else "monthly", "1.0" if es == "/" else "0.7"))
     for c in concerts:
         slug = c["id"]
         entries.append((f"/conciertos/2026/{slug}/", f"/en/concerts/2026/{slug}/", f"/de/konzerte/2026/{slug}/", "weekly", "0.8"))
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    for es, en, de, changefreq, priority in entries:
+    for es, en, de, freq, prio in entries:
         for loc in [es, en, de]:
-            lines.extend([
-                "  <url>",
-                f"    <loc>{escape(abs_url(loc))}</loc>",
-                f'    <xhtml:link rel="alternate" hreflang="es" href="{escape(abs_url(es))}" />',
-                f'    <xhtml:link rel="alternate" hreflang="en" href="{escape(abs_url(en))}" />',
-                f'    <xhtml:link rel="alternate" hreflang="de" href="{escape(abs_url(de))}" />',
-                f'    <xhtml:link rel="alternate" hreflang="x-default" href="{escape(abs_url(es))}" />',
-                f"    <changefreq>{changefreq}</changefreq>",
-                f"    <priority>{priority}</priority>",
-                "  </url>",
-            ])
+            lines.extend(
+                [
+                    "  <url>",
+                    f"    <loc>{escape(abs_url(loc))}</loc>",
+                    f'    <xhtml:link rel="alternate" hreflang="es" href="{escape(abs_url(es))}" />',
+                    f'    <xhtml:link rel="alternate" hreflang="en" href="{escape(abs_url(en))}" />',
+                    f'    <xhtml:link rel="alternate" hreflang="de" href="{escape(abs_url(de))}" />',
+                    f'    <xhtml:link rel="alternate" hreflang="x-default" href="{escape(abs_url(es))}" />',
+                    f"    <changefreq>{freq}</changefreq>",
+                    f"    <priority>{prio}</priority>",
+                    "  </url>",
+                ]
+            )
     lines.append("</urlset>")
-    write("sitemap.xml", "\n".join(lines) + "\n")
+    (ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
-def main():
-    concerts = read_json("conciertos.json")
-    en_concerts = [translate_concert(c, "en") for c in concerts]
-    de_concerts = [translate_concert(c, "de") for c in concerts]
-    write("concerts.en.json", json.dumps(en_concerts, ensure_ascii=False, indent=2) + "\n")
-    write("concerts.de.json", json.dumps(de_concerts, ensure_ascii=False, indent=2) + "\n")
+def main() -> None:
+    concerts = json.loads((ROOT / "conciertos.json").read_text(encoding="utf-8"))
+    routes = route_map(concerts)
 
-    for page in STATIC_PAGES:
-        write(page["en"].strip("/") + "/index.html" if page["en"] != "/en/" else "en/index.html", page_html(page, "en"))
-        write(page["de"].strip("/") + "/index.html" if page["de"] != "/de/" else "de/index.html", page_html(page, "de"))
+    key_by_es = {
+        "/": "home",
+        "/conciertos-anteriores/": "past",
+        "/pub-la-calle/": "pub",
+    }
 
-    for slug, title, en_desc, de_desc in PROJECT_PAGES:
-        en_page = dict(STATIC_PAGES[4], key=slug, es=f"/proyectosculturales/{slug}/", en=f"/en/cultural-projects/{slug}/", de=f"/de/kulturprojekte/{slug}/", title={"en": f"{title} | Salan Producciones", "de": f"{title} | Salan Producciones"}, h1={"en": title, "de": title}, eyebrow={"en": "Cultural project", "de": "Kulturprojekt"}, desc={"en": en_desc, "de": de_desc})
-        write(f"en/cultural-projects/{slug}/index.html", page_html(en_page, "en"))
-        write(f"de/kulturprojekte/{slug}/index.html", page_html(en_page, "de"))
+    for src, es, en, de in STATIC_ROUTES:
+        source = read(src)
+        key = key_by_es.get(es, "page")
+        write(en, transform(source, es, en, de, "en", routes, key))
+        write(de, transform(source, es, en, de, "de", routes, key))
+        inject_hreflang_spanish(ROOT / src, es, en, de)
 
-    for c in en_concerts:
-        write(f"en/concerts/2026/{c['id']}/index.html", concert_page(c, "en"))
-    for c in de_concerts:
-        write(f"de/konzerte/2026/{c['id']}/index.html", concert_page(c, "de"))
+    for c in concerts:
+        slug = c["id"]
+        src = ROOT / f"conciertos/2026/{slug}/index.html"
+        if not src.exists():
+            continue
+        es = f"/conciertos/2026/{slug}/"
+        en = f"/en/concerts/2026/{slug}/"
+        de = f"/de/konzerte/2026/{slug}/"
+        source = src.read_text(encoding="utf-8")
+        write(en, transform(source, es, en, de, "en", routes, "concert", slug=slug, title_hint=c["title"]))
+        write(de, transform(source, es, en, de, "de", routes, "concert", slug=slug, title_hint=c["title"]))
+        inject_hreflang_spanish(src, es, en, de)
 
-    update_spanish_pages(concerts)
+    (ROOT / "concerts.en.json").write_text(json.dumps(translate_concert_feed(concerts, "en"), ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (ROOT / "concerts.de.json").write_text(json.dumps(translate_concert_feed(concerts, "de"), ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     build_sitemap(concerts)
 
 
