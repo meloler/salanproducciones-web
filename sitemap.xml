@@ -1,115 +1,678 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.salanproducciones.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Secciones principales -->
+  <url>
+    <loc>https://www.salanproducciones.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
   <url>
     <loc>https://www.salanproducciones.com/proximos-conciertos/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proximos-conciertos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/upcoming-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kommende-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proximos-conciertos/" />
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/upcoming-concerts/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proximos-conciertos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/upcoming-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kommende-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proximos-conciertos/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kommende-konzerte/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proximos-conciertos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/upcoming-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kommende-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proximos-conciertos/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/conciertos-anteriores/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos-anteriores/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/past-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/vergangene-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos-anteriores/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/past-concerts/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos-anteriores/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/past-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/vergangene-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos-anteriores/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/vergangene-konzerte/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos-anteriores/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/past-concerts/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/vergangene-konzerte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos-anteriores/" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/pub-la-calle/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/pub-la-calle/" />
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/pub-la-calle/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/pub-la-calle/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/pub-la-calle/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/pub-la-calle/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/pub-la-calle/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/proyectosculturales/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/cultural-projects/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kulturprojekte/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/contacto/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/contacto/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/contacto/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/contacto/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/contacto/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kontakt/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/contacto/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kontakt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/contacto/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/privacidad/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/datenschutz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/privacidad/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/datenschutz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/privacidad/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/datenschutz/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/privacidad/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/datenschutz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/privacidad/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/aviso-legal/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/aviso-legal/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/legal-notice/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/impressum/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/aviso-legal/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/legal-notice/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/aviso-legal/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/legal-notice/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/impressum/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/aviso-legal/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/impressum/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/aviso-legal/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/legal-notice/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/impressum/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/aviso-legal/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/cookies/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Conciertos 2026 -->
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/cookies/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cookies/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/cookies/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.salanproducciones.com/en/cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/cookies/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cookies/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/cookies/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.salanproducciones.com/de/cookies/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/cookies/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cookies/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/cookies/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/</loc>
+    <loc>https://www.salanproducciones.com/proyectosculturales/womex/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/womex/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/womex/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/</loc>
+    <loc>https://www.salanproducciones.com/en/cultural-projects/womex/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/womex/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/womex/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kulturprojekte/womex/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/womex/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/womex/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/womex/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/proyectosculturales/cinezin/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/cultural-projects/cinezin/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kulturprojekte/cinezin/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/cinezin/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/cinezin/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/proyectosculturales/festivalsonora/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/cultural-projects/festivalsonora/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/kulturprojekte/festivalsonora/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/kulturprojekte/festivalsonora/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/proyectosculturales/festivalsonora/" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
-
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/ana-curra-11-04-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/ana-curra-11-04-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/ana-curra-11-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/ana-curra-11-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-tenerife-30-04-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-tenerife-30-04-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-tenerife-30-04-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-gran-canaria-01-05-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-gran-canaria-01-05-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/alvaro-suite-gran-canaria-01-05-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/acantha-lang-junio-gira-e-04-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-junio-gira-e-04-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-junio-gira-e-04-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/poseidon-rock-fest-13-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/poseidon-rock-fest-13-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/poseidon-rock-fest-13-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/poseidon-rock-fest-13-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/bywater-call-16-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/bywater-call-16-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-16-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-16-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/bywater-call-17-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/bywater-call-17-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/bywater-call-17-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/bywater-call-17-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-tour-espana-28-06-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/acantha-lang-tour-espana-28-06-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/kenny-blues-boss-wayne-gira-espana-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/kenny-blues-boss-wayne-gira-espana-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/rebrote-telde-02-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/rebrote-telde-02-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-telde-02-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-telde-02-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/rebrote-el-sauzal-03-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/rebrote-el-sauzal-03-10-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/rebrote-el-sauzal-03-10-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/rebrote-el-sauzal-03-10-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-telde-14-11-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/concerts/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.salanproducciones.com/de/konzerte/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.salanproducciones.com/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

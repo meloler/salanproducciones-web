@@ -86,6 +86,82 @@
     return String(value || '').replace(/<[^>]*>/g, '');
   }
 
+  function currentLanguage() {
+    const path = window.location.pathname;
+    if (path === '/en' || path.startsWith('/en/')) return 'en';
+    if (path === '/de' || path.startsWith('/de/')) return 'de';
+    return 'es';
+  }
+
+  const lang = currentLanguage();
+  const uiCopy = {
+    es: {
+      noUpcoming: 'No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!',
+      info: '+ Info',
+      poster: 'Cartel',
+      contactSent: '✓ Mensaje enviado'
+    },
+    en: {
+      noUpcoming: 'There are no upcoming concerts scheduled right now. Follow our channels for new dates.',
+      info: '+ Info',
+      poster: 'Poster',
+      contactSent: 'Message sent'
+    },
+    de: {
+      noUpcoming: 'Zurzeit sind keine kommenden Konzerte geplant. Folge unseren Kanälen für neue Termine.',
+      info: '+ Info',
+      poster: 'Plakat',
+      contactSent: 'Nachricht gesendet'
+    }
+  };
+  const t = uiCopy[lang] || uiCopy.es;
+
+  function insertLanguageSwitcher() {
+    const alternates = {};
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => {
+      const code = link.getAttribute('hreflang');
+      if (code === 'es' || code === 'en' || code === 'de') {
+        alternates[code] = link.getAttribute('href');
+      }
+    });
+    if (!alternates.es && !alternates.en && !alternates.de) return;
+
+    function buildSwitcher() {
+      const wrap = document.createElement('div');
+      wrap.className = 'language-switcher';
+      wrap.setAttribute('aria-label', 'Selector de idioma');
+      ['es', 'en', 'de'].forEach((code, index) => {
+        if (index > 0) {
+          const sep = document.createElement('span');
+          sep.textContent = '|';
+          wrap.appendChild(sep);
+        }
+        const a = document.createElement('a');
+        a.href = alternates[code] || (code === 'es' ? '/' : '/' + code + '/');
+        a.lang = code;
+        a.hreflang = code;
+        a.textContent = code.toUpperCase();
+        if (code === lang) {
+          a.className = 'active';
+          a.setAttribute('aria-current', 'true');
+        }
+        wrap.appendChild(a);
+      });
+      return wrap;
+    }
+
+    const desktopNav = document.querySelector('.nav-links');
+    if (desktopNav && !desktopNav.parentNode.querySelector('.language-switcher')) {
+      desktopNav.insertAdjacentElement('afterend', buildSwitcher());
+    }
+    const mobileNav = document.querySelector('.nav-mobile');
+    if (mobileNav && !mobileNav.querySelector('.language-switcher')) {
+      mobileNav.appendChild(buildSwitcher());
+    }
+  }
+
+  insertLanguageSwitcher();
+
   /* --- Dynamic copyright year --- */
   document.querySelectorAll('.footer-copy').forEach(el => {
     el.innerHTML = el.innerHTML.replace(/\d{4}/, new Date().getFullYear());
@@ -273,7 +349,7 @@
       const btn = contactForm.querySelector('button[type="submit"]');
       if (btn) {
         btn.disabled = true;
-        btn.textContent = '✓ Mensaje enviado';
+        btn.textContent = t.contactSent;
         btn.style.background = '#2ecc71';
         btn.style.borderColor = '#2ecc71';
         btn.style.color = '#fff';
@@ -288,7 +364,8 @@
   const concertsTimeline = document.getElementById('concerts-timeline');
   
   if (upcomingGrid || agendaGrid || carouselTrack || concertsTimeline) {
-    fetch('/conciertos.json')
+    const concertsFeed = lang === 'en' ? '/concerts.en.json' : (lang === 'de' ? '/concerts.de.json' : '/conciertos.json');
+    fetch(concertsFeed)
       .then(res => res.json())
       .then(data => {
         const today = localISODate(new Date());
@@ -299,7 +376,7 @@
           const upcomingContainers = [upcomingGrid, agendaGrid].filter(Boolean);
           if (upcoming.length === 0) {
             upcomingContainers.forEach(container => {
-              container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!</p>';
+              container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">' + t.noUpcoming + '</p>';
             });
           } else {
             let html = '';
@@ -314,7 +391,7 @@
               html += `
                 <article class="concert-card reveal">
                   <div class="concert-card-img">
-                    <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="Cartel ${c.title} — ${c.dateDisplay}" loading="lazy" width="400" height="533">
+                    <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${t.poster} ${c.title} - ${c.dateDisplay}" loading="lazy" width="400" height="533">
                     <span class="concert-card-badge">${c.badge}</span>
                   </div>
                   <div class="concert-card-body">
@@ -323,7 +400,7 @@
                     <p class="concert-card-venue">${c.venue}</p>
                     <p class="concert-card-price">${c.price || ''}</p>
                     <div style="display:flex;gap:8px;margin-top:8px">
-                      <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">+ Info</a>
+                      <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">${t.info}</a>
                       ${buttonHtml}
                     </div>
                   </div>
