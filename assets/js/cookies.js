@@ -1,6 +1,7 @@
 (function () {
     var KEY    = 'salan_consent';
     var GTM_ID = 'GTM-MMDNKZDQ';
+    var META_PIXEL_ID = '1011468751859822';
 
     function get()      { try { return localStorage.getItem(KEY); }        catch (e) { return null; } }
     function set(v)     { try { localStorage.setItem(KEY, v); }            catch (e) {} }
@@ -24,9 +25,58 @@
         if (d.body) d.body.insertBefore(ns, d.body.firstChild);
     }
 
+    function loadMetaPixel() {
+        if (window.fbq && window.fbq.loaded) {
+            window.fbq('track', 'PageView');
+            return;
+        }
+
+        var f = window;
+        var b = document;
+        var e = 'script';
+        var v = 'https://connect.facebook.net/en_US/fbevents.js';
+        var n, t, s;
+
+        if (f.fbq) return;
+        n = f.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = '2.0';
+        n.queue = [];
+
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+
+        f.fbq('init', META_PIXEL_ID);
+        f.fbq('track', 'PageView');
+    }
+
+    function loadMarketingTags() {
+        loadGTM();
+        loadMetaPixel();
+    }
+
+    function trackTicketClick(event) {
+        if (get() !== 'all' || !window.fbq) return;
+
+        var link = event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        if (href.indexOf('tickety.es') === -1 && href.indexOf('entradas.plus') === -1) return;
+
+        window.fbq('track', 'InitiateCheckout');
+    }
+
     function acceptAll() {
         set('all');
-        loadGTM();
+        loadMarketingTags();
         hide();
     }
 
@@ -44,7 +94,7 @@
     // On load: apply saved preference
     var consent = get();
     if (consent === 'all') {
-        loadGTM();
+        loadMarketingTags();
     }
 
     // Wire buttons and show banner if no preference yet
@@ -53,6 +103,7 @@
         var btnNec = document.getElementById('ck-accept-necessary');
         if (btnAll) btnAll.addEventListener('click', acceptAll);
         if (btnNec) btnNec.addEventListener('click', acceptNecessary);
+        document.addEventListener('click', trackTicketClick);
         if (!get()) show();
     });
 })();
