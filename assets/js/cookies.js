@@ -62,16 +62,30 @@
         loadMetaPixel();
     }
 
+    var lastTicketEventKey = null;
+    var lastTicketEventAt = 0;
+
     function trackTicketClick(event) {
         if (get() !== 'all' || !window.fbq) return;
 
-        var link = event.target.closest ? event.target.closest('a[href]') : null;
+        var target = event.target;
+        var link = target && target.closest ? target.closest('a[href]') : null;
         if (!link) return;
 
         var href = link.getAttribute('href') || '';
         if (href.indexOf('tickety.es') === -1 && href.indexOf('entradas.plus') === -1) return;
 
-        window.fbq('track', 'InitiateCheckout');
+        var now = Date.now();
+        var eventKey = href;
+        if (lastTicketEventKey === eventKey && now - lastTicketEventAt < 1500) return;
+        lastTicketEventKey = eventKey;
+        lastTicketEventAt = now;
+
+        window.fbq('trackCustom', 'TicketClick', {
+            content_name: 'Ticket click',
+            content_category: 'Concert tickets',
+            destination_url: href
+        });
     }
 
     function acceptAll() {
@@ -103,6 +117,8 @@
         var btnNec = document.getElementById('ck-accept-necessary');
         if (btnAll) btnAll.addEventListener('click', acceptAll);
         if (btnNec) btnNec.addEventListener('click', acceptNecessary);
+        document.addEventListener('pointerdown', trackTicketClick);
+        document.addEventListener('touchstart', trackTicketClick);
         document.addEventListener('click', trackTicketClick);
         if (!get()) show();
     });

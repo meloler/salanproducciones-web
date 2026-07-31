@@ -428,17 +428,41 @@
 
 <script>
 (function() {
-    const UTM = '?utm_source=landing&utm_medium=web&utm_campaign=kenny-blues-boss-wayne-gira-espana-2026';
-    const DONOSTI = 'https://tickety.es/event/kenny-blues-boss-wayne-en-sala-dabadaba-donosti' + UTM;
-    const BILBAO = 'https://tickety.es/event/kenny-blues-boss-wayne-en-kafe-antzokia-bilbao' + UTM;
-    const PONFERRADA = 'https://tickety.es/event/kenny-blues-boss-wayne-en-sala-h-ponferrada' + UTM;
-    const CORUNA = 'https://tickety.es/event/kenny-blues-boss-wayne-en-sala-garufa-club-a-coruna' + UTM;
-    const VALLADOLID = 'https://tickety.es/event/kenny-blues-boss-wayne-en-la-sala-porta-caeli-valladolid' + UTM;
-    const ZARAGOZA = 'https://tickety.es/event/kenny-blues-boss-wayne-en-la-casa-del-loco-zaragoza' + UTM;
-    const CASTELLON = 'https://tickety.es/event/kenny-blues-boss-wayne-en-sala-la-bohemia-castellon' + UTM;
-    const VALENCIA = 'https://tickety.es/event/kenny-blues-boss-wayne-en-16-toneladas-rock-club-valencia' + UTM;
-    const BARCELONA = 'https://tickety.es/event/kenny-blues-boss-wayne-en-aclam-club-barcelona' + UTM;
-    const SANTIAGO = 'https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol' + UTM;
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const incomingParams = new URLSearchParams(window.location.search);
+    const hasIncomingUtm = UTM_KEYS.some(key => incomingParams.get(key));
+    const trackingParams = new URLSearchParams();
+
+    if (hasIncomingUtm) {
+        UTM_KEYS.forEach(key => {
+            const value = incomingParams.get(key);
+            if (value) trackingParams.set(key, value);
+        });
+    } else {
+        trackingParams.set('utm_source', 'landing');
+        trackingParams.set('utm_medium', 'web');
+        trackingParams.set('utm_campaign', 'kenny-blues-boss-wayne-gira-espana-2026');
+    }
+
+    const fbclid = incomingParams.get('fbclid');
+    if (fbclid) trackingParams.set('fbclid', fbclid);
+
+    function ticketUrl(baseUrl) {
+        const url = new URL(baseUrl);
+        trackingParams.forEach((value, key) => url.searchParams.set(key, value));
+        return url.toString();
+    }
+
+    const DONOSTI = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-sala-dabadaba-donosti');
+    const BILBAO = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-kafe-antzokia-bilbao');
+    const PONFERRADA = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-sala-h-ponferrada');
+    const CORUNA = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-sala-garufa-club-a-coruna');
+    const VALLADOLID = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-la-sala-porta-caeli-valladolid');
+    const ZARAGOZA = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-la-casa-del-loco-zaragoza');
+    const CASTELLON = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-sala-la-bohemia-castellon');
+    const VALENCIA = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-16-toneladas-rock-club-valencia');
+    const BARCELONA = ticketUrl('https://tickety.es/event/kenny-blues-boss-wayne-en-aclam-club-barcelona');
+    const SANTIAGO = ticketUrl('https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol');
 
     const cities = {
         donosti:    { name: 'Donosti',               date: '9 de septiembre · 21:00h',  venue: 'Dabadaba · San Sebastián',      url: DONOSTI   },
@@ -662,7 +686,7 @@
   </div>
 </div>
 
-<script src="/assets/js/cookies.js" defer></script>
+<script src="/assets/js/cookies.js?v=20260727-pixel" defer></script>
 <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
