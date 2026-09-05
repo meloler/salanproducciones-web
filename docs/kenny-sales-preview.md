@@ -1,3 +1,5 @@
+> Revisión posterior: la home original se ha restaurado y Juan ha confirmado Santiago a las 20:00. El aviso se ha retirado. El mantenimiento actual y los cambios SEO están en [seo-preview.md](seo-preview.md). Lo siguiente documenta la primera propuesta.
+
 # Preview de venta de entradas · Kenny · 5 septiembre 2026
 
 Rama: `mejora/entradas-kenny-preview`. No fusionar ni publicar en producción sin la revisión de Juan.

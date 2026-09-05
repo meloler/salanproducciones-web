@@ -15,12 +15,22 @@ source=json.loads((ROOT/'data/kenny-tour-2026.json').read_text())['cities']
 for lang,path,feed in [('es','conciertos','conciertos.json'),('en','en/concerts','concerts.en.json'),('de','de/konzerte','concerts.de.json')]:
     route=f'/{path}/2026/{SLUG}/';p=ROOT/route.strip('/')/'index.html';s=p.read_text();page=Page(s)
     data=json.loads(re.search(r'<script id="kenny-dates" type="application/json">(.*?)</script>',s,re.S)[1])
-    schema=json.loads(re.search(r'<script type="application/ld\+json">\s*(\[.*?\])\s*</script>',s,re.S)[1])
-    assert len(data)==len(schema)==10
+    schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)[1])
+    assert len(data)==len(schema['itemListElement'])==10
+    assert schema['@type']=='ItemList'
     links={a['data-ticket-city']:a['href'] for tag,a in page.tags if tag=='a' and 'data-ticket-city' in a}
     assert len(links)==10, 'Ten direct ticket links must work without JS'
     assert len([a for tag,a in page.tags if tag=='h1'])==1
-    for city,event in zip(source,schema):
+    for city in source:
+        cityfile=p.parent/city['id']/'index.html'
+        citytext=cityfile.read_text()
+        event=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',citytext,re.S)[1])
+        assert event['@type']=='MusicEvent'
+        assert event['url']=='https://www.salanproducciones.com'+route+city['id']+'/'
+        assert event['location']['address']['streetAddress']==city['address']['streetAddress']
+        assert event['location']['address']['streetAddress'] in citytext
+        assert 'tour-selector' not in citytext
+        assert city['id'] in citytext
         id=city['id'];actual=data[id]
         for key in ('name','date','time','venue','price','url'):assert actual[key]==city[key],(lang,id,key)
         assert links[id]==city['url']

@@ -59,3 +59,4 @@
  #cookie-banner>div{max-width:100%;width:100%}
  #cookie-banner button{flex:1;min-width:0;white-space:normal!important}
 }
+.tour-dates .event-details-link{padding:0 0 14px;color:var(--gold);text-decoration:underline;text-underline-offset:3px}

@@ -25,7 +25,6 @@
       "destination": "/",
       "permanent": true
     },
-
     {
       "source": "/poseidon-rock-fest{/}?",
       "destination": "/conciertos/2026/poseidon-rock-fest-13-06-2026/",
@@ -86,7 +85,6 @@
       "destination": "/conciertos/2026/clearwater-creedence-revival-telde-14-11-2026/",
       "permanent": true
     },
-
     {
       "source": "/rebrote-el-sauzal{/}?",
       "destination": "/conciertos/2026/rebrote-el-sauzal-03-10-2026/",
@@ -112,13 +110,11 @@
       "destination": "/conciertos-anteriores/",
       "permanent": true
     },
-
     {
       "source": "/contactar{/}?",
       "destination": "/contacto/",
       "permanent": true
     },
-
     {
       "source": "/sitemap_index.xml",
       "destination": "/sitemap.xml",
@@ -214,6 +210,15 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/tools/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     }

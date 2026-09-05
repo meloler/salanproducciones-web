@@ -22,7 +22,7 @@
   function activate(id, updateHash) {
     const city = cities[id];
     if (!city) return;
-    select.value = id;
+    if (select) select.value = id;
     Object.entries({ 'tac-city': city.name, 'tac-date': city.dateLabel,
       'tac-venue': city.venue, 'tac-price': city.priceLabel, 'tac-note': city.note,
       'sticky-city': city.name + ' · ' + city.priceLabel, 'sticky-date': city.dateLabel
@@ -43,14 +43,15 @@
       }
     });
   }
-  document.querySelector('.tour-selector').hidden = false;
+  const selector = document.querySelector('.tour-selector');
+  if (selector) selector.hidden = false;
   document.querySelectorAll('[data-ticket-city]').forEach(link => {
     link.href = ticketUrl(cities[link.dataset.ticketCity]);
   });
   const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Madrid' }).format(new Date());
-  const next = Object.keys(cities).find(id => cities[id].date >= today) || 'donosti';
+  const next = Object.keys(cities).find(id => cities[id].date >= today) || Object.keys(cities)[0];
   activate(Object.hasOwn(cities, location.hash.slice(1)) ? location.hash.slice(1) : next, false);
-  select.addEventListener('change', () => activate(select.value, true));
+  if (select) select.addEventListener('change', () => activate(select.value, true));
   window.addEventListener('hashchange', () => activate(location.hash.slice(1), false));
   const sticky = document.querySelector('.tour-sticky');
   const cookie = document.getElementById('cookie-banner');
