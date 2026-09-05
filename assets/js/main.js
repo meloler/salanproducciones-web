@@ -137,7 +137,12 @@
           wrap.appendChild(sep);
         }
         const a = document.createElement('a');
-        a.href = alternates[code] || (code === 'es' ? '/' : '/' + code + '/');
+        const languageUrl = new URL(alternates[code] || (code === 'es' ? '/' : '/' + code + '/'), location.origin);
+        // Keep navigation inside the current deployment, including previews.
+        a.href = languageUrl.pathname;
+        if (location.pathname.includes('/kenny-blues-boss-wayne-gira-espana-2026/')) {
+          a.href += location.search + location.hash;
+        }
         a.lang = code;
         a.hreflang = code;
         a.textContent = code.toUpperCase();
