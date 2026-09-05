@@ -1,0 +1,95 @@
+{
+  "verified": "2026-09-05",
+  "cities": [
+    {
+      "id": "donosti",
+      "name": "Donosti",
+      "date": "2026-09-09",
+      "time": "20:30",
+      "venue": "Dabadaba",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-dabadaba-donosti"
+    },
+    {
+      "id": "bilbao",
+      "name": "Bilbao",
+      "date": "2026-09-10",
+      "time": "21:30",
+      "venue": "Kafé Antzokia",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-kafe-antzokia-bilbao"
+    },
+    {
+      "id": "ponferrada",
+      "name": "Ponferrada",
+      "date": "2026-09-11",
+      "time": "21:00",
+      "venue": "Sala H",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-h-ponferrada"
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago de Compostela",
+      "date": "2026-09-13",
+      "time": "20:00",
+      "venue": "Sala Capitol",
+      "price": 27.5,
+      "url": "https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol"
+    },
+    {
+      "id": "coruna",
+      "name": "A Coruña",
+      "date": "2026-09-15",
+      "time": "20:30",
+      "venue": "Sala Garufa Club",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-garufa-club-a-coruna"
+    },
+    {
+      "id": "valladolid",
+      "name": "Valladolid",
+      "date": "2026-09-16",
+      "time": "21:00",
+      "venue": "Porta Caeli",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-sala-porta-caeli-valladolid"
+    },
+    {
+      "id": "zaragoza",
+      "name": "Zaragoza",
+      "date": "2026-09-17",
+      "time": "21:45",
+      "venue": "La Casa del Loco",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-casa-del-loco-zaragoza"
+    },
+    {
+      "id": "castellon",
+      "name": "Castellón",
+      "date": "2026-09-18",
+      "time": "21:00",
+      "venue": "La Bohemia",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-la-bohemia-castellon"
+    },
+    {
+      "id": "valencia",
+      "name": "Valencia",
+      "date": "2026-09-19",
+      "time": "19:30",
+      "venue": "16 Toneladas",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-16-toneladas-rock-club-valencia"
+    },
+    {
+      "id": "barcelona",
+      "name": "Barcelona",
+      "date": "2026-09-20",
+      "time": "20:00",
+      "venue": "Aclam Club",
+      "price": 35.97,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-aclam-club-barcelona"
+    }
+  ]
+}

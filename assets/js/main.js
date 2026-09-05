@@ -253,6 +253,7 @@
 
   /* --- Newsletter popup --- */
   (function () {
+    if (/^\/(?:conciertos|en\/concerts|de\/konzerte)\//.test(location.pathname)) return;
     var DISMISSED_KEY = 'nl-dismissed';
     var SUBSCRIBED_KEY = 'nl-subscribed';
     var LOOPS_ACTION = 'https://app.loops.so/api/newsletter-form/cmb7ofbqv5jgi0y0ipx3q1au0';
@@ -383,7 +384,7 @@
             upcoming.forEach(c => {
               const buttonHtml = c.disabled 
                 ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
-                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
               const titleHtml = c.subtitle
                 ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                 : c.title;
