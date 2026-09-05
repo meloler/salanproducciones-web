@@ -61,3 +61,11 @@ Ejemplo para Valencia, cambiando la fuente según quién comparta:
 Ciudades admitidas en el fragmento: `donosti`, `bilbao`, `ponferrada`, `santiago`, `coruna`, `valladolid`, `zaragoza`, `castellon`, `valencia`, `barcelona`.
 
 Preparar un vídeo y texto por ciudad reutilizando material autorizado; dirigir cada publicación a su fragmento. No se han enviado mensajes, publicado anuncios ni gastado presupuesto en esta intervención.
+
+## Resultado de revisión
+
+- Preview Vercel lista; las diez selecciones muestran su ciudad, hora, total y enlace correctos. El botón móvil comparte destino y campaña con el principal.
+- Navegación ES → EN conservando Santiago y UTM verificada. Portada muestra cinco próximos conciertos, sin las tarjetas de junio.
+- Diseño revisado en escritorio y en iframes móviles de 390 y 320 píxeles CSS; alemán incluido. Se corrige el ajuste de los botones de cookies en pantallas estrechas.
+- Enlace al vídeo y activación del reproductor comprobados. No se verifica la entrega de entradas ni se realiza un pago.
+- La revisión detecta logs ajenos a la web (extensión del navegador y login de Vercel), sin error de aplicación observado en las acciones probadas.

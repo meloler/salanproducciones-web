@@ -54,3 +54,8 @@
  .tour-sticky .tour-buy-btn{flex:0 0 42%;padding:12px 8px;min-height:48px;font-size:.72rem;letter-spacing:0}
 }
 @media(prefers-reduced-motion:reduce){.ticket-tour *,.tour-sticky *{transition:none!important;scroll-behavior:auto!important}}
+/* Keep both consent choices reachable on narrow screens and in German. */
+@media(max-width:400px){
+ #cookie-banner>div{max-width:100%;width:100%}
+ #cookie-banner button{flex:1;min-width:0;white-space:normal!important}
+}
