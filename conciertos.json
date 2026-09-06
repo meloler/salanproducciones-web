@@ -173,19 +173,19 @@
   },
   {
     "id": "clearwater-creedence-revival-el-sauzal-13-11-2026",
-    "status": "coming-soon",
+    "status": "scheduled",
     "dateISO": "2026-11-13",
     "dateDisplay": "13 Noviembre 2026",
     "title": "Clearwater Creedence Revival",
     "venue": "Teatro El Sauzal · El Sauzal, Tenerife",
     "badge": "Tenerife",
-    "price": "Entradas próximamente",
+    "price": "Entradas a la venta",
     "image": "/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/poster.webp",
     "linkInfo": "/conciertos/2026/clearwater-creedence-revival-el-sauzal-13-11-2026/",
-    "linkBuy": "",
-    "buyAria": "",
-    "buttonLabel": "Próximamente",
-    "disabled": true
+    "linkBuy": "https://tickety.es/event/clearwater-creedence-revival-en-el-teatro-el-sauzal",
+    "buyAria": "Comprar Clearwater Creedence Revival · El Sauzal",
+    "buttonLabel": "Comprar",
+    "disabled": false
   },
   {
     "id": "clearwater-creedence-revival-telde-14-11-2026",
