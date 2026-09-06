@@ -1,0 +1,176 @@
+{
+  "verified": "2026-09-05",
+  "cities": [
+    {
+      "id": "donosti",
+      "name": "Donosti",
+      "date": "2026-09-09",
+      "time": "20:30",
+      "venue": "Dabadaba",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-dabadaba-donosti",
+      "address": {
+        "streetAddress": "Paseo de Mundaiz, 8, bajo B",
+        "postalCode": "20012",
+        "addressLocality": "San Sebastián",
+        "addressRegion": "País Vasco",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-dabadaba-donosti"
+    },
+    {
+      "id": "bilbao",
+      "name": "Bilbao",
+      "date": "2026-09-10",
+      "time": "21:30",
+      "venue": "Kafé Antzokia",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-kafe-antzokia-bilbao",
+      "address": {
+        "streetAddress": "Done Bikendi Kalea, 2",
+        "postalCode": "48001",
+        "addressLocality": "Bilbao",
+        "addressRegion": "País Vasco",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-kafe-antzokia-bilbao"
+    },
+    {
+      "id": "ponferrada",
+      "name": "Ponferrada",
+      "date": "2026-09-11",
+      "time": "21:00",
+      "venue": "Sala H",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-h-ponferrada",
+      "address": {
+        "streetAddress": "Calle Bilbao, 12",
+        "postalCode": "24400",
+        "addressLocality": "Ponferrada",
+        "addressRegion": "Castilla y León",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-h-ponferrada"
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago de Compostela",
+      "date": "2026-09-13",
+      "time": "20:00",
+      "venue": "Sala Capitol",
+      "price": 27.5,
+      "url": "https://salacapitol.entradas.plus/entradas/es/kennybluesbosswayneband-capitol",
+      "address": {
+        "streetAddress": "Rúa Concepción Arenal, 5",
+        "postalCode": "15702",
+        "addressLocality": "Santiago de Compostela",
+        "addressRegion": "Galicia",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://www.salacapitol.com/contacto/",
+      "timeConfirmedBy": "Juan Salán, 2026-09-05"
+    },
+    {
+      "id": "coruna",
+      "name": "A Coruña",
+      "date": "2026-09-15",
+      "time": "20:30",
+      "venue": "Sala Garufa Club",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-garufa-club-a-coruna",
+      "address": {
+        "streetAddress": "Rúa Riazor, 5",
+        "postalCode": "15004",
+        "addressLocality": "A Coruña",
+        "addressRegion": "Galicia",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-garufa-club-a-coruna"
+    },
+    {
+      "id": "valladolid",
+      "name": "Valladolid",
+      "date": "2026-09-16",
+      "time": "21:00",
+      "venue": "Porta Caeli",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-sala-porta-caeli-valladolid",
+      "address": {
+        "streetAddress": "Calle Mariano de los Cobos, 1",
+        "postalCode": "47014",
+        "addressLocality": "Valladolid",
+        "addressRegion": "Castilla y León",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-sala-porta-caeli-valladolid"
+    },
+    {
+      "id": "zaragoza",
+      "name": "Zaragoza",
+      "date": "2026-09-17",
+      "time": "21:45",
+      "venue": "La Casa del Loco",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-casa-del-loco-zaragoza",
+      "address": {
+        "streetAddress": "Calle Mayor, 10",
+        "postalCode": "50001",
+        "addressLocality": "Zaragoza",
+        "addressRegion": "Aragón",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-la-casa-del-loco-zaragoza"
+    },
+    {
+      "id": "castellon",
+      "name": "Castellón",
+      "date": "2026-09-18",
+      "time": "21:00",
+      "venue": "La Bohemia",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-sala-la-bohemia-castellon",
+      "address": {
+        "streetAddress": "Carrer Ciscar, 14",
+        "postalCode": "12003",
+        "addressLocality": "Castelló de la Plana",
+        "addressRegion": "Comunidad Valenciana",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://www.enterticket.es/eventos/eterno-tour-kadec-santa-anna-en-castellon-548992"
+    },
+    {
+      "id": "valencia",
+      "name": "Valencia",
+      "date": "2026-09-19",
+      "time": "19:30",
+      "venue": "16 Toneladas",
+      "price": 27.25,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-16-toneladas-rock-club-valencia",
+      "address": {
+        "streetAddress": "Calle Ricardo Micó, 3",
+        "postalCode": "46009",
+        "addressLocality": "Valencia",
+        "addressRegion": "Comunidad Valenciana",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://tickety.es/event/kenny-blues-boss-wayne-en-16-toneladas-rock-club-valencia"
+    },
+    {
+      "id": "barcelona",
+      "name": "Barcelona",
+      "date": "2026-09-20",
+      "time": "20:00",
+      "venue": "Aclam Club",
+      "price": 35.97,
+      "url": "https://tickety.es/event/kenny-blues-boss-wayne-en-aclam-club-barcelona",
+      "address": {
+        "streetAddress": "Carrer del Consell de Cent, 201, local esquerra",
+        "postalCode": "08011",
+        "addressLocality": "Barcelona",
+        "addressRegion": "Cataluña",
+        "addressCountry": "ES"
+      },
+      "addressSource": "https://www.aclamclub.cat/"
+    }
+  ]
+}

@@ -137,7 +137,12 @@
           wrap.appendChild(sep);
         }
         const a = document.createElement('a');
-        a.href = alternates[code] || (code === 'es' ? '/' : '/' + code + '/');
+        const languageUrl = new URL(alternates[code] || (code === 'es' ? '/' : '/' + code + '/'), location.origin);
+        // Keep navigation inside the current deployment, including previews.
+        a.href = languageUrl.pathname;
+        if (location.pathname.includes('/kenny-blues-boss-wayne-gira-espana-2026/')) {
+          a.href += location.search + location.hash;
+        }
         a.lang = code;
         a.hreflang = code;
         a.textContent = code.toUpperCase();
@@ -253,6 +258,7 @@
 
   /* --- Newsletter popup --- */
   (function () {
+    if (/^\/(?:conciertos|en\/concerts|de\/konzerte)\//.test(location.pathname)) return;
     var DISMISSED_KEY = 'nl-dismissed';
     var SUBSCRIBED_KEY = 'nl-subscribed';
     var LOOPS_ACTION = 'https://app.loops.so/api/newsletter-form/cmb7ofbqv5jgi0y0ipx3q1au0';
@@ -383,7 +389,7 @@
             upcoming.forEach(c => {
               const buttonHtml = c.disabled 
                 ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
-                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" target="_blank" rel="noopener" aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
               const titleHtml = c.subtitle
                 ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                 : c.title;
