@@ -12,6 +12,12 @@ Esta web usa paginas estaticas reales para cada idioma. No se usa un traductor a
 
 Los slugs de conciertos se mantienen iguales entre idiomas para reducir errores.
 
+## Recursos compartidos entre idiomas
+
+- Las imagenes compartidas por varias versiones de una pagina deben usar una ruta absoluta desde la raiz del sitio (`/ruta/al/archivo`), no una ruta relativa (`./archivo`).
+- Antes de publicar, confirmar que el archivo existe en la ruta indicada. Una ruta relativa dentro de `/en/` o `/de/` se resuelve desde esa carpeta y puede dar 404 si el recurso solo esta guardado junto a la pagina en espanol.
+- Las imagenes de WOMEX se guardan en `proyectosculturales/womex/` y se comparten mediante rutas como `/proyectosculturales/womex/logo.webp`.
+
 ## SEO obligatorio
 
 Cada pagina debe tener:
