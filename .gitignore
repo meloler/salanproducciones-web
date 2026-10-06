@@ -15,6 +15,11 @@ desktop.ini
 # Claude / herramientas locales
 .claude/
 
+# Artefactos locales de revisión
+output/
+.playwright-cli/
+tools/__pycache__/
+
 # Archivos pesados / backups que no deben ir al repo
 2019.zip
 *.zip
