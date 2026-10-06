@@ -30,5 +30,7 @@ for url,page in pages.items():
    dest=a['href'];assert dest in pages,(url,dest)
    back=[x.get('href') for tag,x in pages[dest].tags if tag=='link' and x.get('rel')=='alternate'];assert url in back,(url,dest)
 assert not [v for v in titles.values() if len(v)>1], [v for v in titles.values() if len(v)>1]
-assert 'Sitemap: '+HOST+'/sitemap.xml' in (ROOT/'robots.txt').read_text()
+robots=(ROOT/'robots.txt').read_text()
+assert 'Sitemap: '+HOST+'/sitemap.xml' in robots
+assert 'Content-Signal: search=yes, ai-input=yes, ai-train=no' in robots
 print(f'{len(urls)} sitemap URLs: existing pages, self canonicals, descriptions, unique titles per language, reciprocal hreflang and valid JSON-LD OK.')
