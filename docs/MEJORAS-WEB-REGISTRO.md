@@ -148,3 +148,13 @@ Referencias consultadas el 7 de octubre de 2026: [Cloudflare: Content Signals Po
 Juan indicó que quiere permitir buscadores y que asistentes de IA puedan usar la información del sitio para responder. En `robots.txt` se expresa `search=yes` y `ai-input=yes`; se conserva `ai-train=no` según la recomendación previa de esta revisión. No se añade la extensión experimental `use`. Estas señales orientan a los rastreadores que las respetan; no garantizan inclusión ni respuestas de asistentes.
 
 `tools/check_seo.py` ahora comprueba que las señales elegidas sigan presentes. El control pasó: 105 URLs del sitemap, canonicals, idiomas recíprocos y JSON-LD. La preview protegida https://salanproducciones-i4mzt2wh6-juans-projects-8e14424d.vercel.app responde `robots.txt` con `search=yes`, `ai-input=yes`, `ai-train=no`, `Allow: /` y el sitemap. La portada sigue respondiendo `text/html` cuando se solicita Markdown. No se modificó la configuración de Cloudflare ni producción.
+
+## Campañas de compra en tarjetas dinámicas (7 de octubre de 2026)
+
+La comprobación de la web publicada reprodujo que al cargar las tarjetas desde los feeds se perdían parámetros UTM presentes en el HTML estático. Se corrigió `assets/js/main.js`: cada portada y agenda conserva los parámetros `utm_*` que ya tenía su enlace de respaldo si el destino del feed coincide; los parámetros que ya aporta el feed prevalecen. El enlace de WOMEX conserva el destino y su parámetro existente. Los eventos sin botón de compra no intentan construir una URL.
+
+Como `/assets/` usa caché inmutable, se actualizó la versión `main.js?v=20261007-ticket-campaigns` en las 106 páginas y plantillas que usan el archivo. Se dejó intacto el plan de trabajo local adjunto, que no forma parte de este lote.
+
+**Comprobaciones:** `node --check assets/js/main.js`, `git diff --check`, `python tools/check_seo.py`, `python tools/check_site_resources.py` y `python tools/check_kenny_sales.py` pasaron. En la preview final, las tarjetas de portada y agenda en ES, EN y DE conservaron las campañas de El Sauzal; la agenda española conservó la campaña `agenda-proximos` de Telde y EN/DE mantuvieron las campañas específicas de Telde de sus feeds. WOMEX siguió apuntando a la venta del Auditorio. No se inició ninguna compra ni se envió analítica.
+
+Preview revisada: https://salanproducciones-d1heoaor7-juans-projects-8e14424d.vercel.app. Producción se publicó después del push autorizado de Juan a `main` y se revisó el recorrido público.

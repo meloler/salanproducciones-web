@@ -385,37 +385,56 @@
               container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">' + t.noUpcoming + '</p>';
             });
           } else {
-            let html = '';
-            upcoming.forEach(c => {
-              const buttonHtml = c.disabled 
-                ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
-                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
-              const titleHtml = c.subtitle
-                ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
-                : c.title;
-              const priceHtml = c.price ? `<p class="concert-card-price">${c.price}</p>` : '';
-              const badgeHtml = c.badge ? `<span class="concert-card-badge">${c.badge}</span>` : '';
-                
-              html += `
-                <article class="concert-card reveal" data-event-id="${escapeHtml(c.id)}">
-                  <div class="concert-card-img">
-                    <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${t.poster} ${c.title} - ${c.dateDisplay}" loading="lazy" width="400" height="533">
-                    ${badgeHtml}
-                  </div>
-                  <div class="concert-card-body">
-                    <div class="concert-card-date">${c.dateDisplay}</div>
-                    <h3 class="concert-card-title">${titleHtml}</h3>
-                    <p class="concert-card-venue">${c.venue}</p>
-                    ${priceHtml}
-                    <div style="display:flex;gap:8px;margin-top:8px">
-                      <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">${t.info}</a>
-                      ${buttonHtml}
-                    </div>
-                  </div>
-                </article>
-              `;
-            });
             upcomingContainers.forEach(container => {
+              const ticketLinkFor = concert => {
+                const feedUrl = new URL(concert.linkBuy, window.location.href);
+                const fallbackLink = Array.from(container.querySelectorAll('a[data-analytics-event-id]'))
+                  .find(link => link.dataset.analyticsEventId === concert.id);
+
+                if (!fallbackLink) return feedUrl.href;
+
+                const fallbackUrl = new URL(fallbackLink.href, window.location.href);
+                if (fallbackUrl.origin !== feedUrl.origin || fallbackUrl.pathname !== feedUrl.pathname) return feedUrl.href;
+
+                fallbackUrl.searchParams.forEach((value, key) => {
+                  if (key.startsWith('utm_') && !feedUrl.searchParams.has(key)) {
+                    feedUrl.searchParams.set(key, value);
+                  }
+                });
+
+                return feedUrl.href;
+              };
+              let html = '';
+              upcoming.forEach(c => {
+                const ticketLink = c.disabled ? '' : ticketLinkFor(c);
+                const buttonHtml = c.disabled
+                  ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
+                  : `<a href="${escapeHtml(ticketLink)}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+                const titleHtml = c.subtitle
+                  ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
+                  : c.title;
+                const priceHtml = c.price ? `<p class="concert-card-price">${c.price}</p>` : '';
+                const badgeHtml = c.badge ? `<span class="concert-card-badge">${c.badge}</span>` : '';
+
+                html += `
+                  <article class="concert-card reveal" data-event-id="${escapeHtml(c.id)}">
+                    <div class="concert-card-img">
+                      <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${t.poster} ${c.title} - ${c.dateDisplay}" loading="lazy" width="400" height="533">
+                      ${badgeHtml}
+                    </div>
+                    <div class="concert-card-body">
+                      <div class="concert-card-date">${c.dateDisplay}</div>
+                      <h3 class="concert-card-title">${titleHtml}</h3>
+                      <p class="concert-card-venue">${c.venue}</p>
+                      ${priceHtml}
+                      <div style="display:flex;gap:8px;margin-top:8px">
+                        <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">${t.info}</a>
+                        ${buttonHtml}
+                      </div>
+                    </div>
+                  </article>
+                `;
+              });
               container.innerHTML = html;
             
               setTimeout(() => {
