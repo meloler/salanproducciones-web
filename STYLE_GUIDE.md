@@ -234,8 +234,7 @@ Toda landing generada con `/salan` DEBE incluir estos elementos. No omitir ningu
 ```json
 {
   "@type": "MusicEvent",
-  "startDate": "2026-MM-DDT20:00:00+01:00",
-  "endDate":   "2026-MM-DDT23:00:00+01:00",
+  "startDate": "AAAA-MM-DDTHH:MM:SS±HH:MM",
   "image": "https://www.salanproducciones.com/conciertos/2026/<slug>/poster.webp",
   "organizer": {
     "@type": "Organization",
@@ -252,7 +251,11 @@ Toda landing generada con `/salan` DEBE incluir estos elementos. No omitir ningu
 ```
 
 Reglas:
-- `startDate` y `endDate` SIEMPRE con zona horaria `+01:00` y segundos (`:00`)
+- `startDate` debe incluir la zona horaria y el desplazamiento que corresponden al lugar y a la fecha del concierto. No copies un desplazamiento fijo entre estaciones.
+- Para Canarias, en 2026 el horario de invierno es UTC+00:00 y el de verano UTC+01:00. En la península, es UTC+01:00 en invierno y UTC+02:00 en verano. Comprueba las fechas oficiales del cambio horario para el año del evento: [BOE, cambio de hora en España en 2026](https://www.boe.es/eli/es/res/2026/09/16/%283%29/dof/spa/pdf) y [calendario de la Unión Europea](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=oj%3AJOC_2021_149_R_0001).
+- Añade `endDate` solo cuando la fecha u hora de finalización estén confirmadas por una fuente. Si no se conocen, omite el campo; no calcules la duración.
+- Añade `validFrom` en una oferta solo cuando la fecha de inicio de venta esté confirmada. Si no se conoce, omite el campo.
+- Incluye segundos en los valores de fecha y hora (`:SS`).
 - `image` SIEMPRE URL absoluta
 - Si no hay entradas disponibles aún: `"availability": "https://schema.org/PreOrder"` y omitir `price`
 - Si hay precio conocido: incluir `"price": "25"` (string, sin €)

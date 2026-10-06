@@ -37,9 +37,9 @@ Este proyecto intenta resolver esa necesidad con una arquitectura más flexible 
 
 - GitHub como repositorio de trabajo.
 - Vercel como plataforma de despliegue.
-- Frontend moderno.
-- Preparación para analítica y campañas digitales.
-- Organización de contenidos orientada a eventos.
+- HTML, CSS y JavaScript estáticos; no hace falta compilar la web para servirla.
+- Scripts Python para mantener feeds, traducciones y comprobaciones.
+- La rama `main` despliega producción. Revisar los cambios en una preview de una rama antes de pedir autorización para publicar.
 
 ---
 

@@ -499,6 +499,79 @@ def rewrite_concert_asset_paths(html: str, slug: str) -> str:
     return html
 
 
+def rewrite_cultural_project_assets(html: str, es_route: str) -> str:
+    """Keep shared cultural-project media rooted at its Spanish asset folder."""
+    prefix = "/proyectosculturales/"
+    if not es_route.startswith(prefix):
+        return html
+
+    project = es_route[len(prefix):].strip("/")
+    asset_prefix = prefix + (project + "/" if project else "")
+
+    def rewrite_attribute(match: re.Match) -> str:
+        name, quote, value = match.groups()
+
+        def rewrite_url(url: str) -> str:
+            if url.startswith("./"):
+                return asset_prefix + url[2:]
+            return url
+
+        if name == "srcset":
+            value = re.sub(r"(?<!\S)(\./[^\s,]+)", lambda url: rewrite_url(url.group(1)), value)
+        else:
+            value = rewrite_url(value)
+        return f"{name}={quote}{value}{quote}"
+
+    html = re.sub(r"""\b(src|srcset|content)=(["'])([^"']*)\2""", rewrite_attribute, html)
+    return html
+
+
+def normalize_archive_image_names(html: str) -> str:
+    """Restore canonical Spanish archive filenames after text translation."""
+    aliases = {
+        "Juan-Tamariz-Teneriffa-El-Sauzal-min.jpg": "Juan-Tamariz-Tenerife-El-Sauzal-min.jpg",
+        "Eat-To-The-Beat-September-2019-1.jpg": "Eat-To-The-Beat-Septiembre-2019-1.jpg",
+        "Eat-To-The-Beat-February-2019.jpg": "Eat-To-The-Beat-Febrero-2019.jpg",
+        "Eat-To-The-Beat-Februar-2019.jpg": "Eat-To-The-Beat-Febrero-2019.jpg",
+    }
+    for alias, canonical in aliases.items():
+        html = html.replace(alias, canonical)
+    return html
+
+
+def rewrite_structured_concert_urls(html: str, lang: str) -> str:
+    language_route = "/en/concerts/2026/" if lang == "en" else "/de/konzerte/2026/"
+    pattern = re.compile(
+        r'https://www\.salanproducciones\.com/conciertos/2026/([a-z0-9-]+)/(?=["?#])'
+    )
+
+    def update_jsonld(match: re.Match) -> str:
+        return pattern.sub(
+            lambda url: "https://www.salanproducciones.com"
+            + language_route
+            + url.group(1)
+            + "/",
+            match.group(0),
+        )
+
+    return re.sub(
+        r'<script type="application/ld\+json">.*?</script>',
+        update_jsonld,
+        html,
+        flags=re.S,
+    )
+
+
+def set_upcoming_meta_descriptions(html: str, lang: str) -> str:
+    descriptions = {
+        "en": "Upcoming concerts by Salán Producciones in the Canary Islands in November 2026: Clearwater Creedence Revival in El Sauzal and Telde. See dates and tickets.",
+        "de": "Kommende Konzerte von Salán Producciones auf den Kanarischen Inseln im November 2026: Clearwater Creedence Revival in El Sauzal und Telde. Termine und Tickets.",
+    }
+    description = html_lib.escape(descriptions[lang], quote=True)
+    pattern = r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*(">)'
+    return re.sub(pattern, lambda match: match.group(1) + description + match.group(2), html)
+
+
 def apply_meta_titles(html: str, lang: str, key: str, title_hint: str | None = None) -> str:
     titles = {
         ("home", "en"): "Salán Producciones | Concerts and Live Music in Spain",
@@ -914,6 +987,7 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
 def transform(source_html: str, es: str, en: str, de: str, lang: str, routes: dict[str, dict[str, str]], key: str, slug: str | None = None, title_hint: str | None = None) -> str:
     html = replace_head_seo(source_html, es, en, de, lang)
     html = rewrite_links(html, routes, lang)
+    html = rewrite_cultural_project_assets(html, es)
     html = translate_page_specific(html, lang, key)
     if key == "concert":
         html = translate_event_text(html, lang)
@@ -925,6 +999,10 @@ def transform(source_html: str, es: str, en: str, de: str, lang: str, routes: di
     html = translate_cultural_project_fragments(html, lang)
     html = translate_cultural_project_fragments(html, lang)
     html = apply_meta_titles(html, lang, key, title_hint)
+    html = normalize_archive_image_names(html)
+    html = rewrite_structured_concert_urls(html, lang)
+    if es == "/proximos-conciertos/":
+        html = set_upcoming_meta_descriptions(html, lang)
     if key == "concert":
         if lang == "en":
             html = re.sub(r'(<h1 class="event-title">[^<]+) en ([^<]+</h1>)', r'\1 in \2', html)

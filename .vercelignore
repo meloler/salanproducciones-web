@@ -3,3 +3,8 @@
 *.tar.gz
 *.psd
 *.ai
+# Documentos internos y archivos de revisión local
+docs/
+output/
+.playwright-cli/
+tools/__pycache__/

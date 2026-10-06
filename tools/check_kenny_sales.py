@@ -11,9 +11,9 @@ class Page(HTMLParser):
     def __init__(self,text):
         super().__init__();self.tags=[];self.feed(text)
     def handle_starttag(self,tag,attrs):self.tags.append((tag,dict(attrs)))
-source=json.loads((ROOT/'data/kenny-tour-2026.json').read_text())['cities']
+source=json.loads((ROOT/'data/kenny-tour-2026.json').read_text(encoding='utf-8'))['cities']
 for lang,path,feed in [('es','conciertos','conciertos.json'),('en','en/concerts','concerts.en.json'),('de','de/konzerte','concerts.de.json')]:
-    route=f'/{path}/2026/{SLUG}/';p=ROOT/route.strip('/')/'index.html';s=p.read_text();page=Page(s)
+    route=f'/{path}/2026/{SLUG}/';p=ROOT/route.strip('/')/'index.html';s=p.read_text(encoding='utf-8');page=Page(s)
     data=json.loads(re.search(r'<script id="kenny-dates" type="application/json">(.*?)</script>',s,re.S)[1])
     schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)[1])
     assert len(data)==len(schema['itemListElement'])==10
@@ -23,7 +23,7 @@ for lang,path,feed in [('es','conciertos','conciertos.json'),('en','en/concerts'
     assert len([a for tag,a in page.tags if tag=='h1'])==1
     for city in source:
         cityfile=p.parent/city['id']/'index.html'
-        citytext=cityfile.read_text()
+        citytext=cityfile.read_text(encoding='utf-8')
         event=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',citytext,re.S)[1])
         assert event['@type']=='MusicEvent'
         assert event['url']=='https://www.salanproducciones.com'+route+city['id']+'/'
@@ -43,7 +43,7 @@ for lang,path,feed in [('es','conciertos','conciertos.json'),('en','en/concerts'
         if parts.scheme or parts.netloc or not parts.path:continue
         dest=ROOT/parts.path.lstrip('/') if parts.path.startswith('/') else p.parent/parts.path
         assert dest.exists(),(lang,url)
-    concert=next(c for c in json.loads((ROOT/feed).read_text()) if c['id']==SLUG)
+    concert=next(c for c in json.loads((ROOT/feed).read_text(encoding='utf-8')) if c['id']==SLUG)
     assert concert['linkBuy']==route+'#tour-active-city'
     assert 'New Westminster' not in s
     assert 'tickety.es/entity/kenny' not in s

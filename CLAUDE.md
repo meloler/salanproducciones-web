@@ -26,6 +26,13 @@ Antes de generar HTML, lee siempre:
 
 ---
 
+## Flujo vigente de cambios y publicación
+
+- Trabajar en una rama `codex/...` y conservar cualquier cambio local existente.
+- Preparar y revisar una preview de Vercel antes de presentar cambios visibles.
+- Un push a `main` actualiza producción. Hacerlo únicamente cuando Juan haya autorizado publicar el lote concreto.
+- Para conciertos, leer `STYLE_GUIDE.md` y `GUIA-MULTIDIOMA.md`; comprobar el feed y el HTML estático para conservar el acceso sin JavaScript.
+
 ## Estructura del proyecto
 
 ```
@@ -93,13 +100,4 @@ Antes de generar HTML, lee siempre:
 
 ## GitHub
 
-Tras generar la landing, hacer commit y push a `main`:
-
-```bash
-cd "c:\Users\Juan\Desktop\webpapa thedoors\salanproducciones"
-git add conciertos/2026/<slug>/ index.html
-git commit -m "Add <Artista> – <Ciudad>, <fecha>"
-git push origin main
-```
-
-Cuenta: `meloler` — autenticada via `gh` CLI (Windows keyring).
+La carpeta y el comando de publicación que aparecían en versiones anteriores de este briefing están obsoletos. El flujo vigente está descrito al principio de este archivo: rama de trabajo, preview y autorización expresa antes de publicar en `main`.

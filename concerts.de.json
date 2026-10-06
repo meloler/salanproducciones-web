@@ -63,7 +63,7 @@
   },
   {
     "id": "poseidon-rock-fest-13-06-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-06-13",
     "dateDisplay": "13 Juni 2026",
     "title": "Poseidón Rock Fest",
@@ -78,7 +78,7 @@
   },
   {
     "id": "bywater-call-16-06-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-06-16",
     "dateDisplay": "16 Juni 2026",
     "title": "Bywater Call",
@@ -93,7 +93,7 @@
   },
   {
     "id": "bywater-call-17-06-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-06-17",
     "dateDisplay": "17 Juni 2026",
     "title": "Bywater Call",
@@ -108,7 +108,7 @@
   },
   {
     "id": "acantha-lang-tour-espana-28-06-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-06-24",
     "endDateISO": "2026-06-27",
     "dateDisplay": "24–27 Juni 2026",
@@ -125,7 +125,7 @@
   },
   {
     "id": "kenny-blues-boss-wayne-gira-espana-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-09-09",
     "endDateISO": "2026-09-20",
     "dateDisplay": "9–20 September 2026",
@@ -141,7 +141,7 @@
   },
   {
     "id": "rebrote-telde-02-10-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-10-02",
     "dateDisplay": "2 Oktober 2026",
     "title": "Rebrote",
@@ -157,7 +157,7 @@
   },
   {
     "id": "rebrote-el-sauzal-03-10-2026",
-    "status": "scheduled",
+    "status": "past",
     "dateISO": "2026-10-03",
     "dateDisplay": "3 Oktober 2026",
     "title": "Rebrote",

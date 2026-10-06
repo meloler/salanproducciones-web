@@ -1,5 +1,7 @@
 # Protocolo: Añadir Nuevos Conciertos
 
+> **Documento histórico; no seguir como flujo de publicación vigente.** Las referencias a SFTP/Raiola, tarjetas manuales como única fuente y afirmaciones de rendimiento no describen el despliegue actual. Consulta `CLAUDE.md`, `GUIA-MULTIDIOMA.md` y `tools/generate_multilang.py`; prepara una preview y espera autorización antes de publicar en `main`.
+
 ## Resumen
 Cuando haya un nuevo concierto:
 1. **Crear evento** (15 min): Copiar plantilla → Rellenar datos → Crear poster

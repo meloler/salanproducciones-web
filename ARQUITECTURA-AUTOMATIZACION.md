@@ -1,5 +1,7 @@
 # Arquitectura: Cómo se mueven los conciertos automáticamente
 
+> **Documento histórico; su descripción técnica quedó obsoleta.** Hoy la web usa `conciertos.json` como feed de entrada, genera variantes EN/DE con `tools/generate_multilang.py` y `assets/js/main.js` filtra las fechas en la página. Las tarjetas HTML estáticas se mantienen como alternativa sin JavaScript. Usa `GUIA-MULTIDIOMA.md` para el flujo vigente; revisa los cambios del generador antes de ejecutarlo porque también reescribe muchas páginas.
+
 ## El problema
 Tienes 2-3 conciertos al mes. No quieres:
 - ❌ Usar Supabase (complejidad innecesaria)
