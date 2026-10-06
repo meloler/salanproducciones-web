@@ -172,6 +172,21 @@
     "buttonLabel": "Buy"
   },
   {
+    "id": "womex-festival-2026",
+    "status": "scheduled",
+    "dateISO": "2026-10-21",
+    "endDateISO": "2026-10-25",
+    "dateDisplay": "21–25 October 2026",
+    "title": "WOMEX Festival",
+    "venue": "Auditorio Alfredo Kraus · Las Palmas de Gran Canaria",
+    "price": "Concerts 22–24 Oct · daily and full passes",
+    "image": "/assets/images/womex-festival-2026.webp",
+    "linkInfo": "/en/cultural-projects/womex/",
+    "linkBuy": "https://auditorioalfredokraus.es/evento/womex-festival?preview_secret=xZWeXGu8ya",
+    "buyAria": "Buy WOMEX Festival tickets in Las Palmas de Gran Canaria",
+    "buttonLabel": "Buy"
+  },
+  {
     "id": "clearwater-creedence-revival-el-sauzal-13-11-2026",
     "status": "scheduled",
     "dateISO": "2026-11-13",

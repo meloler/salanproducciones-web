@@ -84,9 +84,22 @@ Las comprobaciones de navegador se hicieron en la vista local del lote y, para l
 
 ## Estado de la preview
 
-- Preview Vercel lista: https://salanproducciones-eouzsoxez-juans-projects-8e14424d.vercel.app. Requiere iniciar sesión en Vercel.
+- Preview Vercel lista: https://salanproducciones-bll1mbudl-juans-projects-8e14424d.vercel.app. Requiere iniciar sesión en Vercel.
 - En esa preview se comprobaron portada, agenda y las dos fichas de Clearwater en ES/EN/DE; enlaces a entradas y campañas conservados; fechas del ItemList enlazadas a cada idioma; las seis imágenes WOMEX cargaron en los tres idiomas. También cargaron las imágenes de seis páginas culturales EN/DE y las cinco referencias corregidas del archivo.
 - La preview sigue mostrando 26,20 € con gastos incluidos para Telde. Tureserva presenta además un precio desde 25 €; queda pendiente confirmar el total con cargos.
 - Producción no se ha actualizado. Espera la revisión y autorización expresa de Juan antes de publicar.
 
 La vuelta atrás del cambio es revertir el commit de esta rama o cerrar la rama sin integrarla. Producción permanece en el commit base.
+
+## WOMEX Festival: enlace de entradas y tarjeta (6 de octubre de 2026)
+
+- Se añadió el enlace de entradas facilitado por Juan a las páginas de WOMEX en español, inglés y alemán. El enlace al sitio oficial de WOMEX se conserva como segundo botón.
+- Se agregó WOMEX Festival a los feeds, las tarjetas estáticas de portada y agenda y el carrusel móvil. La tarjeta enlaza a la página cultural del idioma correspondiente; el botón de compra conserva el enlace facilitado, incluidos sus parámetros, sin añadir etiquetas de seguimiento.
+- La tarjeta no superpone una etiqueta al cartel y muestra la imagen completa, para mantener legible el texto cercano a sus bordes.
+- El cartel facilitado se guardó como `assets/images/womex-festival-2026.webp` (495 × 619 px, 81.572 bytes). La tarjeta no muestra un precio único porque la venta ofrece opciones distintas.
+- La web oficial de WOMEX y el cartel indican que el festival completo va del 21 al 25 de octubre. La ficha de venta del Auditorio anuncia conciertos con entrada del 22 al 24, desde las 21:00. Las tarjetas y agendas muestran las fechas completas del festival y aclaran por separado qué noches tienen conciertos con entrada.
+- La nota del Ayuntamiento sobre la sede de 2026 conserva el rango 22–26 de octubre. Para las fechas generales se sigue el calendario y el cartel oficial de WOMEX; el enlace de entradas conserva la página específica del Auditorio.
+- El generador multidioma conserva enlaces de información externos a las fichas culturales, omite WOMEX de la creación de fichas de concierto y del sitemap duplicado, y mantiene intacto el parámetro `preview_secret` que Juan pidió incluir.
+- La vista previa actual se comprobó en ES/EN/DE: portada, carrusel móvil, agendas y páginas culturales. Las tarjetas muestran 21–25 de octubre, las agendas estructuradas coinciden y la página de entradas respondió.
+
+Fuentes consultadas: [WOMEX 26](https://womex-festival.com/), [ficha de WOMEX Festival del Auditorio](https://auditorioalfredokraus.es/evento/womex-festival) y [nota del Ayuntamiento](https://www.laspalmasgc.es/es/ayuntamiento/prensa-y-comunicacion/notas-de-prensa/nota-de-prensa/Las-Palmas-de-Gran-Canaria-se-consolida-como-referente-cultural-internacional-con-la-celebracion-de-WOMEX-2026/).

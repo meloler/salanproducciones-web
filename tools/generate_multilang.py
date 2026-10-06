@@ -46,6 +46,8 @@ def route_map(concerts: list[dict]) -> dict[str, dict[str, str]]:
     for _src, es, en, de in STATIC_ROUTES:
         routes[es] = {"es": es, "en": en, "de": de}
     for c in concerts:
+        if not c.get("hasLanding", True):
+            continue
         slug = c["id"]
         es = f"/conciertos/2026/{slug}/"
         routes[es] = {"es": es, "en": f"/en/concerts/2026/{slug}/", "de": f"/de/konzerte/2026/{slug}/"}
@@ -110,6 +112,11 @@ def translate_common(html: str, lang: str) -> str:
         "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "We use first-party and third-party cookies for analytics, advertising and basic site operation. You can accept all cookies or only the necessary ones.",
         "Comprar Entradas": "Buy tickets",
         "Comprar entradas": "Buy tickets",
+        "Comprar entradas para WOMEX Festival · Las Palmas de Gran Canaria": "Buy WOMEX Festival tickets · Las Palmas de Gran Canaria",
+        "Cartel oficial de WOMEX Festival 2026": "Official WOMEX Festival 2026 poster",
+        "WOMEX Festival — 21–25 octubre, Las Palmas": "WOMEX Festival — 21–25 October, Las Palmas",
+        "21–25 Octubre 2026": "21–25 October 2026",
+        "Conciertos 22–24 oct · pases diarios y completo": "Concerts 22–24 Oct · daily and full passes",
         "Comprar": "Buy",
         "Próximamente": "Coming soon",
         "Entradas próximamente": "Tickets coming soon",
@@ -122,6 +129,7 @@ def translate_common(html: str, lang: str) -> str:
         "Hora": "Time",
         '<div class="info-label">Sala</div>': '<div class="info-label">Venue</div>',
         "Precio": "Price",
+        "Pases diarios y pase completo": "Daily and full festival passes",
         "Aforo": "Capacity",
         "Desde": "From",
         "Gira España": "Spain Tour",
@@ -193,6 +201,12 @@ def translate_common(html: str, lang: str) -> str:
         "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "Wir verwenden eigene Cookies und Cookies von Drittanbietern für Analyse, Werbung und den grundlegenden Betrieb der Website. Du kannst alle oder nur die notwendigen Cookies akzeptieren.",
         "Comprar Entradas": "Tickets kaufen",
         "Comprar entradas": "Tickets kaufen",
+        "Comprar entradas para WOMEX Festival · Las Palmas de Gran Canaria": "WOMEX Festival Tickets kaufen · Las Palmas de Gran Canaria",
+        "Cartel oficial de WOMEX Festival 2026": "Offizielles Plakat des WOMEX Festival 2026",
+        "WOMEX Festival — 21–25 octubre, Las Palmas": "WOMEX Festival — 21.–25. Oktober, Las Palmas",
+        "21–25 Oct 2026": "21.–25. Okt. 2026",
+        "21–25 Octubre 2026": "21.–25. Oktober 2026",
+        "Conciertos 22–24 oct · pases diarios y completo": "Konzerte 22.–24. Okt. · Tages- und Festivalpässe",
         "Comprar": "Kaufen",
         "Próximamente": "Bald verfügbar",
         "Entradas próximamente": "Tickets bald verfügbar",
@@ -205,6 +219,7 @@ def translate_common(html: str, lang: str) -> str:
         "Hora": "Uhrzeit",
         '<div class="info-label">Sala</div>': '<div class="info-label">Ort</div>',
         "Precio": "Preis",
+        "Pases diarios y pase completo": "Tages- und Festivaltickets",
         "Aforo": "Kapazität",
         "Desde": "Ab",
         "Gira España": "Spanien-Tour",
@@ -688,10 +703,11 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "Más proyectos culturales": "More cultural projects",
         "Más allá de los conciertos, Salán Producciones impulsa la cultura musical en Canarias con proyectos propios que conectan artistas, público e industria.": "Beyond concerts, Salán Producciones promotes music culture in the Canary Islands through its own projects connecting artists, audiences and the industry.",
         "El concurso de bandas emergentes más veterano de Canarias": "The longest-running emerging band contest in the Canary Islands",
-        "La mayor feria profesional de músicas del mundo, 22-26 oct · Las Palmas": "The world's leading professional music fair, 22-26 Oct · Las Palmas",
+        "La mayor feria profesional de músicas del mundo, 21-25 oct · Las Palmas": "The world's leading professional music fair, 21-25 Oct · Las Palmas",
         "La mayor feria profesional de músicas del mundo vuelve a Las Palmas de Gran Canaria": "The world's leading professional music fair returns to Las Palmas de Gran Canaria",
         "Ciclo de documentales musicales": "Music documentary series",
         "Ver proyecto →": "View project →",
+        "Comprar entradas para WOMEX →": "Buy WOMEX tickets →",
         "Ir a womex-festival.com →": "Go to womex-festival.com →",
         "Ir a festivalsonora.com →": "Go to festivalsonora.com →",
         "← Volver a proyectos": "← Back to projects",
@@ -705,7 +721,9 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "Finales": "Finals",
         "Inscritos 2026": "2026 entries",
         "195 bandas y artistas": "195 bands and artists",
-        "22-26 de octubre de 2026": "22-26 October 2026",
+        "21-25 de octubre de 2026": "21-25 October 2026",
+        "21–25 Octubre 2026": "21–25 October 2026",
+        "WOMEX Festival en Las Palmas de Gran Canaria, del 21 al 25 de octubre de 2026.": "WOMEX Festival in Las Palmas de Gran Canaria, 21–25 October 2026.",
         "16-18 de octubre de 2026": "16-18 October 2026",
         "17-18 de abril de 2026": "17-18 April 2026",
         "2.300+ profesionales": "2,300+ professionals",
@@ -733,11 +751,11 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "womex-festival.com — Programa, showcases, acreditaciones y toda la información del evento": "womex-festival.com — Programme, showcases, accreditations and full event information",
         "¿Eres profesional de la industria musical? Contacta con nosotros para colaboraciones en WOMEX 2026": "Are you a music industry professional? Contact us for WOMEX 2026 collaborations",
         "Las Palmas se consolida como referente cultural internacional con WOMEX 2026": "Las Palmas strengthens its position as an international cultural reference with WOMEX 2026",
-        "WOMEX 2026, la mayor feria de músicas del mundo, vuelve a Las Palmas de Gran Canaria del 22 al 26 de octubre. Juan Salán y Santiago Gutiérrez, impulsores del regreso de WOMEX a Canarias.": "WOMEX 2026, the world's leading music fair, returns to Las Palmas de Gran Canaria from 22 to 26 October. Juan Salán and Santiago Gutiérrez helped bring WOMEX back to the Canary Islands.",
+        "WOMEX 2026, la mayor feria de músicas del mundo, vuelve a Las Palmas de Gran Canaria del 21 al 25 de octubre. Juan Salán y Santiago Gutiérrez, impulsores del regreso de WOMEX a Canarias.": "WOMEX 2026, the world's leading music fair, returns to Las Palmas de Gran Canaria from 21 to 25 October. Juan Salán and Santiago Gutiérrez helped bring WOMEX back to the Canary Islands.",
         "WOMEX 2026 Las Palmas de Gran Canaria – Juan Salán y Santiago Gutiérrez lo traen de vuelta": "WOMEX 2026 Las Palmas de Gran Canaria – Juan Salán and Santiago Gutiérrez bring it back",
         "WOMEX 2026 en Las Palmas de Gran Canaria – Salán Producciones": "WOMEX 2026 in Las Palmas de Gran Canaria – Salán Producciones",
         "Juan Salán y Santiago Gutiérrez en la presentación de WOMEX 2026 en Las Palmas de Gran Canaria": "Juan Salán and Santiago Gutiérrez at the WOMEX 2026 presentation in Las Palmas de Gran Canaria",
-        "WOMEX 2026: la mayor feria de músicas del mundo vuelve a Las Palmas del 22 al 26 de octubre.": "WOMEX 2026: the world's leading music fair returns to Las Palmas from 22 to 26 October.",
+        "WOMEX 2026: la mayor feria de músicas del mundo vuelve a Las Palmas del 21 al 25 de octubre.": "WOMEX 2026: the world's leading music fair returns to Las Palmas from 21 to 25 October.",
         "El World Music Expo 2026 en Las Palmas de Gran Canaria. La mayor feria profesional de músicas del mundo, con 2.300 profesionales de 90 países, 350 artistas y 250 periodistas.": "World Music Expo 2026 in Las Palmas de Gran Canaria. The world's leading professional music fair, with 2,300 professionals from 90 countries, 350 artists and 250 journalists.",
         "Cinezín – Ciclo de Cine y Música en Las Palmas | Salán Producciones": "Cinezín – Film and Music Series in Las Palmas | Salán Producciones",
         "Cinezín – Cine y Música en Las Palmas de Gran Canaria": "Cinezín – Film and Music in Las Palmas de Gran Canaria",
@@ -837,10 +855,11 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "Más proyectos culturales": "Weitere Kulturprojekte",
         "Más allá de los conciertos, Salán Producciones impulsa la cultura musical en Canarias con proyectos propios que conectan artistas, público e industria.": "Über Konzerte hinaus fördert Salán Producciones die Musikkultur auf den Kanaren mit eigenen Projekten, die Künstler, Publikum und Branche verbinden.",
         "El concurso de bandas emergentes más veterano de Canarias": "Der traditionsreichste Wettbewerb für Nachwuchsbands auf den Kanaren",
-        "La mayor feria profesional de músicas del mundo, 22-26 oct · Las Palmas": "Die weltweit führende professionelle Musikmesse, 22.-26. Okt. · Las Palmas",
+        "La mayor feria profesional de músicas del mundo, 21-25 oct · Las Palmas": "Die weltweit führende professionelle Musikmesse, 21.-25. Okt. · Las Palmas",
         "La mayor feria profesional de músicas del mundo vuelve a Las Palmas de Gran Canaria": "Die weltweit führende professionelle Musikmesse kehrt nach Las Palmas de Gran Canaria zurück",
         "Ciclo de documentales musicales": "Reihe musikalischer Dokumentarfilme",
         "Ver proyecto →": "Projekt ansehen →",
+        "Comprar entradas para WOMEX →": "WOMEX-Tickets kaufen →",
         "Ir a womex-festival.com →": "Zu womex-festival.com →",
         "Ir a festivalsonora.com →": "Zu festivalsonora.com →",
         "← Volver a proyectos": "← Zurück zu Projekten",
@@ -854,7 +873,9 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "Finales": "Finale",
         "Inscritos 2026": "Anmeldungen 2026",
         "195 bandas y artistas": "195 Bands und Künstler",
-        "22-26 de octubre de 2026": "22.-26. Oktober 2026",
+        "21-25 de octubre de 2026": "21.-25. Oktober 2026",
+        "21–25 Octubre 2026": "21.–25. Oktober 2026",
+        "WOMEX Festival en Las Palmas de Gran Canaria, del 21 al 25 de octubre de 2026.": "WOMEX Festival in Las Palmas de Gran Canaria, vom 21. bis 25. Oktober 2026.",
         "16-18 de octubre de 2026": "16.-18. Oktober 2026",
         "17-18 de abril de 2026": "17.-18. April 2026",
         "2.300+ profesionales": "2.300+ Fachbesucher",
@@ -882,11 +903,11 @@ def translate_cultural_project_fragments(html: str, lang: str) -> str:
         "womex-festival.com — Programa, showcases, acreditaciones y toda la información del evento": "womex-festival.com — Programm, Showcases, Akkreditierungen und alle Informationen zum Event",
         "¿Eres profesional de la industria musical? Contacta con nosotros para colaboraciones en WOMEX 2026": "Bist du in der Musikbranche tätig? Kontaktiere uns für Kooperationen rund um WOMEX 2026",
         "Las Palmas se consolida como referente cultural internacional con WOMEX 2026": "Las Palmas festigt mit WOMEX 2026 seine Position als internationale Kulturreferenz",
-        "WOMEX 2026, la mayor feria de músicas del mundo, vuelve a Las Palmas de Gran Canaria del 22 al 26 de octubre. Juan Salán y Santiago Gutiérrez, impulsores del regreso de WOMEX a Canarias.": "WOMEX 2026, die weltweit führende Musikmesse, kehrt vom 22. bis 26. Oktober nach Las Palmas de Gran Canaria zurück. Juan Salán und Santiago Gutiérrez haben die Rückkehr von WOMEX auf die Kanaren mit vorangetrieben.",
+        "WOMEX 2026, la mayor feria de músicas del mundo, vuelve a Las Palmas de Gran Canaria del 21 al 25 de octubre. Juan Salán y Santiago Gutiérrez, impulsores del regreso de WOMEX a Canarias.": "WOMEX 2026, die weltweit führende Musikmesse, kehrt vom 21. bis 25. Oktober nach Las Palmas de Gran Canaria zurück. Juan Salán und Santiago Gutiérrez haben die Rückkehr von WOMEX auf die Kanaren mit vorangetrieben.",
         "WOMEX 2026 Las Palmas de Gran Canaria – Juan Salán y Santiago Gutiérrez lo traen de vuelta": "WOMEX 2026 Las Palmas de Gran Canaria – Juan Salán und Santiago Gutiérrez bringen es zurück",
         "WOMEX 2026 en Las Palmas de Gran Canaria – Salán Producciones": "WOMEX 2026 in Las Palmas de Gran Canaria – Salán Producciones",
         "Juan Salán y Santiago Gutiérrez en la presentación de WOMEX 2026 en Las Palmas de Gran Canaria": "Juan Salán und Santiago Gutiérrez bei der Vorstellung von WOMEX 2026 in Las Palmas de Gran Canaria",
-        "WOMEX 2026: la mayor feria de músicas del mundo vuelve a Las Palmas del 22 al 26 de octubre.": "WOMEX 2026: Die weltweit führende Musikmesse kehrt vom 22. bis 26. Oktober nach Las Palmas zurück.",
+        "WOMEX 2026: la mayor feria de músicas del mundo vuelve a Las Palmas del 21 al 25 de octubre.": "WOMEX 2026: Die weltweit führende Musikmesse kehrt vom 21. bis 25. Oktober nach Las Palmas zurück.",
         "El World Music Expo 2026 en Las Palmas de Gran Canaria. La mayor feria profesional de músicas del mundo, con 2.300 profesionales de 90 países, 350 artistas y 250 periodistas.": "World Music Expo 2026 in Las Palmas de Gran Canaria. Die weltweit führende professionelle Musikmesse mit 2.300 Fachleuten aus 90 Ländern, 350 Künstlern und 250 Journalisten.",
         "Cinezín – Ciclo de Cine y Música en Las Palmas | Salán Producciones": "Cinezín – Film- und Musikreihe in Las Palmas | Salán Producciones",
         "Cinezín – Cine y Música en Las Palmas de Gran Canaria": "Cinezín – Film und Musik in Las Palmas de Gran Canaria",
@@ -1016,12 +1037,17 @@ def transform(source_html: str, es: str, en: str, de: str, lang: str, routes: di
 def translate_concert_feed(concerts: list[dict], lang: str) -> list[dict]:
     feed = []
     for c in concerts:
-        d = dict(c)
-        d["linkInfo"] = f"/en/concerts/2026/{c['id']}/" if lang == "en" else f"/de/konzerte/2026/{c['id']}/"
+        d = {key: value for key, value in c.items() if key not in {"hasLanding", "linkInfoByLanguage", "localizedFields"}}
+        localized_info = c.get("linkInfoByLanguage", {})
+        if localized_info:
+            d["linkInfo"] = localized_info[lang]
+        else:
+            d["linkInfo"] = f"/en/concerts/2026/{c['id']}/" if lang == "en" else f"/de/konzerte/2026/{c['id']}/"
         for key in ["dateDisplay", "subtitle", "venue", "badge", "price", "buyAria", "buttonLabel"]:
             if isinstance(d.get(key), str):
                 d[key] = translate_common(d[key], lang)
-        if d.get("linkBuy") and "utm_source=" not in d["linkBuy"]:
+        d.update(c.get("localizedFields", {}).get(lang, {}))
+        if d.get("linkBuy") and "utm_source=" not in d["linkBuy"] and "preview_secret=" not in d["linkBuy"]:
             sep = "&" if "?" in d["linkBuy"] else "?"
             d["linkBuy"] = f"{d['linkBuy']}{sep}utm_source=landing&utm_medium=web&utm_campaign={d['id']}-{lang}"
         feed.append(d)
@@ -1048,6 +1074,8 @@ def build_sitemap(concerts: list[dict]) -> None:
     for _src, es, en, de in STATIC_ROUTES:
         entries.append((es, en, de, "weekly" if es in {"/", "/proximos-conciertos/"} else "monthly", "1.0" if es == "/" else "0.7"))
     for c in concerts:
+        if not c.get("hasLanding", True):
+            continue
         slug = c["id"]
         entries.append((f"/conciertos/2026/{slug}/", f"/en/concerts/2026/{slug}/", f"/de/konzerte/2026/{slug}/", "weekly", "0.8"))
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
@@ -1088,6 +1116,8 @@ def main() -> None:
         inject_hreflang_spanish(ROOT / src, es, en, de)
 
     for c in concerts:
+        if not c.get("hasLanding", True):
+            continue
         slug = c["id"]
         src = ROOT / f"conciertos/2026/{slug}/index.html"
         if not src.exists():

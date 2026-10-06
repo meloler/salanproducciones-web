@@ -393,18 +393,20 @@
               const titleHtml = c.subtitle
                 ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                 : c.title;
+              const priceHtml = c.price ? `<p class="concert-card-price">${c.price}</p>` : '';
+              const badgeHtml = c.badge ? `<span class="concert-card-badge">${c.badge}</span>` : '';
                 
               html += `
-                <article class="concert-card reveal">
+                <article class="concert-card reveal" data-event-id="${escapeHtml(c.id)}">
                   <div class="concert-card-img">
                     <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${t.poster} ${c.title} - ${c.dateDisplay}" loading="lazy" width="400" height="533">
-                    <span class="concert-card-badge">${c.badge}</span>
+                    ${badgeHtml}
                   </div>
                   <div class="concert-card-body">
                     <div class="concert-card-date">${c.dateDisplay}</div>
                     <h3 class="concert-card-title">${titleHtml}</h3>
                     <p class="concert-card-venue">${c.venue}</p>
-                    <p class="concert-card-price">${c.price || ''}</p>
+                    ${priceHtml}
                     <div style="display:flex;gap:8px;margin-top:8px">
                       <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">${t.info}</a>
                       ${buttonHtml}
@@ -442,7 +444,7 @@
           } else {
             carouselTrack.dataset.carouselReady = 'false';
             carouselTrack.innerHTML = upcoming.map(c => `
-              <a href="${escapeHtml(c.linkInfo)}" class="carousel-item" aria-label="${escapeHtml(stripHtml(c.title))} - ${escapeHtml(stripHtml(c.dateDisplay))}">
+              <a href="${escapeHtml(c.linkInfo)}" class="carousel-item" data-event-id="${escapeHtml(c.id)}" aria-label="${escapeHtml(stripHtml(c.title))} - ${escapeHtml(stripHtml(c.dateDisplay))}">
                 <img src="${escapeHtml(c.image.replace('/poster.webp', '/poster-320.webp'))}" alt="${escapeHtml(stripHtml(c.title))}" loading="lazy" width="320" height="427">
                 <div class="carousel-item-info">
                   <div class="carousel-item-date">${escapeHtml(c.dateDisplay)}</div>

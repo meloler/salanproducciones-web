@@ -406,6 +406,8 @@ ul { list-style: none; }
   transition: transform .4s;
 }
 .concert-card:hover .concert-card-img img { transform: scale(1.04); }
+article[data-event-id="womex-festival-2026"] .concert-card-img img { object-fit: contain; }
+article[data-event-id="womex-festival-2026"]:hover .concert-card-img img { transform: none; }
 
 .concert-card-badge {
   position: absolute;

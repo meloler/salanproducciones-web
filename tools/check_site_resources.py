@@ -41,11 +41,6 @@ WOMEX_MEDIA = {
     "/proyectosculturales/womex/womex2018-4.webp",
 }
 EVENT_ROUTE = re.compile(r"/(?:conciertos|concerts|konzerte)/2026/([^/]+)/")
-EVENT_ROUTE_BY_LANGUAGE = {
-    "es": "/conciertos/2026/",
-    "en": "/en/concerts/2026/",
-    "de": "/de/konzerte/2026/",
-}
 
 
 class PageReferences(HTMLParser):
@@ -62,6 +57,8 @@ class PageReferences(HTMLParser):
         values = dict(attrs)
         if tag == "article":
             self.article_links = []
+            if values.get("data-event-id"):
+                self.article_links.append(f"event-id:{values['data-event-id']}")
 
         if tag == "div":
             if self.carousel_depth:
@@ -94,6 +91,8 @@ class PageReferences(HTMLParser):
                 self.article_links.append(href)
             if self.carousel_depth:
                 self.carousel_links.append(href)
+        if tag == "a" and self.carousel_depth and values.get("data-event-id"):
+            self.carousel_links.append(f"event-id:{values['data-event-id']}")
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "article" and self.article_links is not None:
@@ -140,9 +139,9 @@ def media_errors() -> tuple[int, list[str]]:
 
 def event_ids(links: list[str]) -> list[str]:
     return list(dict.fromkeys(
-        match.group(1)
+        link.removeprefix("event-id:") if link.startswith("event-id:") else match.group(1)
         for link in links
-        if (match := EVENT_ROUTE.search(urlsplit(link).path))
+        if link.startswith("event-id:") or (match := EVENT_ROUTE.search(urlsplit(link).path))
     ))
 
 
@@ -211,36 +210,20 @@ def event_fallback_errors(feeds: dict[str, list[dict]]) -> list[str]:
                 else:
                     structured = lists[0]
                     elements = structured.get("itemListElement", [])
-                    ids = event_ids([
+                    item_urls = [
                         element.get("item", {}).get("url", "")
                         for element in elements
                         if isinstance(element, dict)
-                    ])
-                    item_urls = {
-                        event_match.group(1): element.get("item", {}).get("url", "")
-                        for element in elements
-                        if isinstance(element, dict)
                         and isinstance(element.get("item"), dict)
-                        and (
-                            event_match := EVENT_ROUTE.search(
-                                urlsplit(element["item"].get("url", "")).path
-                            )
-                        )
-                    }
-                    expected_urls = {
-                        event_id: (
-                            "https://www.salanproducciones.com"
-                            + EVENT_ROUTE_BY_LANGUAGE[lang]
-                            + event_id
-                            + "/"
-                        )
-                        for event_id in expected
-                    }
+                    ]
+                    expected_urls = [
+                        "https://www.salanproducciones.com" + item["linkInfo"]
+                        for item in sorted(feeds[lang], key=lambda event: event["dateISO"])
+                        if (item.get("endDateISO") or item["dateISO"]) >= TODAY
+                    ]
                     positions = [element.get("position") for element in elements]
                     if (
-                        set(ids) != expected
-                        or len(ids) != len(expected)
-                        or item_urls != expected_urls
+                        item_urls != expected_urls
                         or structured.get("numberOfItems") != len(expected)
                         or positions != list(range(1, len(expected) + 1))
                     ):
@@ -261,6 +244,23 @@ def event_fallback_errors(feeds: dict[str, list[dict]]) -> list[str]:
             errors.append(
                 f"{relative}: los recursos WOMEX no coinciden con los seis archivos compartidos."
             )
+
+    womex_event = base.get("womex-festival-2026")
+    if womex_event:
+        image = ROOT / womex_event["image"].lstrip("/")
+        if not image.is_file():
+            errors.append(f"Feed ES, WOMEX Festival: no existe la imagen {womex_event['image']}.")
+        expected_info = {
+            "es": "/proyectosculturales/womex/",
+            "en": "/en/cultural-projects/womex/",
+            "de": "/de/kulturprojekte/womex/",
+        }
+        for lang, items in feeds.items():
+            item = next((event for event in items if event["id"] == "womex-festival-2026"), None)
+            if not item or item.get("linkInfo") != expected_info[lang]:
+                errors.append(f"Feed {lang}, WOMEX Festival: el enlace de información no coincide con su página traducida.")
+            if item and item.get("linkBuy") != womex_event.get("linkBuy"):
+                errors.append(f"Feed {lang}, WOMEX Festival: el enlace de entradas no se conservó exactamente.")
     return errors
 
 
