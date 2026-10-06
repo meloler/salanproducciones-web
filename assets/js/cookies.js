@@ -62,30 +62,105 @@
         loadMetaPixel();
     }
 
-    var lastTicketEventKey = null;
-    var lastTicketEventAt = 0;
+    var TICKET_PROVIDER_HOSTS = Object.freeze({
+        'auditorioalfredokraus.es': 'auditorio_alfredo_kraus',
+        'tickety.es': 'tickety',
+        'tureservaonline.es': 'tureservaonline',
+        'entradium.com': 'entradium',
+        'entradas.babylonmadrid.com': 'babylon_madrid',
+        'entradas.elteatroguiniguada.com': 'teatro_guiniguada'
+    });
+
+    function ticketProvider(href) {
+        try {
+            var url = new URL(href, window.location.href);
+            if (url.protocol !== 'https:' || url.username || url.password) return null;
+            var host = url.hostname.toLowerCase().replace(/^www\./, '');
+            if (host === 'entradas.plus' || host.slice(-14) === '.entradas.plus') return 'entradas_plus';
+            return TICKET_PROVIDER_HOSTS[host] || null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function eventIdFor(link) {
+        var tagged = link.closest('[data-analytics-event-id]');
+        if (tagged && tagged.dataset.analyticsEventId) return tagged.dataset.analyticsEventId;
+
+        var legacyTagged = link.closest('[data-event-id]');
+        if (legacyTagged && legacyTagged.dataset.eventId) return legacyTagged.dataset.eventId;
+
+        var canonical = document.querySelector('link[rel="canonical"][href]');
+        if (!canonical) return '';
+        try {
+            var segments = new URL(canonical.href).pathname.split('/').filter(Boolean);
+            if (segments[0] === 'en' || segments[0] === 'de') segments.shift();
+            var yearIndex = segments.findIndex(function (segment) { return /^\d{4}$/.test(segment); });
+            if (yearIndex >= 0) return segments.slice(yearIndex + 1).join('-');
+            return segments.slice(-2).join('-');
+        } catch (error) {
+            return '';
+        }
+    }
+
+    function cityFor(link) {
+        var tagged = link.closest('[data-analytics-city]');
+        if (tagged && tagged.dataset.analyticsCity) return tagged.dataset.analyticsCity;
+
+        var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+        for (var i = 0; i < scripts.length; i++) {
+            try {
+                var data = JSON.parse(scripts[i].textContent);
+                var entries = Array.isArray(data) ? data : (Array.isArray(data['@graph']) ? data['@graph'] : [data]);
+                for (var j = 0; j < entries.length; j++) {
+                    var entry = entries[j];
+                    var types = Array.isArray(entry['@type']) ? entry['@type'] : [entry['@type']];
+                    var location = entry.location;
+                    var city = location && location.address && location.address.addressLocality;
+                    if (types.some(function (type) { return typeof type === 'string' && /Event$/.test(type); }) && city) return city;
+                }
+            } catch (error) {}
+        }
+        return '';
+    }
+
+    function buttonLocationFor(link) {
+        var tagged = link.closest('[data-analytics-location]');
+        if (tagged && tagged.dataset.analyticsLocation) return tagged.dataset.analyticsLocation;
+        if (link.closest('.concert-card, .carousel-item')) return 'concert_card';
+        if (link.closest('.tour-sticky')) return 'tour_sticky';
+        if (link.closest('.tour-selector')) return 'tour_selector';
+        if (link.closest('.cta-group-proyecto')) return 'cultural_project';
+        if (link.closest('.final-box')) return 'event_final';
+        return 'event_page';
+    }
 
     function trackTicketClick(event) {
-        if (get() !== 'all' || !window.fbq) return;
+        if (!event.isTrusted || event.defaultPrevented || get() !== 'all' || typeof window.fbq !== 'function') return;
 
         var target = event.target;
         var link = target && target.closest ? target.closest('a[href]') : null;
         if (!link) return;
 
-        var href = link.getAttribute('href') || '';
-        if (href.indexOf('tickety.es') === -1 && href.indexOf('entradas.plus') === -1) return;
-
-        var now = Date.now();
-        var eventKey = href;
-        if (lastTicketEventKey === eventKey && now - lastTicketEventAt < 1500) return;
-        lastTicketEventKey = eventKey;
-        lastTicketEventAt = now;
-
-        window.fbq('trackCustom', 'TicketClick', {
+        var provider = ticketProvider(link.href);
+        if (!provider) return;
+        var concertId = eventIdFor(link);
+        if (!concertId) return;
+        var language = (document.documentElement.lang || '').split('-')[0].toLowerCase();
+        var properties = {
             content_name: 'Ticket click',
             content_category: 'Concert tickets',
-            destination_url: href
-        });
+            concert_id: concertId,
+            language: language,
+            button_location: buttonLocationFor(link),
+            ticket_provider: provider
+        };
+        var city = cityFor(link);
+        if (city) properties.city = city;
+
+        try {
+            window.fbq('trackCustom', 'TicketClick', properties);
+        } catch (error) {}
     }
 
     function acceptAll() {
@@ -117,8 +192,6 @@
         var btnNec = document.getElementById('ck-accept-necessary');
         if (btnAll) btnAll.addEventListener('click', acceptAll);
         if (btnNec) btnNec.addEventListener('click', acceptNecessary);
-        document.addEventListener('pointerdown', trackTicketClick);
-        document.addEventListener('touchstart', trackTicketClick);
         document.addEventListener('click', trackTicketClick);
         if (!get()) show();
     });

@@ -103,3 +103,42 @@ La vuelta atrás del cambio es revertir el commit de esta rama o cerrar la rama 
 - La vista previa actual se comprobó en ES/EN/DE: portada, carrusel móvil, agendas y páginas culturales. Las tarjetas muestran 21–25 de octubre, las agendas estructuradas coinciden y la página de entradas respondió.
 
 Fuentes consultadas: [WOMEX 26](https://womex-festival.com/), [ficha de WOMEX Festival del Auditorio](https://auditorioalfredokraus.es/evento/womex-festival) y [nota del Ayuntamiento](https://www.laspalmasgc.es/es/ayuntamiento/prensa-y-comunicacion/notas-de-prensa/nota-de-prensa/Las-Palmas-de-Gran-Canaria-se-consolida-como-referente-cultural-internacional-con-la-celebracion-de-WOMEX-2026/).
+
+## Fase 2 — Medición de interés por entradas (7 de octubre de 2026)
+
+- Se conservó el nombre de evento Meta `TicketClick` y las propiedades existentes `content_name` y `content_category`. Cada activación añade un ID estable de concierto, ciudad conocida, idioma, ubicación del botón y ticketera normalizada.
+- El seguimiento acepta solo enlaces HTTPS a los siete dominios observados en las páginas y feeds. Usa un único clic real y descarta clics cancelados; ya no cuenta eventos separados de puntero, tacto ni teclado.
+- El evento solo se envía con consentimiento `all`. No incluye la URL de venta, campañas, el parámetro `preview_secret`, texto de página ni datos personales. Se conserva la navegación original del enlace aunque falte o falle `fbq`.
+- Se añadieron identificadores a las tarjetas estáticas y generadas, a los botones de WOMEX y Clearwater, y a los selectores de ciudad de Kenny. Se actualizaron las versiones de caché de CSS y JavaScript en 106 páginas y la del script de gira en 33, porque `/assets/` tiene caché inmutable por un año.
+- El contrato, proveedores, límites y migración del antiguo campo `destination_url` están en `docs/medicion-interes-entradas.md`. No hay acceso a las cuentas privadas de GTM, GA4 o Meta; no se verificó su configuración ni la recepción final del evento. Clics no equivalen a ventas.
+
+**Verificación:** sintaxis JS y `git diff --check` correctos. En preview protegida, un navegador automatizado usó Meta Pixel simulado y bloqueó todos los destinos de venta. Pasaron consentimiento necesario y completo, activación única, clic cancelado, ratón, teclado y tacto, ES/EN/DE, siete proveedores, exclusión de un dominio parecido, ausencia de URL y parámetros en el payload y continuidad de navegación al faltar o fallar la analítica. No se efectuó una compra ni se enviaron eventos a producción.
+
+Preview lista: https://salanproducciones-244xynhi8-juans-projects-8e14424d.vercel.app. La preview requiere autorización de Vercel. Esta dirección sustituye a la preview de WOMEX citada en la anotación anterior para revisar el estado actual de la rama. Producción no se ha actualizado.
+
+## Fase 3 — Revisión de rendimiento (7 de octubre de 2026)
+
+Se hicieron tres cargas independientes por página y tamaño, con consentimiento solo necesario, navegador Chromium, caché vacía en cada contexto y la misma preview. La transferencia es la medida de Chrome `Network.loadingFinished.encodedDataLength`. Las cifras son laboratorio, no datos de usuarios reales; no se comparan directamente con la muestra única del 6 de octubre, que se obtuvo con otro método.
+
+| Página | Vista | Peticiones (mediana) | Transferencia (mediana) | LCP (mediana) | CLS (mediana) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Portada | Escritorio | 17 | 442.168 bytes | 404 ms | 0,0147 |
+| Portada | Móvil | 18 | 512.420 bytes | 412 ms | 0,0176 |
+| Agenda | Escritorio | 17 | 409.753 bytes | 392 ms | 0,0166 |
+| Agenda | Móvil | 16 | 424.960 bytes | 400 ms | 0,0511 |
+| Clearwater El Sauzal | Escritorio | 14 | 231.348 bytes | 404 ms | 0,0385 |
+| Clearwater El Sauzal | Móvil | 14 | 231.355 bytes | 468 ms | 0,0105 |
+| WOMEX | Escritorio | 14 | 344.648 bytes | 388 ms | 0,0033 |
+| WOMEX | Móvil | 12 | 214.533 bytes | 364 ms | 0,0142 |
+
+No se reprodujo una demora grande en estas condiciones. El desplazamiento de la agenda móvil fue 0,0511, por debajo del umbral de 0,1 usado habitualmente para clasificar CLS bueno, y cercano a la medición inicial de 0,0520. No hay una mejora puntual de suficiente beneficio demostrado que justifique un cambio visual o de carga ahora; por tanto, la fase queda revisada sin modificar recursos. Las cifras no predicen el rendimiento en todos los teléfonos ni sustituyen mediciones de campo.
+
+## Fase 4 — Revisión de señales para buscadores y asistentes
+
+- El HTML conserva texto de eventos, enlaces de navegación y datos estructurados visibles. No se propone añadir Markdown negociado: la publicación actual es estática en Vercel y no se ha demostrado que el proveedor entregue una variante sincronizada de forma automática. Añadir una segunda versión exigiría mantenerla junto al HTML en tres idiomas.
+- No se añaden cabeceras `Link` solo para mejorar un escáner. Hreflang, canonical y enlaces ya están en HTML; falta demostrar una necesidad adicional concreta.
+- La política principal documenta tres usos: `search`, `ai-input` y `ai-train`. La ausencia de una preferencia significa que ese uso queda sin expresar, no que se autorice o prohíba. Cloudflare documenta además `use` como una extensión opcional en pruebas para limitar cuánto se conserva o reutiliza el contenido; no se trata como una cuarta señal establecida.
+- En producción, `robots.txt` responde 200 y declara `Allow: /` y el sitemap, sin Content Signals. La portada responde 200 como HTML también cuando se solicita `Accept: text/markdown`; no envía `Vary` ni cabecera `Link`. El archivo local `robots.txt` coincide con la respuesta pública.
+- No se tocaron `robots.txt`, DNS ni ajustes de Cloudflare. Queda pendiente que Juan decida qué señales expresa para búsqueda, uso como entrada de IA y entrenamiento; la extensión `use` queda aparte. La decisión se registrará antes de modificar reglas.
+
+Referencias consultadas el 7 de octubre de 2026: [Cloudflare: Content Signals Policy](https://blog.cloudflare.com/content-signals-policy/), [Cloudflare: directivas y extensión `use` en `robots.txt`](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/), [Cloudflare: tipos de señal leídos por su API](https://developers.cloudflare.com/api/resources/ai_audit/subresources/robots/) y [Google: funciones de IA y sitios web](https://developers.google.com/search/docs/appearance/ai-features). Google indica que sus funciones de búsqueda con IA no requieren marcado ni archivos especiales aparte de los fundamentos SEO. La página del escáner no ofreció contenido legible en esta consulta; sus resultados se citan únicamente como la instantánea descrita en el plan.

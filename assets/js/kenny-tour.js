@@ -30,6 +30,9 @@
     ['tac-btn', 'sticky-buy'].forEach(key => {
       const link = document.getElementById(key);
       link.href = ticketUrl(city);
+      link.dataset.analyticsEventId = 'kenny-blues-boss-wayne-gira-espana-2026-' + city.id;
+      link.dataset.analyticsCity = city.name;
+      link.dataset.analyticsLocation = key === 'sticky-buy' ? 'tour_sticky' : 'tour_selector';
       link.setAttribute('aria-label', link.textContent.trim() + ' — ' + city.name);
     });
     if (updateHash) history.replaceState(null, '', location.pathname + location.search + '#' + id);
@@ -46,7 +49,11 @@
   const selector = document.querySelector('.tour-selector');
   if (selector) selector.hidden = false;
   document.querySelectorAll('[data-ticket-city]').forEach(link => {
-    link.href = ticketUrl(cities[link.dataset.ticketCity]);
+    const city = cities[link.dataset.ticketCity];
+    link.href = ticketUrl(city);
+    link.dataset.analyticsEventId = 'kenny-blues-boss-wayne-gira-espana-2026-' + city.id;
+    link.dataset.analyticsCity = city.name;
+    link.dataset.analyticsLocation = 'tour_date_list';
   });
   const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Madrid' }).format(new Date());
   const next = Object.keys(cities).find(id => cities[id].date >= today) || Object.keys(cities)[0];

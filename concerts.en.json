@@ -174,6 +174,7 @@
   {
     "id": "womex-festival-2026",
     "status": "scheduled",
+    "city": "Las Palmas de Gran Canaria",
     "dateISO": "2026-10-21",
     "endDateISO": "2026-10-25",
     "dateDisplay": "21–25 October 2026",
@@ -189,6 +190,7 @@
   {
     "id": "clearwater-creedence-revival-el-sauzal-13-11-2026",
     "status": "scheduled",
+    "city": "El Sauzal",
     "dateISO": "2026-11-13",
     "dateDisplay": "13 November 2026",
     "title": "Clearwater Creedence Revival",
@@ -205,6 +207,7 @@
   {
     "id": "clearwater-creedence-revival-telde-14-11-2026",
     "status": "scheduled",
+    "city": "Telde",
     "dateISO": "2026-11-14",
     "dateDisplay": "14 November 2026",
     "title": "Clearwater Creedence Revival",

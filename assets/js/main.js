@@ -389,7 +389,7 @@
             upcoming.forEach(c => {
               const buttonHtml = c.disabled 
                 ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
-                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+                : `<a href="${c.linkBuy}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
               const titleHtml = c.subtitle
                 ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                 : c.title;
