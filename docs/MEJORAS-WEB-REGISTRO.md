@@ -82,10 +82,11 @@ Se cambiaron las rutas de Cinezín y Festival Sonora para usar los recursos exis
 
 Las comprobaciones de navegador se hicieron en la vista local del lote y, para la referencia inicial, en el sitio publicado. No se hizo compra, no se completó contacto o newsletter y no se midieron ventas. El popup actual de newsletter puede cubrir parte de la vista móvil; se conserva para una revisión posterior de uso.
 
-## Pendiente antes de cerrar este lote
+## Estado de la preview
 
-- Probar el sitio corregido en una preview de Vercel y registrar aquí su URL y recorrido comprobado.
-- Confirmar con Tureserva si 26,20 € es el total con cargos para Telde.
-- No publicar en producción hasta que Juan revise la preview y autorice este lote.
+- Preview Vercel lista: https://salanproducciones-eouzsoxez-juans-projects-8e14424d.vercel.app. Requiere iniciar sesión en Vercel.
+- En esa preview se comprobaron portada, agenda y las dos fichas de Clearwater en ES/EN/DE; enlaces a entradas y campañas conservados; fechas del ItemList enlazadas a cada idioma; las seis imágenes WOMEX cargaron en los tres idiomas.
+- La preview sigue mostrando 26,20 € con gastos incluidos para Telde. Tureserva presenta además un precio desde 25 €; queda pendiente confirmar el total con cargos.
+- Producción no se ha actualizado. Espera la revisión y autorización expresa de Juan antes de publicar.
 
 La vuelta atrás del cambio es revertir el commit de esta rama o cerrar la rama sin integrarla. Producción permanece en el commit base.
