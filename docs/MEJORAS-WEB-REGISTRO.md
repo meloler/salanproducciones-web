@@ -85,7 +85,7 @@ Las comprobaciones de navegador se hicieron en la vista local del lote y, para l
 ## Estado de la preview
 
 - Preview Vercel lista: https://salanproducciones-eouzsoxez-juans-projects-8e14424d.vercel.app. Requiere iniciar sesión en Vercel.
-- En esa preview se comprobaron portada, agenda y las dos fichas de Clearwater en ES/EN/DE; enlaces a entradas y campañas conservados; fechas del ItemList enlazadas a cada idioma; las seis imágenes WOMEX cargaron en los tres idiomas.
+- En esa preview se comprobaron portada, agenda y las dos fichas de Clearwater en ES/EN/DE; enlaces a entradas y campañas conservados; fechas del ItemList enlazadas a cada idioma; las seis imágenes WOMEX cargaron en los tres idiomas. También cargaron las imágenes de seis páginas culturales EN/DE y las cinco referencias corregidas del archivo.
 - La preview sigue mostrando 26,20 € con gastos incluidos para Telde. Tureserva presenta además un precio desde 25 €; queda pendiente confirmar el total con cargos.
 - Producción no se ha actualizado. Espera la revisión y autorización expresa de Juan antes de publicar.
 
