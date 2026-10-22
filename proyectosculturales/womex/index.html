@@ -92,6 +92,8 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
   <link rel="stylesheet" href="/assets/css/main.css?v=20261007-phase2">
 
+  <link rel="stylesheet" href="/assets/css/womex-press.css?v=1">
+
   <style>
     /* ─── HERO ─────────────────────────────────────────── */
     .proyecto-hero { padding: 0; }
@@ -403,6 +405,54 @@
 
 <hr class="divider">
 
+<!-- PRENSA · WOMEX 2026 -->
+<section class="womex-press" id="prensa" aria-labelledby="womex-press-title" data-womex-press>
+  <div class="womex-press__head">
+    <div>
+      <span class="womex-press__eyebrow">WOMEX en los medios</span>
+      <h2 id="womex-press-title">La prensa habla</h2>
+      <p class="womex-press__intro">Cuatro miradas sobre la cita que conecta Gran Canaria con las músicas del mundo.</p>
+    </div>
+    <div class="womex-press__controls" data-press-controls hidden>
+      <button class="womex-press__button" type="button" aria-label="Noticias anteriores" aria-controls="womex-press-track" data-press-prev disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+      <button class="womex-press__button" type="button" aria-label="Noticias siguientes" aria-controls="womex-press-track" data-press-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  <ul class="womex-press__track" id="womex-press-track" tabindex="0" aria-label="Noticias sobre WOMEX: desliza o utiliza las flechas del teclado" data-press-track>
+      <li class="womex-press__item">
+        <a class="womex-press__card" href="https://www.canarias7.es/cultura/musica/womex-2026-gran-canaria-programa-nueve-conciertos-20261021195317-nt.html" target="_blank" rel="noopener noreferrer">
+          <div class="womex-press__meta"><span class="womex-press__source">Canarias7</span><span class="womex-press__number" aria-hidden="true">01</span></div>
+          <h3>Womex 2026 Gran Canaria programa nueve conciertos gratuitos en el escenario Plaza Stage</h3>
+          <span class="womex-press__read">Leer noticia <span class="womex-press__sr">(se abre en otra pestaña)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </a>
+      </li>
+      <li class="womex-press__item">
+        <a class="womex-press__card" href="https://rtvc.es/la-alpispa-se-sumerge-este-viernes-en-womex-2026/" target="_blank" rel="noopener noreferrer">
+          <div class="womex-press__meta"><span class="womex-press__source">RTVC · La Radio Canaria</span><span class="womex-press__number" aria-hidden="true">02</span></div>
+          <h3>«La Alpispa» se sumerge este viernes en WOMEX 2026, el gran encuentro internacional de músicas del mundo</h3>
+          <span class="womex-press__read">Leer noticia <span class="womex-press__sr">(se abre en otra pestaña)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </a>
+      </li>
+      <li class="womex-press__item">
+        <a class="womex-press__card" href="https://www.laprovincia.es/cultura/2026/10/22/womex-convierte-gran-canaria-escaparate-135597508.html" target="_blank" rel="noopener noreferrer">
+          <div class="womex-press__meta"><span class="womex-press__source">La Provincia</span><span class="womex-press__number" aria-hidden="true">03</span></div>
+          <h3>Womex convierte a Gran Canaria en el escaparate de la música mundial</h3>
+          <span class="womex-press__read">Leer noticia <span class="womex-press__sr">(se abre en otra pestaña)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </a>
+      </li>
+      <li class="womex-press__item">
+        <a class="womex-press__card" href="https://lavozcanaria.com/gran-canaria/general/canarias-suena-en-womex-mas-de-40-artistas-buscan-conexiones-globales" target="_blank" rel="noopener noreferrer">
+          <div class="womex-press__meta"><span class="womex-press__source">La Voz Canaria</span><span class="womex-press__number" aria-hidden="true">04</span></div>
+          <h3>Canarias suena en WOMEX: más de 40 artistas buscan conexiones globales</h3>
+          <span class="womex-press__read">Leer noticia <span class="womex-press__sr">(se abre en otra pestaña)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
+        </a>
+      </li>
+  </ul>
+  <div class="womex-press__foot"><span>Desliza para descubrir más · Enlaces a los medios originales</span><span class="womex-press__counter" role="status" aria-live="polite" aria-atomic="true" data-press-counter>4 noticias</span></div>
+</section>
+
+<hr class="divider">
+
 <!-- QUÉ ES WOMEX -->
 <div class="proyecto-section reveal" id="que-es">
   <h2>Qué es WOMEX</h2>
@@ -489,8 +539,8 @@
 <hr class="divider">
 
 <!-- EN LOS MEDIOS -->
-<div class="proyecto-section reveal" id="prensa">
-  <h2>En los medios</h2>
+<div class="proyecto-section reveal" id="enlaces-womex">
+  <h2>Enlaces de interés</h2>
   <div class="noticias-grid">
     <a href="https://www.laspalmasgc.es/es/ayuntamiento/prensa-y-comunicacion/notas-de-prensa/nota-de-prensa/Las-Palmas-de-Gran-Canaria-se-consolida-como-referente-cultural-internacional-con-la-celebracion-de-WOMEX-2026/" class="noticia-card" target="_blank" rel="noopener noreferrer">
       <span class="noticia-fuente">Ayuntamiento de Las Palmas de Gran Canaria</span>
@@ -564,6 +614,7 @@
   </div>
 </footer>
 
+<script src="/assets/js/womex-press.js?v=1" defer></script>
 <script src="/assets/js/main.js?v=20261007-ticket-campaigns" defer></script>
 
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111111;border-top:1px solid #2a2a2a;padding:18px 24px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
