@@ -18,3 +18,7 @@ HTMLestático con CSS/JS específicos assets/css/womex-press.css y assets/js/wom
 
 ## Publicación
 Requiere previewVercel segúnCLAUDE/README y aprobaciónlote antesmain. AccesoCLI Vercel inicialmente bloqueado403proxy; solicitados porvíasoportada loshostsvercel.com,api.vercel.com,www.salanproducciones.com conservandoactuales, pendiente aplicarreinicio. No rotarcredenciales ni desactivarproxy. ProducciónNOmodificada aún.
+
+## Revisión de Juan · 19:12 · miniaturas
+Juan solicita pequeñas fotos de las previews. Se añaden las cuatro imágenes OpenGraph originales, verificadas en cada medio y revisadas visualmente. Copias WebP reducidas a640px en assets/images/womex-prensa, total149588bytes(~146KiB); URLdelartículo e imagenoriginal en sources.json. Imágenes decorativas(altvacío porque título/medio ya describen enlace), width/height y aspectratio reservanespacio, lazy/async, sin hotlinking ni dependencia de terceros enrender. CartelRTVC contenido completo sinrecortar. ActualizadosCSSv2 yDESIGN.md.
+Comprobaciones320/390/768/1440: lascuatroimágenes cargadas, secciónencajaancho, controlesactivos; capturas390/1440inspeccionadas en reports/womex-press-photos-*.png fuera delrepo.1262referenciaslocalesOK ySEO105URLsOK. Solo ramaPreview; sigue pendiente aprobación expresa para producción.

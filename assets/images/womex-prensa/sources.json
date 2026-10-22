@@ -1,0 +1,42 @@
+[
+  {
+    "file": "canarias7.webp",
+    "article": "https://www.canarias7.es/cultura/musica/womex-2026-gran-canaria-programa-nueve-conciertos-20261021195317-nt.html",
+    "originalImage": "https://s2.ppllstatics.com/canarias7/www/multimedia/cultura/2026/10/20/lula_mora_1140x705-k80D-U302340608832CfE-1200x840@Canarias7.jpg",
+    "width": 640,
+    "height": 448,
+    "originalWidth": 1200,
+    "originalHeight": 840,
+    "bytes": 24654
+  },
+  {
+    "file": "rtvc.webp",
+    "article": "https://rtvc.es/la-alpispa-se-sumerge-este-viernes-en-womex-2026/",
+    "originalImage": "https://cdn.rtvc.es/archivos/2026/10/WOMEXXX.webp",
+    "width": 640,
+    "height": 395,
+    "originalWidth": 800,
+    "originalHeight": 494,
+    "bytes": 55548
+  },
+  {
+    "file": "la-provincia.webp",
+    "article": "https://www.laprovincia.es/cultura/2026/10/22/womex-convierte-gran-canaria-escaparate-135597508.html",
+    "originalImage": "https://estaticos-cdn.prensaiberica.es/clip/dd3cdea9-22ee-4e6b-82e7-30301ef8df17_16-9-discover-aspect-ratio_default_0_x775y333.jpg",
+    "width": 640,
+    "height": 360,
+    "originalWidth": 1200,
+    "originalHeight": 675,
+    "bytes": 31610
+  },
+  {
+    "file": "la-voz-canaria.webp",
+    "article": "https://lavozcanaria.com/gran-canaria/general/canarias-suena-en-womex-mas-de-40-artistas-buscan-conexiones-globales",
+    "originalImage": "https://lavozcanaria.com/media/2026/10/canarias-suena-en-womex-mas-de-40-artistas-buscan-conexiones-globales.webp",
+    "width": 640,
+    "height": 360,
+    "originalWidth": 1600,
+    "originalHeight": 900,
+    "bytes": 37776
+  }
+]
