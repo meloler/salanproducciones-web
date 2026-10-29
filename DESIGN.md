@@ -20,3 +20,12 @@ Dirección editorial: apertura con fotografía real del público y nombre del fe
 Galería:16fotosaportadas porJuan, todas incluidas, WebP con variantes720px/1600máximo sin ampliar originales, espacio reservado, lazyload y alts descriptivos sin identificar personas. CSSgrid4/3/2columnas; enlacesdirectosaoriginalessinJS; conJS diálogo nativo, anterior/siguiente, cierre, Escape, flechas/Home/End, contador anunciado y retorno del foco. Sin autoplay, sin librerías ni build. Teclas instantáneas, hover solo puntero fino, respeta reduced-motion. CSS y JS específicos, sin cambios globales.
 
 ÍndiceES:cuatro proyectos equilibrados en doscolumnas/escritorio yuna/móvil; canónicos, metadatos y sitemap actualizados. No fingir traducciones nuevas ni enlazar hreflang inexistente. Revisión visual secuencialChrome a320/390/768/1440, todoslosrecursos y galería, menú móvil, foco y teclado, cierre y fallback sinJS. Publicaciónmain pendiente aprobación específica tras mostrar contenido final/preview.
+
+### Revisión autorizada · 29 octubre 2026 · logos y publicación
+Juan ha autorizado publicar el lote, sustituyendo primero los recortes pixelados de los patrocinadores por originales de buena calidad. Se conserva el texto aprobado, el cartel íntegro y las 16 fotografías.
+
+La solución final son cinco fichas independientes: Ayuntamiento de Telde, Gestel, Cultura Telde, Gobierno de Canarias e Islas Canarias–Latitud de Vida. Fondos blancos limpios, proporciones originales, áreas de protección y tamaños ópticos equilibrados; sin fondos del cartel, filtros ni redibujado de marcas. Escritorio: cinco columnas. Móvil/tablet: Ayuntamiento a ancho completo y las otras cuatro marcas en dos columnas.
+
+Ayuntamiento e Islas Canarias se renderizan desde EPS originales a unos 1600 px; Gobierno desde su PDF vectorial oficial a 1525 px. Gestel y Cultura Telde usan imágenes originales limpias de sus portales, mostradas como mínimo a densidad 2x. El logo de Gobierno conserva el claim oficial del archivo descargado, «islas iguales». El símbolo azul que figuraba en el cartel se identifica correctamente como Gestel, no como otra marca municipal.
+
+Fuentes y transformaciones documentadas en `docs/poseidon-20261029.md`. No se descarga el original restringido del Brand Center ni se modifica ningún acceso. Las copias vectoriales públicas se contrastan con las marcas institucionales. Revisar escritorio/móvil, galería y recursos antes de publicar. Push a main autorizado por Juan el 29/10/2026; comprobar después la web pública por separado.
