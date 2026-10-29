@@ -26,6 +26,12 @@
   dialog.querySelector('[data-photo-prev]').addEventListener('click', () => show(index - 1));
   dialog.querySelector('[data-photo-next]').addEventListener('click', () => show(index + 1));
   dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      const controls = Array.from(dialog.querySelectorAll('button:not([disabled])'));
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
     if (event.key === 'ArrowRight') {event.preventDefault(); show(index + 1);}
     if (event.key === 'ArrowLeft') {event.preventDefault(); show(index - 1);}
     if (event.key === 'Home') {event.preventDefault(); show(0);}
