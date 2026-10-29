@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Proyectos Culturales – Salán Producciones</title>
-  <meta name="description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <meta name="description" content="Festival Sonora, WOMEX 2026, Cinezín y Poseidón Rock Fest: los proyectos culturales de Salán Producciones en Canarias.">
   <link rel="canonical" href="https://www.salanproducciones.com/proyectosculturales/">
   <link rel="alternate" hreflang="es" href="https://www.salanproducciones.com/proyectosculturales/">
   <link rel="alternate" hreflang="en" href="https://www.salanproducciones.com/en/cultural-projects/">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.salanproducciones.com/proyectosculturales/">
   <meta property="og:title" content="Proyectos Culturales – Salán Producciones">
-  <meta property="og:description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <meta property="og:description" content="Festival Sonora, WOMEX 2026, Cinezín y Poseidón Rock Fest: los proyectos culturales de Salán Producciones en Canarias.">
   <meta property="og:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="Salán Producciones">
@@ -28,7 +28,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Proyectos Culturales – Salán Producciones">
-  <meta name="twitter:description" content="Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.">
+  <meta name="twitter:description" content="Festival Sonora, WOMEX 2026, Cinezín y Poseidón Rock Fest: los proyectos culturales de Salán Producciones en Canarias.">
   <meta name="twitter:image" content="https://www.salanproducciones.com/assets/images/salan-og.jpg">
 
   <script type="application/ld+json">
@@ -36,7 +36,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Proyectos Culturales – Salán Producciones",
-    "description": "Festival Sonora, WOMEX 2026 y Cinezín: los proyectos culturales de Salán Producciones más allá de los conciertos.",
+    "description": "Festival Sonora, WOMEX 2026, Cinezín y Poseidón Rock Fest: los proyectos culturales de Salán Producciones en Canarias.",
     "url": "https://www.salanproducciones.com/proyectosculturales/",
     "publisher": {
       "@type": "Organization",
@@ -103,7 +103,7 @@
     }
     .proyectos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
       max-width: 1100px;
       margin: 0 auto;
@@ -172,6 +172,12 @@
     .proyecto-card:hover .card-arrow {
       opacity: 1;
     }
+    @media (max-width: 600px) {
+      .proyectos-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    .proyecto-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 5px; }
+    .proyecto-card:focus-visible .card-arrow { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .proyecto-card, .proyecto-card .card-arrow { transition: none; } .proyecto-card:hover { transform: none; } }
   </style>
 </head>
 <body>
@@ -241,6 +247,13 @@
     </div>
     <h2>Cinezín</h2>
     <p class="tagline">Ciclo de documentales musicales</p>
+    <span class="card-arrow">Ver proyecto →</span>
+  </a>
+
+  <a href="/proyectosculturales/poseidon-rock-fest/" class="proyecto-card">
+    <div class="proyecto-card-logo"><img src="/proyectosculturales/poseidon-rock-fest/logo.webp" alt="Poseidón Rock Fest" width="956" height="290" loading="lazy" decoding="async"></div>
+    <h2>Poseidón Rock Fest</h2>
+    <p class="tagline">Rock internacional y talento canario en Telde. Segunda edición en preparación.</p>
     <span class="card-arrow">Ver proyecto →</span>
   </a>
 
