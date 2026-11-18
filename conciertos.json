@@ -241,6 +241,21 @@
     "buttonLabel": "Comprar"
   },
   {
+    "id": "acantha-lang-lanzarote-21-01-2027",
+    "status": "upcoming",
+    "dateISO": "2027-01-21",
+    "dateDisplay": "21 de enero de 2027",
+    "title": "Acantha Lang",
+    "venue": "Sala Buñuel · El Almacén · Arrecife",
+    "city": "Arrecife",
+    "badge": "Lanzarote",
+    "price": "",
+    "image": "/conciertos/2027/acantha-lang-lanzarote-21-01-2027/poster.webp",
+    "linkInfo": "/conciertos/2027/acantha-lang-lanzarote-21-01-2027/",
+    "disabled": true,
+    "buttonLabel": "Entradas próximamente"
+  },
+  {
     "id": "acantha-lang-las-palmas-22-01-2027",
     "status": "upcoming",
     "dateISO": "2027-01-22",
