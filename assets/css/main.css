@@ -191,7 +191,7 @@ ul { list-style: none; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/images/logo-desde-1987.webp');
+  background-image: url('/assets/images/logo-desde-1987-480.webp');
   background-size: 75%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -429,6 +429,20 @@ article[data-event-id="womex-festival-2026"]:hover .concert-card-img img { trans
   display: flex;
   flex-direction: column;
 }
+.concert-card-body .btn {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.concert-card-body .btn-outline {
+  padding-inline: 10px;
+}
+.tour-date-history {
+  display: grid;
+  gap: .25rem;
+}
+
 .concert-card-date {
   font-size: .78rem;
   color: var(--gold);

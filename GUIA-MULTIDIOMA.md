@@ -56,6 +56,9 @@ No se deben inventar datos. Los nombres de artistas, salas, ciudades, promotores
 
 ## Verificacion antes de publicar
 
+- Ejecuta `python tools/expire_concert_sales.py` para conservar las fichas de eventos celebrados y cerrar sus ofertas y enlaces de compra en el HTML. Si el equipo no tiene la base de zonas horarias, usa `--as-of AAAA-MM-DD` con la fecha local de la publicación.
+- Comprueba que la portada y la agenda muestran las mismas fechas que el feed, en orden cronológico. En una gira, la página general enlaza las fichas de cada actuación y cada ficha contiene su propio `MusicEvent`. Ejecuta `python tools/check_site_resources.py` y `python tools/check_seo.py` antes de revisar la vista previa.
+
 - Abrir la landing en los tres idiomas.
 - Comprobar selector de idioma.
 - Comprobar canonical y hreflang.

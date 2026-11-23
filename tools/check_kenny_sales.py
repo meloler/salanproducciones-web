@@ -14,8 +14,25 @@ class Page(HTMLParser):
 source=json.loads((ROOT/'data/kenny-tour-2026.json').read_text(encoding='utf-8'))['cities']
 for lang,path,feed in [('es','conciertos','conciertos.json'),('en','en/concerts','concerts.en.json'),('de','de/konzerte','concerts.de.json')]:
     route=f'/{path}/2026/{SLUG}/';p=ROOT/route.strip('/')/'index.html';s=p.read_text(encoding='utf-8');page=Page(s)
-    data=json.loads(re.search(r'<script id="kenny-dates" type="application/json">(.*?)</script>',s,re.S)[1])
     schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)[1])
+    if 'id="event-archive-note"' in s:
+        assert schema['@type']=='ItemList' and len(schema['itemListElement'])==10
+        assert 'kenny-tour.js' not in s and 'data-ticket-city' not in s
+        assert len([a for tag,a in page.tags if tag=='h1'])==1
+        for city in source:
+            city_route=route+city['id']+'/'
+            cityfile=p.parent/city['id']/'index.html'
+            citytext=cityfile.read_text(encoding='utf-8')
+            event=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',citytext,re.S)[1])
+            assert event['@type']=='MusicEvent' and event['url']=='https://www.salanproducciones.com'+city_route
+            assert event['location']['address']['streetAddress']==city['address']['streetAddress']
+            assert event['startDate']==city['date']+'T'+city['time']+':00+02:00'
+            assert 'offers' not in event and 'id="event-archive-note"' in citytext
+            assert 'kenny-tour.js' not in citytext and city['url'] not in citytext
+            assert any(tag=='a' and a.get('href')==city_route for tag,a in page.tags)
+        print(f'{lang}: 10 historical dates, detail links and closed ticket sales OK')
+        continue
+    data=json.loads(re.search(r'<script id="kenny-dates" type="application/json">(.*?)</script>',s,re.S)[1])
     assert len(data)==len(schema['itemListElement'])==10
     assert schema['@type']=='ItemList'
     links={a['data-ticket-city']:a['href'] for tag,a in page.tags if tag=='a' and 'data-ticket-city' in a}

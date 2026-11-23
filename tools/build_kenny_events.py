@@ -2,6 +2,7 @@
 Run after editing data/kenny-tour-2026.json or a tour template; no network required.
 """
 from pathlib import Path
+from datetime import date
 import json,re,html,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 HOST='https://www.salanproducciones.com'
@@ -11,7 +12,12 @@ COPY={
 'es':dict(month='septiembre',tour='Gira España 2026',home='Inicio',buy='Comprar entradas',fees='Gastos de gestión incluidos',info='Información del concierto',back='Ver todas las ciudades',location='Dónde es el concierto',directions='Cómo llegar',minor='Acceso a partir de 16 años.',note='Consulta las condiciones de acceso en la ticketera.',description='Blues y boogie-woogie en directo con Kenny y su banda.',lead='Kenny «Blues Boss» Wayne Band en {city}',summary='Consulta las 10 fechas de Kenny Blues Boss Wayne Band en España, del 9 al 20 de septiembre de 2026. Horarios, salas y entradas con gastos incluidos.'),
 'en':dict(month='September',tour='Spain Tour 2026',home='Home',buy='Buy tickets',fees='Booking fees included',info='Concert details',back='See all cities',location='Concert venue',directions='Get directions',minor='Admission ages 16 and over.',note='Check admission conditions with the ticket seller.',description='Live blues and boogie-woogie with Kenny and his band.',lead='Kenny “Blues Boss” Wayne Band in {city}',summary='Explore all 10 Kenny Blues Boss Wayne Band dates in Spain, 9–20 September 2026. Venues, start times and tickets with booking fees included.'),
 'de':dict(month='September',tour='Spanien-Tour 2026',home='Startseite',buy='Tickets kaufen',fees='Vorverkaufsgebühren inklusive',info='Konzertdetails',back='Alle Städte ansehen',location='Veranstaltungsort',directions='Anfahrt',minor='Einlass ab 16 Jahren.',note='Einlassbedingungen beim Ticketanbieter prüfen.',description='Blues und Boogie-Woogie live mit Kenny und seiner Band.',lead='Kenny „Blues Boss“ Wayne Band in {city}',summary='Alle 10 Termine der Spanien-Tour von Kenny Blues Boss Wayne Band vom 9.–20. September 2026. Spielorte, Uhrzeiten und Tickets inklusive Gebühren.')}
-DATA=json.loads((ROOT/'data/kenny-tour-2026.json').read_text())['cities']
+DATA=json.loads((ROOT/'data/kenny-tour-2026.json').read_text(encoding='utf-8'))['cities']
+if all(c['date'] < date.today().isoformat() for c in DATA):
+ from expire_concert_sales import refresh
+ refresh(as_of=date.today())
+ print('The completed tour is archived. Its ticket offers stay closed.')
+ raise SystemExit(0)
 def esc(x):return html.escape(str(x),quote=True)
 def ld(obj):return '<script type="application/ld+json">\n'+json.dumps(obj,ensure_ascii=False,indent=2)+'\n</script>'
 def breadcrumbs(lang,items):

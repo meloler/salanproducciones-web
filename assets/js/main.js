@@ -61,11 +61,8 @@
     return `srcset="${base}-320.webp 320w, ${base}-480.webp 480w, ${base}-768.webp 768w" sizes="${sizes}" decoding="async"`;
   }
 
-  function localISODate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  function localISODate(date, timeZone = 'Atlantic/Canary') {
+    return new Intl.DateTimeFormat('sv-SE', { timeZone }).format(date);
   }
 
   function concertEndDate(concert) {
@@ -97,24 +94,58 @@
   const uiCopy = {
     es: {
       noUpcoming: 'No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!',
-      info: '+ Info',
+      info: 'Ficha de',
+      past: 'Este concierto ya se celebró.',
       poster: 'Cartel',
       contactSent: '✓ Mensaje enviado'
     },
     en: {
       noUpcoming: 'There are no upcoming concerts scheduled right now. Follow our channels for new dates.',
-      info: '+ Info',
+      info: 'Details for',
+      past: 'This concert has already taken place.',
       poster: 'Poster',
       contactSent: 'Message sent'
     },
     de: {
       noUpcoming: 'Zurzeit sind keine kommenden Konzerte geplant. Folge unseren Kanälen für neue Termine.',
-      info: '+ Info',
+      info: 'Details zu',
+      past: 'Dieses Konzert hat bereits stattgefunden.',
       poster: 'Plakat',
       contactSent: 'Nachricht gesendet'
     }
   };
   const t = uiCopy[lang] || uiCopy.es;
+  const agendaPath = {
+    es: '/proximos-conciertos/', en: '/en/upcoming-concerts/', de: '/de/kommende-konzerte/'
+  }[lang];
+
+  /* --- Expire the current page's ticket offers on the concert's local calendar date --- */
+  function expireTicketLinks(container) {
+    const { eventLastDate, eventTimezone } = container.dataset;
+    if (eventLastDate >= localISODate(new Date(), eventTimezone) || container.querySelector('#event-archive-note')) return;
+
+    const notice = document.createElement('p');
+    notice.className = 'event-guest';
+    notice.textContent = t.past;
+    container.querySelector('h1, h3, .info-grid')?.after(notice);
+    container.querySelectorAll('a[data-event-ticket]').forEach(link => {
+      link.href = agendaPath;
+      link.removeAttribute('target');
+      link.removeAttribute('aria-label');
+      link.removeAttribute('data-analytics-event-id');
+      link.textContent = { es: 'Ver próximos conciertos', en: 'See upcoming concerts', de: 'Kommende Konzerte ansehen' }[lang];
+    });
+    if (container !== document.body) return;
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+      const event = JSON.parse(script.textContent);
+      if (event['@type'] === 'MusicEvent' && event.offers) {
+        delete event.offers;
+        script.textContent = JSON.stringify(event);
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-event-last-date]').forEach(expireTicketLinks);
 
   function insertLanguageSwitcher() {
     const alternates = {};
@@ -368,6 +399,11 @@
   const agendaGrid = document.getElementById('agenda-grid');
   const carouselTrack = document.getElementById('carousel-track');
   const concertsTimeline = document.getElementById('concerts-timeline');
+
+  function showsMatch(container, concerts) {
+    const ids = Array.from(container.querySelectorAll('[data-event-id]'), element => element.dataset.eventId);
+    return ids.length === concerts.length && ids.every((id, i) => id === concerts[i].id);
+  }
   
   if (upcomingGrid || agendaGrid || carouselTrack || concertsTimeline) {
     const concertsFeed = lang === 'en' ? '/concerts.en.json' : (lang === 'de' ? '/concerts.de.json' : '/conciertos.json');
@@ -376,6 +412,21 @@
       .then(data => {
         const today = localISODate(new Date());
         const upcoming = data.filter(c => concertEndDate(c) >= today).sort((a, b) => a.dateISO.localeCompare(b.dateISO));
+
+        if (agendaGrid && !showsMatch(agendaGrid, upcoming)) {
+          const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
+          const listing = scripts.find(script => JSON.parse(script.textContent)['@type'] === 'ItemList');
+          if (listing) {
+            const agenda = JSON.parse(listing.textContent);
+            const canonical = document.querySelector('link[rel="canonical"]').href;
+            agenda.itemListElement = upcoming.map((concert, index) => {
+              const url = new URL(concert.linkInfo, canonical).href;
+              return { '@type': 'ListItem', position: index + 1, name: stripHtml(concert.title), item: { '@id': url, url } };
+            });
+            agenda.numberOfItems = upcoming.length;
+            listing.textContent = JSON.stringify(agenda);
+          }
+        }
         
         // 1. Render Upcoming dynamically from conciertos.json
         if (upcomingGrid || agendaGrid) {
@@ -385,7 +436,7 @@
               container.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--muted);">' + t.noUpcoming + '</p>';
             });
           } else {
-            upcomingContainers.forEach(container => {
+            upcomingContainers.filter(container => !showsMatch(container, upcoming)).forEach(container => {
               const ticketLinkFor = concert => {
                 const feedUrl = new URL(concert.linkBuy, window.location.href);
                 const fallbackLink = Array.from(container.querySelectorAll('a[data-analytics-event-id]'))
@@ -406,10 +457,10 @@
               };
               let html = '';
               upcoming.forEach(c => {
-                const ticketLink = c.disabled ? '' : ticketLinkFor(c);
-                const buttonHtml = c.disabled
-                  ? `<button class="btn btn-outline" style="flex:1" disabled>${c.buttonLabel}</button>`
-                  : `<a href="${escapeHtml(ticketLink)}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${c.buyAria}">${c.buttonLabel}</a>`;
+                const ticketLink = c.disabled || !c.linkBuy ? '' : ticketLinkFor(c);
+                const buttonHtml = ticketLink
+                  ? `<a href="${escapeHtml(ticketLink)}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${escapeHtml(c.buyAria)}">${escapeHtml(c.buttonLabel)}</a>`
+                  : c.buttonLabel ? `<button class="btn btn-outline" style="flex:1" disabled>${escapeHtml(c.buttonLabel)}</button>` : '';
                 const titleHtml = c.subtitle
                   ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                   : c.title;
@@ -419,7 +470,7 @@
                 html += `
                   <article class="concert-card reveal" data-event-id="${escapeHtml(c.id)}">
                     <div class="concert-card-img">
-                      <img src="${c.image.replace('/poster.webp', '/poster-480.webp')}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${t.poster} ${c.title} - ${c.dateDisplay}" loading="lazy" width="400" height="533">
+                      <img src="${escapeHtml(c.image.replace('/poster.webp', '/poster-480.webp'))}" ${responsivePosterAttrs(c.image, '(max-width: 700px) 92vw, (max-width: 1100px) 45vw, 320px')} alt="${escapeHtml(`${t.poster} ${stripHtml(c.title)} - ${c.dateDisplay}`)}" loading="lazy" width="400" height="533">
                       ${badgeHtml}
                     </div>
                     <div class="concert-card-body">
@@ -428,7 +479,7 @@
                       <p class="concert-card-venue">${c.venue}</p>
                       ${priceHtml}
                       <div style="display:flex;gap:8px;margin-top:8px">
-                        <a href="${c.linkInfo}" class="btn btn-outline" style="flex:1;text-align:center">${t.info}</a>
+                        <a href="${escapeHtml(c.linkInfo)}" class="btn btn-outline" style="flex:1;text-align:center">${escapeHtml(`${t.info} ${stripHtml(c.title)} · ${c.city || stripHtml(c.badge) || stripHtml(c.venue)}`)}</a>
                         ${buttonHtml}
                       </div>
                     </div>
@@ -452,7 +503,7 @@
           }
         }
 
-        if (carouselTrack) {
+        if (carouselTrack && !showsMatch(carouselTrack, upcoming)) {
           const dots = document.getElementById('carousel-dots');
           if (dots) dots.innerHTML = '';
 
@@ -505,7 +556,7 @@
                 yearBlock.className = 'timeline-year-group';
                 yearBlock.setAttribute('data-year', year);
                 yearBlock.innerHTML = `
-                  <div class="timeline-year"><span>${year}</span></div>
+                  <h2 class="timeline-year"><span>${year}</span></h2>
                   <div class="timeline-grid"></div>
                 `;
                 // Insert at the beginning

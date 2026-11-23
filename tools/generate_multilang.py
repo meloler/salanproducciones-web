@@ -109,6 +109,8 @@ def translate_common(html: str, lang: str) -> str:
         "Aceptar todo": "Accept all",
         "Solo necesarias": "Necessary only",
         "Más información": "More information",
+        "Política de cookies": "Cookie policy",
+        "Próximos conciertos en Canarias y España": "Upcoming concerts in the Canary Islands and Spain",
         "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "We use first-party and third-party cookies for analytics, advertising and basic site operation. You can accept all cookies or only the necessary ones.",
         "Comprar Entradas": "Buy tickets",
         "Comprar entradas": "Buy tickets",
@@ -198,6 +200,8 @@ def translate_common(html: str, lang: str) -> str:
         "Aceptar todo": "Alle akzeptieren",
         "Solo necesarias": "Nur notwendige",
         "Más información": "Mehr Informationen",
+        "Política de cookies": "Cookie-Richtlinie",
+        "Próximos conciertos en Canarias y España": "Kommende Konzerte auf den Kanaren und in Spanien",
         "Usamos cookies propias y de terceros (Google Analytics, Meta Pixel) para analítica y publicidad. Puedes aceptar todas o solo las necesarias para el funcionamiento del sitio.": "Wir verwenden eigene Cookies und Cookies von Drittanbietern für Analyse, Werbung und den grundlegenden Betrieb der Website. Du kannst alle oder nur die notwendigen Cookies akzeptieren.",
         "Comprar Entradas": "Tickets kaufen",
         "Comprar entradas": "Tickets kaufen",
@@ -466,7 +470,7 @@ def route_for_href(href: str, routes: dict[str, dict[str, str]], lang: str) -> s
     if href.startswith("#"):
         return href
     if href == "/#proximos":
-        return "/en/#proximos" if lang == "en" else "/de/#proximos"
+        return "/en/upcoming-concerts/" if lang == "en" else "/de/kommende-konzerte/"
     if href in routes:
         return routes[href][lang]
     # Strip query/hash for internal page links.
@@ -579,8 +583,8 @@ def rewrite_structured_concert_urls(html: str, lang: str) -> str:
 
 def set_upcoming_meta_descriptions(html: str, lang: str) -> str:
     descriptions = {
-        "en": "Upcoming concerts by Salán Producciones in the Canary Islands in November 2026: Clearwater Creedence Revival in El Sauzal and Telde. See dates and tickets.",
-        "de": "Kommende Konzerte von Salán Producciones auf den Kanarischen Inseln im November 2026: Clearwater Creedence Revival in El Sauzal und Telde. Termine und Tickets.",
+        "en": "Browse concert dates, venues and tickets from Salán Producciones in the Canary Islands and across Spain.",
+        "de": "Termine, Spielorte und Tickets für Konzerte von Salán Producciones auf den Kanaren und in ganz Spanien.",
     }
     description = html_lib.escape(descriptions[lang], quote=True)
     pattern = r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*(">)'
