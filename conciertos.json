@@ -319,5 +319,22 @@
     "linkBuy": "https://www.tureservaonline.es/es/events/xoel-lopez?utm_source=landing&utm_medium=web&utm_campaign=xoel-lopez-telde-02-04-2027",
     "buyAria": "Comprar entradas — Xoel López",
     "buttonLabel": "Comprar entradas"
+  },
+  {
+    "id": "mala-gestion-gran-canaria-03-04-2027",
+    "status": "upcoming",
+    "dateISO": "2027-04-03",
+    "dateDisplay": "3 de abril de 2027",
+    "title": "Mala Gestión",
+    "subtitle": "Haremos lo que podamos Tour",
+    "venue": "Sala Alboroto · Las Palmas de Gran Canaria",
+    "city": "Las Palmas de Gran Canaria",
+    "badge": "Gran Canaria",
+    "price": "16,50 € · gastos de gestión incluidos",
+    "image": "/conciertos/2027/mala-gestion-gran-canaria-03-04-2027/poster.webp",
+    "linkInfo": "/conciertos/2027/mala-gestion-gran-canaria-03-04-2027/",
+    "linkBuy": "https://tickety.es/event/mala-gestion-en-gran-canaria-haremos-lo-que-podamos-tour?utm_source=landing&utm_medium=web&utm_campaign=mala-gestion-gran-canaria-03-04-2027",
+    "buyAria": "Comprar entradas — Mala Gestión en Las Palmas de Gran Canaria",
+    "buttonLabel": "Comprar entradas"
   }
 ]
