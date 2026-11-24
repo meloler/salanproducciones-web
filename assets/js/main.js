@@ -95,6 +95,7 @@
     es: {
       noUpcoming: 'No hay conciertos próximos programados en este momento. ¡Atento a nuestras redes!',
       info: 'Ficha de',
+      buy: 'Comprar entradas',
       past: 'Este concierto ya se celebró.',
       poster: 'Cartel',
       contactSent: '✓ Mensaje enviado'
@@ -102,6 +103,7 @@
     en: {
       noUpcoming: 'There are no upcoming concerts scheduled right now. Follow our channels for new dates.',
       info: 'Details for',
+      buy: 'Buy tickets',
       past: 'This concert has already taken place.',
       poster: 'Poster',
       contactSent: 'Message sent'
@@ -109,6 +111,7 @@
     de: {
       noUpcoming: 'Zurzeit sind keine kommenden Konzerte geplant. Folge unseren Kanälen für neue Termine.',
       info: 'Details zu',
+      buy: 'Tickets kaufen',
       past: 'Dieses Konzert hat bereits stattgefunden.',
       poster: 'Plakat',
       contactSent: 'Nachricht gesendet'
@@ -457,16 +460,21 @@
               };
               let html = '';
               upcoming.forEach(c => {
-                const ticketLink = c.disabled || !c.linkBuy ? '' : ticketLinkFor(c);
+                const infoUrl = c.linkInfo ? new URL(c.linkInfo, window.location.href) : null;
+                const ticketUrl = c.linkBuy ? new URL(c.linkBuy, window.location.href) : null;
+                const hasSeparateTicket = !!ticketUrl && (!infoUrl || ticketUrl.origin !== infoUrl.origin || ticketUrl.pathname !== infoUrl.pathname);
+                const ticketLink = c.disabled || !hasSeparateTicket ? '' : ticketLinkFor(c);
                 const buttonHtml = ticketLink
-                  ? `<a href="${escapeHtml(ticketLink)}" class="btn btn-primary" style="flex:2;text-align:center" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${escapeHtml(c.buyAria)}">${escapeHtml(c.buttonLabel)}</a>`
-                  : c.buttonLabel ? `<button class="btn btn-outline" style="flex:1" disabled>${escapeHtml(c.buttonLabel)}</button>` : '';
+                  ? `<a href="${escapeHtml(ticketLink)}" class="btn btn-primary concert-card-ticket" data-analytics-event-id="${escapeHtml(c.id)}" data-analytics-city="${escapeHtml(c.city || '')}" data-analytics-location="concert_card" ${c.linkBuy.startsWith("/") ? "" : 'target="_blank" rel="noopener"'} aria-label="${escapeHtml(c.buyAria)}">${escapeHtml(t.buy)}</a>`
+                  : (c.disabled || !c.linkBuy) && c.buttonLabel ? `<span class="concert-card-status">${escapeHtml(c.buttonLabel)}</span>` : '';
                 const titleHtml = c.subtitle
                   ? `${c.title}<br><small style="font-size:.75em;color:var(--muted)">${c.subtitle}</small>`
                   : c.title;
                 const priceHtml = c.price ? `<p class="concert-card-price">${c.price}</p>` : '';
                 const badgeHtml = c.badge ? `<span class="concert-card-badge">${c.badge}</span>` : '';
 
+                const cardLinkLabel = `${stripHtml(c.title)} · ${c.city || stripHtml(c.badge) || stripHtml(c.venue)}`;
+                const infoHtml = `<a class="btn concert-card-info" href="${escapeHtml(c.linkInfo)}" aria-label="+ info: ${escapeHtml(cardLinkLabel)}">+ info</a>`;
                 html += `
                   <article class="concert-card reveal" data-event-id="${escapeHtml(c.id)}">
                     <div class="concert-card-img">
@@ -475,13 +483,10 @@
                     </div>
                     <div class="concert-card-body">
                       <div class="concert-card-date">${c.dateDisplay}</div>
-                      <h3 class="concert-card-title">${titleHtml}</h3>
+                      <h3 class="concert-card-title"><a class="card-link" href="${escapeHtml(c.linkInfo)}" aria-label="${escapeHtml(cardLinkLabel)}">${titleHtml}</a></h3>
                       <p class="concert-card-venue">${c.venue}</p>
                       ${priceHtml}
-                      <div style="display:flex;gap:8px;margin-top:8px">
-                        <a href="${escapeHtml(c.linkInfo)}" class="btn btn-outline" style="flex:1;text-align:center">${escapeHtml(`${t.info} ${stripHtml(c.title)} · ${c.city || stripHtml(c.badge) || stripHtml(c.venue)}`)}</a>
-                        ${buttonHtml}
-                      </div>
+                      <div class="concert-card-actions">${buttonHtml}${infoHtml}</div>
                     </div>
                   </article>
                 `;

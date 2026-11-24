@@ -379,6 +379,7 @@ ul { list-style: none; }
 }
 
 .concert-card {
+  position: relative;
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -437,6 +438,68 @@ article[data-event-id="womex-festival-2026"]:hover .concert-card-img img { trans
 }
 .concert-card-body .btn-outline {
   padding-inline: 10px;
+}
+.concert-card .card-link {
+  color: inherit;
+  text-decoration: none;
+}
+.concert-card .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+.concert-card a:not(.card-link),
+.concert-card button {
+  position: relative;
+  z-index: 1;
+}
+.concert-card:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.concert-card .card-link:focus-visible {
+  outline: none;
+}
+.concert-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.concert-card .concert-card-ticket {
+  align-self: flex-start;
+  width: auto;
+  max-width: 100%;
+  min-height: 40px;
+  padding: 9px 16px;
+  white-space: nowrap;
+}
+.concert-card .concert-card-info {
+  align-self: flex-start;
+  width: auto;
+  min-height: 40px;
+  padding: 9px 12px;
+  color: var(--text);
+  background: #343434;
+  border: 2px solid #4a4a4a;
+  font-size: .7rem;
+  letter-spacing: .02em;
+  text-transform: none;
+  white-space: nowrap;
+}
+.concert-card .concert-card-info:hover {
+  color: #fff;
+  background: #414141;
+  border-color: #606060;
+}
+.concert-card-status {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: .75rem;
+  line-height: 1.3;
 }
 .tour-date-history {
   display: grid;
@@ -1095,6 +1158,15 @@ article[data-event-id="womex-festival-2026"]:hover .concert-card-img img { trans
 }
 @media (max-width: 600px) {
   .concerts-grid { grid-template-columns: 1fr 1fr; }
+  .concert-card-body { padding: 12px 16px 14px; }
+  .concert-card-date { font-size: .72rem; margin-bottom: 4px; }
+  .concert-card-title { font-size: 1.1rem; line-height: 1.15; margin-bottom: 3px; }
+  .concert-card-venue { display: none; }
+  .concert-card-price { font-size: .76rem; margin: 0; }
+  .concert-card-actions { margin-top: 8px; }
+  .concert-card .concert-card-ticket { min-height: 36px; padding: 8px 12px; font-size: .7rem; letter-spacing: .05em; }
+  .concert-card .concert-card-info { min-height: 36px; padding: 8px 12px; font-size: .68rem; }
+  .concert-card-status { font-size: .72rem; }
   .hero-stats { gap: 24px; }
   .hero-title { margin-bottom: 16px; }
   .hero-subtitle { margin-bottom: 24px; }
