@@ -508,7 +508,13 @@
           }
         }
 
-        if (carouselTrack && !showsMatch(carouselTrack, upcoming)) {
+        const carouselItems = carouselTrack
+          ? Array.from(carouselTrack.querySelectorAll('[data-event-id]:not([aria-hidden="true"])'))
+          : [];
+        const carouselContentIsComplete = carouselItems.length > 0
+          && carouselItems.every(item => item.querySelector(".carousel-item-info"));
+
+        if (carouselTrack && (!showsMatch(carouselTrack, upcoming) || !carouselContentIsComplete)) {
           const dots = document.getElementById('carousel-dots');
           if (dots) dots.innerHTML = '';
 
@@ -519,11 +525,12 @@
           } else {
             carouselTrack.dataset.carouselReady = 'false';
             carouselTrack.innerHTML = upcoming.map(c => `
-              <a href="${escapeHtml(c.linkInfo)}" class="carousel-item" data-event-id="${escapeHtml(c.id)}" aria-label="${escapeHtml(stripHtml(c.title))} - ${escapeHtml(stripHtml(c.dateDisplay))}">
+              <a href="${escapeHtml(c.linkInfo)}" class="carousel-item" data-event-id="${escapeHtml(c.id)}" aria-label="${escapeHtml(stripHtml(c.title))} - ${escapeHtml(stripHtml(c.subtitle || c.venue))} - ${escapeHtml(stripHtml(c.dateDisplay))}">
                 <img src="${escapeHtml(c.image.replace('/poster.webp', '/poster-320.webp'))}" alt="${escapeHtml(stripHtml(c.title))}" loading="lazy" width="320" height="427">
                 <div class="carousel-item-info">
                   <div class="carousel-item-date">${escapeHtml(c.dateDisplay)}</div>
                   <div class="carousel-item-title">${escapeHtml(c.title)}</div>
+                  ${c.subtitle ? `<div class="carousel-item-venue">${escapeHtml(c.subtitle)}</div>` : ""}
                   <div class="carousel-item-venue">${escapeHtml(c.venue)}</div>
                 </div>
               </a>
