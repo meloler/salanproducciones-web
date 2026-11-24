@@ -404,7 +404,7 @@
   const concertsTimeline = document.getElementById('concerts-timeline');
 
   function showsMatch(container, concerts) {
-    const ids = Array.from(container.querySelectorAll('[data-event-id]'), element => element.dataset.eventId);
+    const ids = Array.from(container.querySelectorAll('[data-event-id]:not([aria-hidden="true"])'), element => element.dataset.eventId);
     return ids.length === concerts.length && ids.every((id, i) => id === concerts[i].id);
   }
   

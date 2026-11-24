@@ -82,6 +82,7 @@
     overflow: hidden;
     cursor: grab;
     padding-bottom: 2px;
+    touch-action: pan-y;
   }
   .carousel-outer.is-dragging { cursor: grabbing; }
   .carousel-track {
@@ -151,21 +152,37 @@
     padding-bottom: 4px;
   }
   .carousel-dot {
-    width: 6px;
-    height: 6px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
     border-radius: 50%;
-    background: var(--border);
-    transition: background .25s, width .25s;
+    background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
     flex-shrink: 0;
+    touch-action: manipulation;
   }
-  .carousel-dot.active {
+  .carousel-dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transform: translate(-50%, -50%);
+    transition: background .25s, width .25s;
+  }
+  .carousel-dot.active::before {
     background: var(--gold);
     width: 18px;
     border-radius: 3px;
   }
+  .carousel-dot:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
   </style>
 <link rel="stylesheet" href="/assets/css/ticket-sales.css?v=20260905-seo">
 <link rel="stylesheet" href="/assets/css/concert-actions.css?v=1">
@@ -490,7 +507,7 @@
 </div>
 
 <script src="/assets/js/cookies.js?v=20261007-phase2" defer></script>
-<script src="/assets/js/main.js?v=20261124-card-info" defer></script>
+<script src="/assets/js/main.js?v=20261124-carousel-init" defer></script>
 <script>
 (function() {
   window.initSalanCarousel = function() {
@@ -623,10 +640,8 @@
   init();
   };
 
-  if (window.salanCarouselNeedsInit) {
-    window.salanCarouselNeedsInit = false;
-    window.initSalanCarousel();
-  }
+  window.salanCarouselNeedsInit = false;
+  window.initSalanCarousel();
 })();
 </script>
 </body>
