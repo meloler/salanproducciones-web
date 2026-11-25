@@ -280,8 +280,9 @@
     "price": "5,80 € (inkl. Buchungsgebühren)",
     "image": "/conciertos/2027/muguruza-fm-40-tour-la-laguna-04-03-2027/poster.webp",
     "linkInfo": "/de/konzerte/2027/muguruza-fm-40-tour-la-laguna-04-03-2027/",
-    "disabled": true,
-    "buttonLabel": "Tickets demnächst"
+    "buttonLabel": "Kaufen",
+    "linkBuy": "https://tickety.es/event/documental-de-fermin-muguruza-muguruza-fm-40-tour-aguere-cultural",
+    "buyAria": "Tickets für Muguruza FM 40 Tour — La Laguna kaufen"
   },
   {
     "id": "muguruza-fm-40-tour-las-palmas-06-03-2027",
@@ -296,7 +297,7 @@
     "price": "5,80 € (inkl. Buchungsgebühren)",
     "image": "/conciertos/2027/muguruza-fm-40-tour-las-palmas-06-03-2027/poster.webp",
     "linkInfo": "/de/konzerte/2027/muguruza-fm-40-tour-las-palmas-06-03-2027/",
-    "linkBuy": "https://www.tomaticket.es/index.php?accion=evento&IdEvento=1014454&utm_source=landing&utm_medium=web&utm_campaign=muguruza-fm-40-tour-las-palmas-06-03-2027",
+    "linkBuy": "https://www.tomaticket.es/index.php?accion=evento&mapa=1&IdEvento=1014454&IdSesion=1073750&accion2=butacas&IdZona=1",
     "buyAria": "Tickets kaufen Muguruza FM 40 Tour — Las Palmas de Gran Canaria",
     "buttonLabel": "Kaufen"
   },
