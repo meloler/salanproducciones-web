@@ -54,6 +54,65 @@
     revealEls.forEach(el => io.observe(el));
   }
 
+  /* --- Stat count-up animation --- */
+  const countUpEls = document.querySelectorAll('[data-countup]');
+  if (countUpEls.length) {
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateCountUp = (el) => {
+      if (el.dataset.countupDone) return;
+      el.dataset.countupDone = '1';
+
+      const target = Number(el.dataset.countup);
+      if (!Number.isFinite(target) || target <= 0) return;
+
+      const prefix = el.dataset.countupPrefix || '';
+      const suffix = el.dataset.countupSuffix || '';
+      const duration = Number(el.dataset.countupDuration) || 900;
+      const finalText = prefix + target + suffix;
+
+      if (reducedMotion || typeof window.requestAnimationFrame !== 'function') {
+        el.textContent = finalText;
+        return;
+      }
+
+      el.style.fontVariantNumeric = 'tabular-nums';
+      if (el.offsetWidth > 0) {
+        el.style.minWidth = el.offsetWidth + 'px';
+      }
+
+      let startTime = null;
+      const step = (timestamp) => {
+        if (startTime === null) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 2.2);
+        const current = Math.round(target * eased);
+        el.textContent = prefix + current + suffix;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = finalText;
+        }
+      };
+
+      el.textContent = prefix + '0' + suffix;
+      window.requestAnimationFrame(step);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const countIo = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCountUp(entry.target);
+            countIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      countUpEls.forEach(el => countIo.observe(el));
+    } else {
+      countUpEls.forEach(animateCountUp);
+    }
+  }
+
 
   function responsivePosterAttrs(src, sizes) {
     if (!src || !src.includes('/conciertos/2026/') || !src.endsWith('/poster.webp')) return '';
